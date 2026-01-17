@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://cgbnpyseo82gs"]
+
+[ext_resource type="Shader" uid="uid://4ofvgfb248lm" path="res://addons/CelShadingGodot/OutlinePlugin/shader/cell_shading_post_process.gdshader" id="1_a1whi"]
+[ext_resource type="Script" uid="uid://bygc3sfldvqly" path="res://addons/CelShadingGodot/OutlinePlugin/PostProcessOutline.gd" id="2_hit8q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a1whi"]
+render_priority = 0
+shader = ExtResource("1_a1whi")
+shader_parameter/threshold = 0.3
+shader_parameter/depth_threshold = 0.241
+shader_parameter/contrast = 1.0
+shader_parameter/intensity = 10.0
+shader_parameter/max_distance_threshold = 10.0
+shader_parameter/outline_colors = Vector4(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_hit8q"]
+material = SubResource("ShaderMaterial_a1whi")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1whi"]
+diffuse_mode = 3
+specular_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vdpc0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hit8q"]
+diffuse_mode = 3
+specular_mode = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a1whi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdpc0"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.7684049, 0.7204172, 0.31492394, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_hit8q"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="PostProcessOutline" type="MeshInstance3D" parent="Camera3D"]
+mesh = SubResource("QuadMesh_hit8q")
+skeleton = NodePath("../..")
+script = ExtResource("2_hit8q")
+depth_threshold = 0.241
+metadata/_custom_type_script = "uid://bygc3sfldvqly"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_a1whi")
+mesh = SubResource("PlaneMesh_vdpc0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44579268, -0.15758497, 0)
+material_override = SubResource("StandardMaterial3D_hit8q")
+mesh = SubResource("CylinderMesh_a1whi")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766551, 0.33107913, 0)
+material_override = SubResource("StandardMaterial3D_vdpc0")
+mesh = SubResource("PrismMesh_hit8q")

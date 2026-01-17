@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="GGJ 2026 - Glowing Potato"
+config/tags=PackedStringArray("jam")
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
-config/tags=PackedStringArray("jam")
 
 [dotnet]
 
 project/assembly_name="GGJ 2026 - Glowing Potato"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/CelShadingGodot/OutlinePlugin/plugin.cfg")
