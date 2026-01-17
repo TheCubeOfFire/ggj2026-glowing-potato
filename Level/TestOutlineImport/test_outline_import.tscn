@@ -7,7 +7,7 @@
 render_priority = 0
 shader = ExtResource("1_a1whi")
 shader_parameter/threshold = 0.3
-shader_parameter/depth_threshold = 0.241
+shader_parameter/depth_threshold = 0.2
 shader_parameter/contrast = 1.0
 shader_parameter/intensity = 10.0
 shader_parameter/max_distance_threshold = 10.0
@@ -42,10 +42,10 @@ albedo_color = Color(0.7684049, 0.7204172, 0.31492394, 1)
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="PostProcessOutline" type="MeshInstance3D" parent="Camera3D"]
+extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_hit8q")
 skeleton = NodePath("../..")
 script = ExtResource("2_hit8q")
-depth_threshold = 0.241
 metadata/_custom_type_script = "uid://bygc3sfldvqly"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

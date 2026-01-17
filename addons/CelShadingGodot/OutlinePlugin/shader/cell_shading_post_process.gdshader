@@ -8,7 +8,9 @@ void vertex() {
   POSITION = vec4(VERTEX.xy, 1.0, 1.0);
 }
 
+#if CURRENT_RENDERER == RENDERER_FORWARD_PLUS
 uniform sampler2D normal_map_roughness : hint_normal_roughness_texture;
+#endif
 uniform sampler2D depth: hint_depth_texture;
 uniform sampler2D current_texture : hint_screen_texture;
 
@@ -85,7 +87,11 @@ float applyKernel(mat3 sobelKernel, mat3 pixelValue)
 
 float linearizeDepth(vec2 vScreenUV, mat4 mInvProj, float fDepth)
 {
+#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
+	vec3 ndc = vec3(vScreenUV, fDepth) * 2.0 - 1.0;
+#else
 	vec3 ndc = vec3(vScreenUV * 2.0 - 1.0, fDepth);
+#endif
 	vec4 vView = mInvProj * vec4(ndc, 1.0);
 	return -vView.z/vView.w;
 }
@@ -128,6 +134,7 @@ void fragment()
 
 	//
 	// Apply filter
+#if CURRENT_RENDERER == RENDERER_FORWARD_PLUS
 	mat3 normalPixel = constructPixelMatrixND(normal_map_roughness, screen_coord_pixel, 2.0, -1.0, vec3(0.2126, 0.7152, 0.0722));
 	float vSobelVValue = applyKernel(sobel_filter_v, normalPixel);
 	float vSobelHValue = applyKernel(sobel_filter_h, normalPixel);
@@ -138,8 +145,13 @@ void fragment()
 	//ALBEDO.xyz = texelFetch(normal_map_roughness, screen_coord_pixel, 0).xyz;
 	float thresholdedGradiant = clamp(intensity * pow(fEdge, contrast) - threshold, 0.0, 1.0);
 	//float thresholdedGradiant = fGradiant > threshold ? fGradiant : 0.0;
+#endif
 
+#if CURRENT_RENDERER == RENDERER_FORWARD_PLUS
 	thresholdedGradiant += fSobelDepth;
+#else
+    float thresholdedGradiant = fSobelDepth;
+#endif
 
 	vec3 currentColor = texture(current_texture, SCREEN_UV).xyz;
 	vec3 newOutlineColors = mix(currentColor, outline_colors.xyz, outline_colors.w);
