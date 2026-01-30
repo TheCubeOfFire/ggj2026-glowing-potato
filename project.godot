@@ -15,10 +15,21 @@ config/tags=PackedStringArray("jam")
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SB="*res://addons/snowbunny/sb_globals.gd"
+SB_Pixel2D="*res://addons/snowbunny/pixel2d/pixel2d_globals.gd"
+
 [dotnet]
 
 project/assembly_name="GGJ 2026 - Glowing Potato"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/CelShadingGodot/OutlinePlugin/plugin.cfg")
+enabled=PackedStringArray("res://addons/CelShadingGodot/OutlinePlugin/plugin.cfg", "res://addons/snowbunny/pixel2d/plugin.cfg", "res://addons/snowbunny/plugin.cfg")
+
+[snowbunny]
+
+globals/debug/enable_debug_draw=true
+pixel2d/tile/texture_size=32
+pixel2d/tile/pixels_per_texels=1
