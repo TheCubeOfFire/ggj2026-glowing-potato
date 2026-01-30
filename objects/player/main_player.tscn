@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj0ba673t32b8"]
+
+[ext_resource type="Script" uid="uid://drflg503vdmky" path="res://objects/player/main_player.gd" id="1_cj7cj"]
+[ext_resource type="Script" uid="uid://cgfg5dpvfsd7w" path="res://objects/components/gravity_component.gd" id="2_l7ns8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fjsog"]
+
+[node name="MainPlayer" type="CharacterBody3D"]
+script = ExtResource("1_cj7cj")
+movement_speed = 5.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fjsog")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.43105936, 0)
+
+[node name="GravityComponent" type="Node" parent="."]
+script = ExtResource("2_l7ns8")
+metadata/_custom_type_script = "uid://cgfg5dpvfsd7w"
