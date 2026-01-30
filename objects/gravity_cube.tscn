@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://caro14qkf5vv4"]
+
+[ext_resource type="Script" uid="uid://m4ms3qn626yf" path="res://objects/gravity_cube.gd" id="1_x1wp5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_51j2m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x1wp5"]
+
+[node name="GravityCube" type="RigidBody3D"]
+lock_rotation = true
+script = ExtResource("1_x1wp5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_51j2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_x1wp5")
