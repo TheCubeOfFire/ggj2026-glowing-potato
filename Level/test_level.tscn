@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5ckax6r0frvn"]
+[gd_scene load_steps=7 format=3 uid="uid://b5ckax6r0frvn"]
 
 [ext_resource type="PackedScene" uid="uid://cj0ba673t32b8" path="res://objects/player/main_player.tscn" id="1_httya"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="2_lob7s"]
 [ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="3_apcuj"]
-[ext_resource type="PackedScene" uid="uid://dsj3ca83xk83x" path="res://Mask/mask_handling_scene.tscn" id="4_3qvu4"]
-[ext_resource type="Script" uid="uid://brhtxe6en360h" path="res://objects/mask_physical_effect_manager.gd" id="6_3qvu4"]
 [ext_resource type="PackedScene" uid="uid://mrt0monvls5m" path="res://environment/environment.tscn" id="8_adm2a"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_httya"]
@@ -39,17 +37,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.802008, 1.0196187, -2.32889
 
 [node name="CubeSwitch" parent="." instance=ExtResource("3_apcuj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9784822, 0, 3.161215)
-
-[node name="mask_canvas_layer" type="CanvasLayer" parent="."]
-
-[node name="MaskHandlingScene" parent="mask_canvas_layer" instance=ExtResource("4_3qvu4")]
-
-[node name="MaskPhysicalEffectManager" type="Node" parent="." node_paths=PackedStringArray("mask_areas")]
-script = ExtResource("6_3qvu4")
-gravity_direction_metadata = &"gravity_direction"
-mask_areas = [NodePath("../mask_canvas_layer/MaskHandlingScene/Mask0/mask_area"), NodePath("../mask_canvas_layer/MaskHandlingScene/Mask1/mask_area"), NodePath("../mask_canvas_layer/MaskHandlingScene/Mask2/mask_area"), NodePath("../mask_canvas_layer/MaskHandlingScene/Mask3/mask_area")]
-affected_object_group = &"affected_objects"
-blocking_view_layers = 4294967294
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3.5)

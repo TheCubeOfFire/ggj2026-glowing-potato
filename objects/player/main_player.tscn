@@ -1,24 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj0ba673t32b8"]
+[gd_scene load_steps=9 format=3 uid="uid://cj0ba673t32b8"]
 
 [ext_resource type="Script" uid="uid://drflg503vdmky" path="res://objects/player/main_player.gd" id="1_cj7cj"]
 [ext_resource type="Shader" uid="uid://4ofvgfb248lm" path="res://addons/CelShadingGodot/OutlinePlugin/shader/cell_shading_post_process.gdshader" id="2_lovu1"]
 [ext_resource type="Script" uid="uid://bygc3sfldvqly" path="res://addons/CelShadingGodot/OutlinePlugin/PostProcessOutline.gd" id="3_4qc3c"]
+[ext_resource type="PackedScene" uid="uid://dsj3ca83xk83x" path="res://Mask/mask_handling_scene.tscn" id="4_goihf"]
+[ext_resource type="Script" uid="uid://brhtxe6en360h" path="res://objects/mask_physical_effect_manager.gd" id="5_ulx1i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fjsog"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lovu1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eu0ck"]
 render_priority = 0
 shader = ExtResource("2_lovu1")
 shader_parameter/threshold = 0.3
 shader_parameter/depth_threshold = 0.2
+shader_parameter/color_threshold = 0.3
 shader_parameter/contrast = 1.0
 shader_parameter/intensity = 10.0
 shader_parameter/max_distance_threshold = 10.0
 shader_parameter/outline_colors = Vector4(0, 0, 0, 1)
 shader_parameter/iOutlineSize = 1
 
-[sub_resource type="QuadMesh" id="QuadMesh_4qc3c"]
-material = SubResource("ShaderMaterial_lovu1")
+[sub_resource type="QuadMesh" id="QuadMesh_mulgw"]
+material = SubResource("ShaderMaterial_eu0ck")
 flip_faces = true
 size = Vector2(2, 2)
 
@@ -37,7 +40,18 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 
 [node name="PostProcessOutlines" type="MeshInstance3D" parent="Camera3D"]
 extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_4qc3c")
+mesh = SubResource("QuadMesh_mulgw")
 script = ExtResource("3_4qc3c")
 outline_size = 2
 metadata/_custom_type_script = "uid://bygc3sfldvqly"
+
+[node name="mask_canvas_layer" type="CanvasLayer" parent="."]
+
+[node name="MaskHandlingScene" parent="mask_canvas_layer" instance=ExtResource("4_goihf")]
+
+[node name="MaskPhysicalEffectManager" type="Node" parent="." node_paths=PackedStringArray("mask_areas")]
+script = ExtResource("5_ulx1i")
+gravity_direction_metadata = &"gravity_direction"
+mask_areas = [NodePath("../mask_canvas_layer/MaskHandlingScene/Mask0/mask_area"), NodePath("../mask_canvas_layer/MaskHandlingScene/Mask1/mask_area"), NodePath("../mask_canvas_layer/MaskHandlingScene/Mask2/mask_area"), NodePath("../mask_canvas_layer/MaskHandlingScene/Mask3/mask_area")]
+affected_object_group = &"affected_objects"
+blocking_view_layers = 4294967294
