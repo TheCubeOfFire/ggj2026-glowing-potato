@@ -1,45 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://8htgx03jlj2e"]
+[gd_scene load_steps=4 format=3 uid="uid://8htgx03jlj2e"]
 
-[ext_resource type="Script" uid="uid://b1rg1pgsrj6wr" path="res://Level/door.gd" id="1_rsepj"]
+[ext_resource type="PackedScene" uid="uid://b0qs4tqwtddxv" path="res://objects/door.tscn" id="1_rsepj"]
 [ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="3_rsepj"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="4_nkc7i"]
-
-[sub_resource type="Animation" id="Animation_nkc7i"]
-resource_name = "door"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Obstacles/CSGBox3D4/Door:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -3.623332, 0), Vector3(0, -0.9988053, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_871rc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Obstacles/CSGBox3D4/Door:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -3.623332, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pq8cb"]
-_data = {
-&"RESET": SubResource("Animation_871rc"),
-&"door": SubResource("Animation_nkc7i")
-}
 
 [node name="Level1" type="Node3D"]
 
@@ -64,18 +27,9 @@ size = Vector3(10, 5, 0.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.20293, 7.450001)
 size = Vector3(10, 5, 0.5)
 
-[node name="Door" type="CSGBox3D" parent="Obstacles/CSGBox3D4" node_paths=PackedStringArray("switches")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -3.623332, 0)
-operation = 2
-size = Vector3(1, 2.5136719, 1.4733887)
-script = ExtResource("1_rsepj")
+[node name="Door" parent="Obstacles/CSGBox3D4" node_paths=PackedStringArray("switches") instance=ExtResource("1_rsepj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.9000001, 0)
 switches = [NodePath("../../../CubeSwitch")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Obstacles/CSGBox3D4/Door"]
-root_node = NodePath("../../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_pq8cb")
-}
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Obstacles"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.4000006, 2.3029299, 2.5000005)
