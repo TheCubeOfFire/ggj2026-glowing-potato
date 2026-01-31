@@ -19,6 +19,7 @@ config/tags=PackedStringArray("jam")
 run/main_scene="uid://bfm50ham6kvfs"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+run/pause_menu_scene=""
 
 [autoload]
 
