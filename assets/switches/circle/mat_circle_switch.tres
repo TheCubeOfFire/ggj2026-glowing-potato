@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c76megk5rq3ee"]
+
+[ext_resource type="Texture2D" uid="uid://bej7et4w28mcu" path="res://assets/switches/circle/circle_switch_text_circle_switch.png" id="1_eivkf"]
+
+[resource]
+resource_name = "mat_circle_switch"
+cull_mode = 2
+albedo_texture = ExtResource("1_eivkf")
+roughness = 0.5
