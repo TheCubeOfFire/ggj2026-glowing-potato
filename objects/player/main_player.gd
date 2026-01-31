@@ -15,6 +15,7 @@ extends CharacterBody3D
 @onready var gravity_vector: Vector3 = ProjectSettings.get_setting(&"physics/3d/default_gravity_vector")
 
 var targeted_pedestal: Pedestal = null
+var unlocked_masks: Array[bool] = [false, false, false, false]
 
 var movement_velocity: Vector3
 var rotation_target: Vector3
@@ -95,16 +96,16 @@ func handle_rotation(x_rot: float, y_rot: float, is_controller: bool, _delta: fl
 
 #region mask toggling
 func handle_mask_input() -> void:
-    if Input.is_action_just_pressed(&"toggle_mask0"):
+    if Input.is_action_just_pressed(&"toggle_mask0") and unlocked_masks[0]:
         toggle_mask(0)
         pass
-    if Input.is_action_just_pressed(&"toggle_mask1"):
+    if Input.is_action_just_pressed(&"toggle_mask1") and unlocked_masks[1]:
         toggle_mask(1)
         pass
-    if Input.is_action_just_pressed(&"toggle_mask2"):
+    if Input.is_action_just_pressed(&"toggle_mask2") and unlocked_masks[2]:
         toggle_mask(2)
         pass
-    if Input.is_action_just_pressed(&"toggle_mask3"):
+    if Input.is_action_just_pressed(&"toggle_mask3") and unlocked_masks[3]:
         toggle_mask(3)
         pass
     return
@@ -116,7 +117,7 @@ func toggle_mask(mask_index: int) -> void:
     return
 #endregion
 
-
+#region pedetals
 func handle_pedestal_detection():
     if pedestal_raycast.is_colliding():
         var static_body_node: Node3D = pedestal_raycast.get_collider() as Node3D
@@ -128,5 +129,13 @@ func handle_pedestal_detection():
 
 func handle_interact_input():
     if Input.is_action_just_pressed(&"interact") and targeted_pedestal:
+        unlock_mask(targeted_pedestal.given_mask)
         targeted_pedestal.claim_mask()
     return
+
+
+func unlock_mask(mask_index: int) -> void:
+    assert(0 <= mask_index and mask_index <= 3)
+    unlocked_masks[mask_index] = true
+    return
+#endregion
