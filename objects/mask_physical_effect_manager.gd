@@ -2,7 +2,7 @@ class_name MaskPhysicalEffectManager
 extends Node
 
 
-@export var gravity_direction := Vector3.DOWN
+@export var gravity_direction_metadata: StringName
 
 @export var mask_area: Area2D
 
@@ -60,6 +60,8 @@ func _physics_process(_delta: float) -> void:
                 var mask_shape := mask_area.shape_owner_get_shape(mask_shape_owner, mask_shape_index)
                 if mask_shape.collide(mask_owner_transform, shape, Transform2D.IDENTITY):
                     newly_affected_objects.append(gravity_cube)
+
+    var gravity_direction := mask_area.get_meta(gravity_direction_metadata) as Vector3
 
     for newly_affected_object: GravityCube in newly_affected_objects:
         if not _currently_affected_objects.has(newly_affected_object):

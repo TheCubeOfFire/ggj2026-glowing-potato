@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cj0ba673t32b8" path="res://objects/player/main_player.tscn" id="1_httya"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="2_lob7s"]
-[ext_resource type="PackedScene" path="res://objects/cube_switch.tscn" id="3_apcuj"]
+[ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="3_apcuj"]
 [ext_resource type="PackedScene" uid="uid://cinw0kkrs6juy" path="res://Mask/mask_1.tscn" id="4_apcuj"]
-[ext_resource type="Script" path="res://objects/mask_physical_effect_manager.gd" id="6_3qvu4"]
+[ext_resource type="Script" uid="uid://brhtxe6en360h" path="res://objects/mask_physical_effect_manager.gd" id="6_3qvu4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lob7s"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -58,7 +58,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9784822, 0, 3.161215)
 
 [node name="MaskPhysicalEffectManager" type="Node" parent="." node_paths=PackedStringArray("mask_area")]
 script = ExtResource("6_3qvu4")
-gravity_direction = Vector3(0, 0, 1)
+gravity_direction_metadata = &"gravity_direction"
 mask_area = NodePath("../mask_canvas_layer/TestMask2/mask_area")
 affected_object_group = &"affected_objects"
 
