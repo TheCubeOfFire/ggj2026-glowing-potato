@@ -1,6 +1,9 @@
 class_name GravityCube
 extends AnimatableBody3D
 
+# ------- Exposed vars -------
+@export var cube_type := Globals.GCUBE_TYPE.SQUARE
+
 
 # ------- Internal vars -------
 var is_gravity_overrriden: bool = false
