@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b25lvfg5lnk5"]
+[gd_scene load_steps=5 format=3 uid="uid://b25lvfg5lnk5"]
 
 [ext_resource type="PackedScene" uid="uid://cj0ba673t32b8" path="res://objects/player/main_player.tscn" id="1_yunfu"]
 [ext_resource type="PackedScene" uid="uid://mrt0monvls5m" path="res://environment/environment.tscn" id="2_sr0xp"]
+[ext_resource type="PackedScene" uid="uid://yv5tfw1gxmhg" path="res://Level/level2.tscn" id="4_yunfu"]
 [ext_resource type="PackedScene" uid="uid://8htgx03jlj2e" path="res://Level/level1.tscn" id="5_sr0xp"]
 
 [node name="World" type="Node3D"]
@@ -18,3 +19,6 @@ shadow_caster_mask = 4294967293
 [node name="Levels" type="Node3D" parent="."]
 
 [node name="Level1" parent="Levels" instance=ExtResource("5_sr0xp")]
+
+[node name="Level2" parent="Levels" instance=ExtResource("4_yunfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.4)

@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://yv5tfw1gxmhg"]
+
+[ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="1_3rbkl"]
+[ext_resource type="PackedScene" uid="uid://i3gu0xcsf1hl" path="res://objects/door/entrance_door.tscn" id="1_yyhus"]
+[ext_resource type="PackedScene" uid="uid://b0qs4tqwtddxv" path="res://objects/door/exit_door.tscn" id="2_rylw3"]
+[ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="2_yyhus"]
+
+[node name="Level2" type="Node3D"]
+
+[node name="Obstacles" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 2
+collision_mask = 15
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.25, 2.5)
+size = Vector3(10, 0.5, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 4.9529295, 2.4000006)
+size = Vector3(10, 0.5, 10)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.303, -2.6)
+size = Vector3(10, 5, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.20293, 7.450001)
+size = Vector3(10, 5, 0.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.4000006, 2.3029299, 2.5000005)
+size = Vector3(10.1, 5, 0.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.3999999, 2.3029299, 2.5000005)
+size = Vector3(10.1, 5, 0.5)
+
+[node name="EntranceDoor" parent="Obstacles" instance=ExtResource("1_yyhus")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5, 1.3000001, -2.5999997)
+
+[node name="ExitDoor" parent="Obstacles" node_paths=PackedStringArray("switches") instance=ExtResource("2_rylw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4000006, 1.3, 3.6)
+switches = [NodePath("../../Gameplay/CubeSwitch"), NodePath("../../Gameplay/CubeSwitch2")]
+
+[node name="Gameplay" type="Node3D" parent="."]
+
+[node name="CubeSwitch" parent="Gameplay" instance=ExtResource("1_3rbkl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2000003, 0, 5.2000003)
+
+[node name="GravityCube" parent="Gameplay" instance=ExtResource("2_yyhus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2000003, 4.1000004, 5.2)
+
+[node name="CubeSwitch2" parent="Gameplay" instance=ExtResource("1_3rbkl")]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 5.2000003, 4.7000003, 4.3)
+accepted_cube_type = 1
+
+[node name="GravityCube2" parent="Gameplay" instance=ExtResource("2_yyhus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2000003, 4.1000004, 4.2999997)
+cube_type = 1
