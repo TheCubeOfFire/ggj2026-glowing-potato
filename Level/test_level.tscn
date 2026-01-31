@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5ckax6r0frvn"]
+[gd_scene load_steps=11 format=3 uid="uid://b5ckax6r0frvn"]
 
 [ext_resource type="PackedScene" uid="uid://cj0ba673t32b8" path="res://objects/player/main_player.tscn" id="1_httya"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="2_lob7s"]
@@ -7,19 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c8ho6puvxd5qv" path="res://Mask/mask_2.tscn" id="5_3qvu4"]
 [ext_resource type="PackedScene" uid="uid://27qbmi24on7b" path="res://Mask/mask_3.tscn" id="6_1jckg"]
 [ext_resource type="Script" uid="uid://brhtxe6en360h" path="res://objects/mask_physical_effect_manager.gd" id="6_3qvu4"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lob7s"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_5yf1o"]
-sky_material = SubResource("ProceduralSkyMaterial_lob7s")
-
-[sub_resource type="Environment" id="Environment_apcuj"]
-background_mode = 2
-sky = SubResource("Sky_5yf1o")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="PackedScene" uid="uid://mrt0monvls5m" path="res://environment/environment.tscn" id="8_adm2a"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_httya"]
 size = Vector2(10, 10)
@@ -29,12 +17,10 @@ size = Vector3(10, 1, 10)
 
 [node name="TestLevel" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_apcuj")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
+shadow_blur = 0.0
 
 [node name="MainPlayer" parent="." instance=ExtResource("1_httya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0636313, 0)
@@ -77,6 +63,8 @@ use_collision = true
 collision_layer = 10
 collision_mask = 7
 size = Vector3(1, 3, 4)
+
+[node name="Environment" parent="." instance=ExtResource("8_adm2a")]
 
 [editable path="mask_canvas_layer/TestMask2"]
 [editable path="mask_canvas_layer/TestMask"]
