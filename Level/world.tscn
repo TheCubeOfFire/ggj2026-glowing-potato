@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://4vpsq441l2ys"]
+
+[ext_resource type="PackedScene" uid="uid://cj0ba673t32b8" path="res://objects/player/main_player.tscn" id="1_yunfu"]
+[ext_resource type="PackedScene" uid="uid://mrt0monvls5m" path="res://environment/environment.tscn" id="2_sr0xp"]
+[ext_resource type="Script" uid="uid://brhtxe6en360h" path="res://objects/mask_physical_effect_manager.gd" id="3_jmsv1"]
+[ext_resource type="PackedScene" uid="uid://c8ho6puvxd5qv" path="res://Mask/mask_2.tscn" id="4_vj4a7"]
+[ext_resource type="PackedScene" uid="uid://dtevagl2bmytl" path="res://Level/level1.tscn" id="5_sr0xp"]
+
+[node name="World" type="Node3D"]
+
+[node name="MainPlayer" parent="." instance=ExtResource("1_yunfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10000026, 0.90000004, 2)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_caster_mask = 4294967293
+
+[node name="Environment" parent="." instance=ExtResource("2_sr0xp")]
+
+[node name="MaskPhysicalEffectManager" type="Node" parent="." node_paths=PackedStringArray("mask_areas")]
+script = ExtResource("3_jmsv1")
+gravity_direction_metadata = &"gravity_direction"
+mask_areas = [NodePath("../CanvasLayer/TestMask2/mask_area")]
+affected_object_group = &"affected_objects"
+blocking_view_layers = 4294967294
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TestMask2" parent="CanvasLayer" instance=ExtResource("4_vj4a7")]
+
+[node name="mask_area" parent="CanvasLayer/TestMask2" index="0"]
+metadata/gravity_direction = Vector3(0, -1, 0)
+
+[node name="Levels" type="Node3D" parent="."]
+
+[node name="Level1" parent="Levels" instance=ExtResource("5_sr0xp")]
+
+[editable path="CanvasLayer/TestMask2"]

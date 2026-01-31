@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtevagl2bmytl"]
+
+[ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="3_rsepj"]
+[ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="4_nkc7i"]
+
+[node name="Level1" type="Node3D"]
+
+[node name="Obstacles" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 2
+collision_mask = 15
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.24707031, 2.5)
+size = Vector3(10, 0.5, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 4.9529295, 2.4000006)
+size = Vector3(10, 0.5, 10)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.3029299, -2.55)
+size = Vector3(10, 5, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.20293, 7.450001)
+size = Vector3(10, 5, 0.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.4000006, 2.3029299, 2.5000005)
+size = Vector3(10.1, 5, 0.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.3999999, 2.3029299, 2.5000005)
+size = Vector3(10.1, 5, 0.5)
+
+[node name="CubeSwitch" parent="." instance=ExtResource("3_rsepj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2000003, 0, 5.2000003)
+
+[node name="GravityCube" parent="." instance=ExtResource("4_nkc7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2000003, 4.3, 5.2)
