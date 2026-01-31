@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsj3ca83xk83x"]
+[gd_scene load_steps=6 format=3 uid="uid://dsj3ca83xk83x"]
 
 [ext_resource type="PackedScene" uid="uid://yj6sc8lx56i8" path="res://Mask/mask_0.tscn" id="1_1820a"]
+[ext_resource type="Script" uid="uid://8rvap3fwvn8" path="res://Mask/mask_handling.gd" id="1_x6gc4"]
 [ext_resource type="PackedScene" uid="uid://cinw0kkrs6juy" path="res://Mask/mask_1.tscn" id="2_x6gc4"]
 [ext_resource type="PackedScene" uid="uid://c8ho6puvxd5qv" path="res://Mask/mask_2.tscn" id="3_f3b8j"]
 [ext_resource type="PackedScene" uid="uid://27qbmi24on7b" path="res://Mask/mask_3.tscn" id="4_w22ho"]
 
 [node name="MaskHandlingScene" type="Node2D"]
+script = ExtResource("1_x6gc4")
 
 [node name="Mask0" parent="." instance=ExtResource("1_1820a")]
 

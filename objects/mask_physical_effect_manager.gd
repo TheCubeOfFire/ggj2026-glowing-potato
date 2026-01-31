@@ -11,6 +11,7 @@ extends Node
 @export_flags_3d_physics var blocking_view_layers := 0xFFFFFFFF
 
 
+var _mask_active_status: Array[bool] = [false, false, false, false]
 var _currently_affected_objects: Array[GravityCube] = []
 
 
@@ -66,7 +67,11 @@ func _physics_process(_delta: float) -> void:
         var shape := ConvexPolygonShape2D.new()
         shape.set_point_cloud(points)
 
-        for mask_area: Area2D in mask_areas:
+        for mask_index in range(4):
+            if !_mask_active_status[mask_index]:
+                continue
+
+            var mask_area: Area2D = mask_areas[mask_index]
             var gravity_direction := mask_area.get_meta(gravity_direction_metadata) as Vector3
             for mask_shape_owner: int in mask_area.get_shape_owners():
                 var local_mask_owner_transform := mask_area.shape_owner_get_transform(mask_shape_owner)
@@ -88,3 +93,14 @@ func _physics_process(_delta: float) -> void:
             currently_affected_object.clear_gravity_override()
 
     _currently_affected_objects = newly_affected_object_gravities.keys()
+
+
+# ------- Other Functions -------
+func is_mask_active(mask_index: int) -> bool:
+    assert(0<= mask_index and mask_index <= 3)
+    return _mask_active_status[mask_index]
+
+func toggle_mask_effect(mask_index: int) -> bool:
+    assert(0<= mask_index and mask_index <= 3)
+    _mask_active_status[mask_index] = !_mask_active_status[mask_index]
+    return _mask_active_status[mask_index]

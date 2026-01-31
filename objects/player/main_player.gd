@@ -4,6 +4,10 @@ extends CharacterBody3D
 ## Movement speed for the player
 @export var movement_speed: float = 0.0
 
+@export var mask_handling: MaskHandling
+
+@export var mask_physical_effect_manager: MaskPhysicalEffectManager
+
 # ------- Internal vars -------
 @onready var camera: Camera3D = $Camera3D
 @onready var gravity_force: float = ProjectSettings.get_setting(&"physics/3d/default_gravity")
@@ -30,6 +34,8 @@ func _physics_process(delta: float) -> void:
     handle_rotation_input(delta)
 
     move_and_slide()
+
+    handle_mask_input()
     return
 
 func _input(event: InputEvent) -> void:
@@ -81,3 +87,26 @@ func handle_rotation(x_rot: float, y_rot: float, is_controller: bool, _delta: fl
     camera.rotation.x = rotation_target.x
     rotation.y = rotation_target.y
     return
+
+#region mask toggling
+func handle_mask_input() -> void:
+    if Input.is_action_just_pressed(&"toggle_mask0"):
+        toggle_mask(0)
+        pass
+    if Input.is_action_just_pressed(&"toggle_mask1"):
+        toggle_mask(1)
+        pass
+    if Input.is_action_just_pressed(&"toggle_mask2"):
+        toggle_mask(2)
+        pass
+    if Input.is_action_just_pressed(&"toggle_mask3"):
+        toggle_mask(3)
+        pass
+    return
+
+func toggle_mask(mask_index: int) -> void:
+    assert(0 <= mask_index and mask_index <= 3)
+    mask_handling.toggle_mask_visual(mask_index)
+    mask_physical_effect_manager.toggle_mask_effect(mask_index)
+    return
+#endregion
