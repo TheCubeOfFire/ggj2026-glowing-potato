@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b74rci3geo6jx"]
+
+[sub_resource type="Gradient" id="Gradient_nqgi0"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jo6t1"]
+gradient = SubResource("Gradient_nqgi0")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqgi0"]
+size = Vector2(64, 64)
+
+[node name="TestMask" type="Node2D"]
+
+[node name="mask_area" type="Area2D" parent="."]
+position = Vector2(323, 323)
+scale = Vector2(10, 10)
+metadata/_edit_group_ = true
+
+[node name="mask_texture" type="Sprite2D" parent="mask_area"]
+texture = SubResource("GradientTexture2D_jo6t1")
+
+[node name="mask_collision_shape" type="CollisionShape2D" parent="mask_area"]
+shape = SubResource("RectangleShape2D_nqgi0")
