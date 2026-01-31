@@ -151,5 +151,6 @@ func handle_interact_input():
 func unlock_mask(mask_index: int) -> void:
     assert(0 <= mask_index and mask_index <= 3)
     unlocked_masks[mask_index] = true
+    hud.set_mask_container_visibility(mask_index, true)
     return
 #endregion

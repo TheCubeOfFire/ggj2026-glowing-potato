@@ -1,11 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://crdfdtovitkc2"]
+[gd_scene load_steps=15 format=3 uid="uid://crdfdtovitkc2"]
 
 [ext_resource type="Texture2D" uid="uid://bfh0hlqrotqiw" path="res://gui/hud/icons/keyboard_e_outline.png" id="1_34rqw"]
 [ext_resource type="Script" uid="uid://dgn3jgr0i4k3n" path="res://gui/hud/hud.gd" id="1_y7mac"]
 [ext_resource type="Texture2D" uid="uid://boc8frlxyk10w" path="res://gui/hud/icons/xbox_button_color_x_outline.png" id="2_4w87a"]
 [ext_resource type="FontFile" uid="uid://6k0wln3vy23u" path="res://gui/hud/fonts/kenney_input_keyboard_&_mouse.ttf" id="3_rllpj"]
+[ext_resource type="Texture2D" uid="uid://vccq2l04konm" path="res://gui/hud/icons/keyboard_1_outline.png" id="5_s3hr8"]
+[ext_resource type="Texture2D" uid="uid://cptegfdoqtpij" path="res://gui/hud/icons/xbox_dpad_up.png" id="6_7syvl"]
+[ext_resource type="Texture2D" uid="uid://bp40vwtsoyt1a" path="res://gui/hud/icons/keyboard_2_outline.png" id="7_6tgpg"]
+[ext_resource type="Texture2D" uid="uid://cs2uehas3cjh3" path="res://gui/hud/icons/xbox_dpad_right.png" id="8_m7xk5"]
+[ext_resource type="Texture2D" uid="uid://comrf7ewulutx" path="res://gui/hud/icons/keyboard_3_outline.png" id="9_7v5vh"]
+[ext_resource type="Texture2D" uid="uid://dwn8247s01dbl" path="res://gui/hud/icons/xbox_dpad_down.png" id="10_7th1s"]
+[ext_resource type="Texture2D" uid="uid://b3f4nb0pr45gs" path="res://gui/hud/icons/keyboard_4_outline.png" id="11_rt3e4"]
+[ext_resource type="Texture2D" uid="uid://cepdpmliqk8gi" path="res://gui/hud/icons/xbox_dpad_left.png" id="12_6etrh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rllpj"]
+font = ExtResource("3_rllpj")
 font_size = 30
 font_color = Color(0.2, 0.2, 0.2, 1)
 
@@ -62,3 +71,118 @@ layout_mode = 2
 text = "Claim mask"
 label_settings = SubResource("LabelSettings_y7mac")
 horizontal_alignment = 1
+
+[node name="MaskPromptsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -66.0
+offset_right = 505.0
+offset_bottom = -25.0
+grow_vertical = 0
+
+[node name="Mask0Holder" type="Control" parent="MaskPromptsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Mask0Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask0Holder"]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 41.0
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask0Holder/Mask0Container"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 2
+texture = ExtResource("5_s3hr8")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MaskPromptsContainer/Mask0Holder/Mask0Container"]
+layout_mode = 2
+text = "/"
+label_settings = SubResource("LabelSettings_rllpj")
+
+[node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask0Holder/Mask0Container"]
+layout_mode = 2
+texture = ExtResource("6_7syvl")
+expand_mode = 3
+
+[node name="Mask1Holder" type="Control" parent="MaskPromptsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Mask1Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask1Holder"]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 41.0
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask1Holder/Mask1Container"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 2
+texture = ExtResource("7_6tgpg")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MaskPromptsContainer/Mask1Holder/Mask1Container"]
+layout_mode = 2
+text = "/"
+label_settings = SubResource("LabelSettings_rllpj")
+
+[node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask1Holder/Mask1Container"]
+layout_mode = 2
+texture = ExtResource("8_m7xk5")
+expand_mode = 3
+
+[node name="Mask2Holder" type="Control" parent="MaskPromptsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Mask2Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask2Holder"]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 41.0
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask2Holder/Mask2Container"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 2
+texture = ExtResource("9_7v5vh")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MaskPromptsContainer/Mask2Holder/Mask2Container"]
+layout_mode = 2
+text = "/"
+label_settings = SubResource("LabelSettings_rllpj")
+
+[node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask2Holder/Mask2Container"]
+layout_mode = 2
+texture = ExtResource("10_7th1s")
+expand_mode = 3
+
+[node name="Mask3Holder" type="Control" parent="MaskPromptsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Mask3Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask3Holder"]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 41.0
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask3Holder/Mask3Container"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 2
+texture = ExtResource("11_rt3e4")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MaskPromptsContainer/Mask3Holder/Mask3Container"]
+layout_mode = 2
+text = "/"
+label_settings = SubResource("LabelSettings_rllpj")
+
+[node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask3Holder/Mask3Container"]
+layout_mode = 2
+texture = ExtResource("12_6etrh")
+expand_mode = 3
