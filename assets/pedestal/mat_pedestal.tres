@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cvchajsvea33c"]
+
+[ext_resource type="Texture2D" uid="uid://1wwa82mcm12i" path="res://assets/pedestal/pedestal_text_pedestal.png" id="1_a8lj4"]
+
+[resource]
+resource_name = "mat_pedestal"
+cull_mode = 2
+albedo_texture = ExtResource("1_a8lj4")
+roughness = 0.5
