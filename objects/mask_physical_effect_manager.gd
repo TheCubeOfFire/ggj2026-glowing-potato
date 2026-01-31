@@ -4,7 +4,7 @@ extends Node
 
 @export var gravity_direction_metadata: StringName
 
-@export var mask_area: Area2D
+@export var mask_areas: Array[Area2D]
 
 @export var affected_object_group: StringName
 
@@ -12,7 +12,7 @@ var _currently_affected_objects: Array[GravityCube] = []
 
 
 func _physics_process(_delta: float) -> void:
-    var newly_affected_objects: Array[GravityCube] = []
+    var newly_affected_object_gravities: Dictionary[GravityCube, Vector3] = {}
 
     var camera := get_viewport().get_camera_3d()
 
@@ -53,22 +53,25 @@ func _physics_process(_delta: float) -> void:
         var shape := ConvexPolygonShape2D.new()
         shape.set_point_cloud(points)
 
-        for mask_shape_owner: int in mask_area.get_shape_owners():
-            var local_mask_owner_transform := mask_area.shape_owner_get_transform(mask_shape_owner)
-            var mask_owner_transform := mask_area.transform * local_mask_owner_transform
-            for mask_shape_index: int in mask_area.shape_owner_get_shape_count(mask_shape_owner):
-                var mask_shape := mask_area.shape_owner_get_shape(mask_shape_owner, mask_shape_index)
-                if mask_shape.collide(mask_owner_transform, shape, Transform2D.IDENTITY):
-                    newly_affected_objects.append(gravity_cube)
+        for mask_area: Area2D in mask_areas:
+            var gravity_direction := mask_area.get_meta(gravity_direction_metadata) as Vector3
+            for mask_shape_owner: int in mask_area.get_shape_owners():
+                var local_mask_owner_transform := mask_area.shape_owner_get_transform(mask_shape_owner)
+                var mask_owner_transform := mask_area.transform * local_mask_owner_transform
+                for mask_shape_index: int in mask_area.shape_owner_get_shape_count(mask_shape_owner):
+                    var mask_shape := mask_area.shape_owner_get_shape(mask_shape_owner, mask_shape_index)
+                    if mask_shape.collide(mask_owner_transform, shape, Transform2D.IDENTITY):
+                        if gravity_cube in newly_affected_object_gravities:
+                            newly_affected_object_gravities[gravity_cube] += gravity_direction
+                        else:
+                            newly_affected_object_gravities[gravity_cube] = gravity_direction
 
-    var gravity_direction := mask_area.get_meta(gravity_direction_metadata) as Vector3
-
-    for newly_affected_object: GravityCube in newly_affected_objects:
-        if not _currently_affected_objects.has(newly_affected_object):
-            newly_affected_object.override_gravity(gravity_direction)
+    for newly_affected_object: GravityCube in newly_affected_object_gravities:
+        var gravity_direction := newly_affected_object_gravities[newly_affected_object].normalized()
+        newly_affected_object.override_gravity(gravity_direction)
 
     for currently_affected_object: GravityCube in _currently_affected_objects:
-        if not newly_affected_objects.has(currently_affected_object):
+        if currently_affected_object not in newly_affected_object_gravities:
             currently_affected_object.clear_gravity_override()
 
-    _currently_affected_objects = newly_affected_objects
+    _currently_affected_objects = newly_affected_object_gravities.keys()
