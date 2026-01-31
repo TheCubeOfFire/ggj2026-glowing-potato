@@ -1,10 +1,15 @@
-class_name Door
+class_name ExitDoor
 extends CSGBox3D
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 @export var switches: Array[CubeSwitch]
+
+
 var switch_states: Array[bool]
-var door_open: bool
+
+
+@onready var _door := $Door as Door
+
 
 func _ready() -> void:
     for switch_index in switches.size():
@@ -13,11 +18,10 @@ func _ready() -> void:
     switch_states.resize(switches.size())
     switch_states.fill(false)
 
-func on_state_changed(switch_index: int, state: bool) -> void:
-    switch_states[switch_index] = state
-    if not switch_states.has(false):
-        animation_player.play(&"door")
-        door_open = true
-    elif door_open:
-        animation_player.play_backwards(&"door")
-        door_open = false
+
+func on_state_changed(switch_index: int, is_switch_active: bool) -> void:
+    switch_states[switch_index] = is_switch_active
+    if switch_states.has(false):
+        _door.change_door_state(false)
+    elif is_switch_active:
+        _door.change_door_state(true)

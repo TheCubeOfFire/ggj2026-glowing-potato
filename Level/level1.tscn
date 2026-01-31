@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://8htgx03jlj2e"]
 
-[ext_resource type="PackedScene" uid="uid://b0qs4tqwtddxv" path="res://objects/door.tscn" id="1_rsepj"]
+[ext_resource type="PackedScene" uid="uid://b0qs4tqwtddxv" path="res://objects/door/exit_door.tscn" id="1_rsepj"]
 [ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="3_rsepj"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="4_nkc7i"]
 
