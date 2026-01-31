@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 SB="*res://addons/snowbunny/sb_globals.gd"
 SB_Pixel2D="*res://addons/snowbunny/pixel2d/pixel2d_globals.gd"
+Globals="*res://objects/globals.gd"
 
 [display]
 
