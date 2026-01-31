@@ -66,7 +66,7 @@ mat3 constructPixelMatrixND(sampler2D samplerToUse, ivec2 screen_coord_pixel, fl
 	{
 		for (int iCol = 0; iCol < 3; iCol++)
 		{
-			pixelMat[iRow][iCol] = dot(fMulConvert * texelFetch(samplerToUse, screen_coord_pixel + ivec2(iRow - 1, iCol - 1), 0).xyz + fAddConvert, convertToFloat);
+			pixelMat[iRow][iCol] = dot(fMulConvert * texelFetch(samplerToUse, screen_coord_pixel + ivec2(iRow - 1, iCol - 1) * iOutlineSize, 0).xyz + fAddConvert, convertToFloat);
 		}
 	}
 
