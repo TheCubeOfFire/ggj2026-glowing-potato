@@ -14,6 +14,24 @@ signal on_deactivated()
 ## Number of cubes that are of the accepted type AND in the detection area
 var _current_activating_cubes : int = 0
 
+
+# ------- Overriden Engine Functions -------
+func _ready() -> void:
+    match accepted_cube_type:
+        Globals.GCUBE_TYPE.SQUARE:
+            $Square_Switch.mesh = load(&"uid://cpw1b3ay6o681")
+            pass
+
+        Globals.GCUBE_TYPE.TRIANGLE:
+            $Square_Switch.mesh = load(&"uid://b2md5rkxvaopn")
+            pass
+
+        Globals.GCUBE_TYPE.CIRCLE:
+            $Square_Switch.mesh = load(&"uid://eg6imty2sgjw")
+            pass
+    return
+
+
 # ------- Functions -------
 #region cube detection
 func _on_cube_detection_area_body_entered(body: Node3D) -> void:

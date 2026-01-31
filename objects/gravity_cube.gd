@@ -20,6 +20,21 @@ var _velocity := Vector3.ZERO
 
 
 # ------- Overriden Engine Functions -------
+func _ready() -> void:
+    match cube_type:
+        Globals.GCUBE_TYPE.SQUARE:
+            $MeshInstance3D.mesh = load(&"uid://bxowgvli1ufmb")
+            pass
+
+        Globals.GCUBE_TYPE.TRIANGLE:
+            $MeshInstance3D.mesh = load(&"uid://dr60osaps5r7t")
+            pass
+
+        Globals.GCUBE_TYPE.CIRCLE:
+            $MeshInstance3D.mesh = load(&"uid://dt4ab4uarcxsw")
+            pass
+    return
+
 func _physics_process(delta: float) -> void:
     var gravity_acceleration := default_gravity_force * gravity
     _velocity *= 1.0 - friction

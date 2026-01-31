@@ -1,5 +1,7 @@
 extends Node
 
 enum GCUBE_TYPE {
-    SQUARE
+    SQUARE,
+    TRIANGLE,
+    CIRCLE,
 }
