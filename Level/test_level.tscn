@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5ckax6r0frvn"]
+[gd_scene load_steps=9 format=3 uid="uid://b5ckax6r0frvn"]
 
 [ext_resource type="PackedScene" uid="uid://cj0ba673t32b8" path="res://objects/player/main_player.tscn" id="1_httya"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="2_lob7s"]
 [ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="3_apcuj"]
-[ext_resource type="PackedScene" uid="uid://cinw0kkrs6juy" path="res://Mask/mask_1.tscn" id="4_apcuj"]
-[ext_resource type="PackedScene" uid="uid://c8ho6puvxd5qv" path="res://Mask/mask_2.tscn" id="5_3qvu4"]
-[ext_resource type="PackedScene" uid="uid://27qbmi24on7b" path="res://Mask/mask_3.tscn" id="6_1jckg"]
+[ext_resource type="PackedScene" uid="uid://dsj3ca83xk83x" path="res://Mask/mask_handling_scene.tscn" id="4_3qvu4"]
 [ext_resource type="Script" uid="uid://brhtxe6en360h" path="res://objects/mask_physical_effect_manager.gd" id="6_3qvu4"]
 [ext_resource type="PackedScene" uid="uid://mrt0monvls5m" path="res://environment/environment.tscn" id="8_adm2a"]
 
@@ -44,16 +42,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9784822, 0, 3.161215)
 
 [node name="mask_canvas_layer" type="CanvasLayer" parent="."]
 
-[node name="TestMask2" parent="mask_canvas_layer" instance=ExtResource("4_apcuj")]
-
-[node name="TestMask" parent="mask_canvas_layer" instance=ExtResource("5_3qvu4")]
-
-[node name="TestMask3" parent="mask_canvas_layer" instance=ExtResource("6_1jckg")]
+[node name="MaskHandlingScene" parent="mask_canvas_layer" instance=ExtResource("4_3qvu4")]
 
 [node name="MaskPhysicalEffectManager" type="Node" parent="." node_paths=PackedStringArray("mask_areas")]
 script = ExtResource("6_3qvu4")
 gravity_direction_metadata = &"gravity_direction"
-mask_areas = [NodePath("../mask_canvas_layer/TestMask2/mask_area"), NodePath("../mask_canvas_layer/TestMask/mask_area"), NodePath("../mask_canvas_layer/TestMask3/mask_area")]
+mask_areas = [NodePath("../mask_canvas_layer/MaskHandlingScene/Mask0/mask_area"), NodePath("../mask_canvas_layer/MaskHandlingScene/Mask1/mask_area"), NodePath("../mask_canvas_layer/MaskHandlingScene/Mask2/mask_area"), NodePath("../mask_canvas_layer/MaskHandlingScene/Mask3/mask_area")]
 affected_object_group = &"affected_objects"
 blocking_view_layers = 4294967294
 
@@ -65,7 +59,3 @@ collision_mask = 7
 size = Vector3(1, 3, 4)
 
 [node name="Environment" parent="." instance=ExtResource("8_adm2a")]
-
-[editable path="mask_canvas_layer/TestMask2"]
-[editable path="mask_canvas_layer/TestMask"]
-[editable path="mask_canvas_layer/TestMask3"]

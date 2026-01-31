@@ -17,7 +17,7 @@ diffuse_texture = SubResource("GradientTexture2D_s4rwi")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqgi0"]
 size = Vector2(64, 64)
 
-[node name="TestMask2" type="Node2D"]
+[node name="Mask2" type="Node2D"]
 
 [node name="mask_area" type="Area2D" parent="."]
 position = Vector2(436, 402)

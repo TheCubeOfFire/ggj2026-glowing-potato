@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cinw0kkrs6juy"]
+[gd_scene load_steps=7 format=3 uid="uid://yj6sc8lx56i8"]
 
-[ext_resource type="Shader" uid="uid://01yyeno6543b" path="res://Mask/mask.gdshader" id="1_leugx"]
+[ext_resource type="Shader" uid="uid://01yyeno6543b" path="res://Mask/mask.gdshader" id="1_aj1l6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_335py"]
-shader = ExtResource("1_leugx")
+shader = ExtResource("1_aj1l6")
 
 [sub_resource type="Gradient" id="Gradient_04ng8"]
 colors = PackedColorArray(0.07450981, 0.20784314, 0.36862746, 0.5254902, 0.07450981, 0.20784314, 0.36862746, 0.5254902)
@@ -17,7 +17,7 @@ diffuse_texture = SubResource("GradientTexture2D_leugx")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqgi0"]
 size = Vector2(64, 64)
 
-[node name="Mask1" type="Node2D"]
+[node name="Mask0" type="Node2D"]
 
 [node name="mask_area" type="Area2D" parent="."]
 position = Vector2(192, 192)
