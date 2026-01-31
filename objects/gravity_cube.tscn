@@ -6,7 +6,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x1wp5"]
 
-[node name="GravityCube" type="AnimatableBody3D"]
+[node name="GravityCube" type="AnimatableBody3D" groups=["affected_objects"]]
 script = ExtResource("1_x1wp5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

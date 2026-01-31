@@ -34,6 +34,10 @@ project/assembly_name="GGJ 2026 - Glowing Potato"
 
 enabled=PackedStringArray("res://addons/CelShadingGodot/OutlinePlugin/plugin.cfg", "res://addons/snowbunny/pixel2d/plugin.cfg", "res://addons/snowbunny/plugin.cfg")
 
+[global_group]
+
+affected_objects=""
+
 [input]
 
 move_forward={

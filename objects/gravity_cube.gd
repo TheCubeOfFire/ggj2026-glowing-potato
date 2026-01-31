@@ -1,11 +1,16 @@
 class_name GravityCube
 extends AnimatableBody3D
 
-# ------- Internal vars -------
-@onready var default_gravity_force: float = ProjectSettings.get_setting(&"physics/3d/default_gravity")
 
+# ------- Internal vars -------
 var is_gravity_overrriden: bool = false
 var gravity: Vector3 = Vector3.ZERO
+
+
+@onready var default_gravity_force: float = ProjectSettings.get_setting(&"physics/3d/default_gravity")
+
+@onready var _mesh_instance := $MeshInstance3D as MeshInstance3D
+
 
 # ------- Overriden Engine Functions -------
 func _physics_process(delta: float) -> void:
@@ -17,15 +22,18 @@ func _physics_process(delta: float) -> void:
 
     var movement: Vector3 = default_gravity_force * gravity * delta
     move_and_collide(movement)
-    return
+
 
 # ------- Functions -------
 func override_gravity(new_gravity: Vector3) -> void:
     is_gravity_overrriden = true
     gravity = new_gravity.normalized()
-    return
+
 
 func clear_gravity_override() -> void:
     is_gravity_overrriden = false
     gravity = Vector3.ZERO
-    return
+
+
+func get_mesh() -> Mesh:
+    return _mesh_instance.mesh
