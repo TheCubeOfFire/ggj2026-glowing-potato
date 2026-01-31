@@ -3,6 +3,7 @@ class_name PostProcessOutlines extends MeshInstance3D
 
 @export_group("OutlineParameters")
 @export_range(0.0, 2.0) var normal_threshold: float = 0.3
+@export_range(0.0, 2.0) var color_threshold: float = 0.3
 @export_range(0.0, 2.0) var depth_threshold: float = 0.2
 @export_range(0.1, 10.0) var contrast: float = 1.0
 @export_range(0.1, 1000.0) var intensity: float = 10.0
@@ -36,6 +37,7 @@ func _process(delta):
     var outline_size_resolution = max(floor(outline_size * get_viewport().get_visible_rect().size.x / (resolution_unit as float)) as int, 1)
     mesh.material.set_shader_parameter("threshold", normal_threshold)
     mesh.material.set_shader_parameter("depth_threshold", depth_threshold)
+    mesh.material.set_shader_parameter("color_threshold", color_threshold)
     mesh.material.set_shader_parameter("contrast", contrast)
     mesh.material.set_shader_parameter("intensity", intensity)
     mesh.material.set_shader_parameter("max_distance_threshold", max_distance_threshold)

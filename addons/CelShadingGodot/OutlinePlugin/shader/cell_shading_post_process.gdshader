@@ -16,6 +16,7 @@ uniform sampler2D current_texture : hint_screen_texture;
 
 uniform float threshold;
 uniform float depth_threshold;
+uniform float color_threshold;
 uniform float contrast;
 uniform float intensity;
 uniform float max_distance_threshold;
@@ -67,6 +68,21 @@ mat3 constructPixelMatrixND(sampler2D samplerToUse, ivec2 screen_coord_pixel, fl
 		for (int iCol = 0; iCol < 3; iCol++)
 		{
 			pixelMat[iRow][iCol] = dot(fMulConvert * texelFetch(samplerToUse, screen_coord_pixel + ivec2(iRow - 1, iCol - 1) * iOutlineSize, 0).xyz + fAddConvert, convertToFloat);
+		}
+	}
+
+	return pixelMat;
+}
+
+mat3 constructPixelMatrixColor(sampler2D samplerToUse, ivec2 screen_coord_pixel, float fMulConvert, float fAddConvert, vec3 convertToFloat)
+{
+	mat3 pixelMat;
+	for (int iRow = 0; iRow < 3; iRow++)
+	{
+		for (int iCol = 0; iCol < 3; iCol++)
+		{
+			pixelMat[iRow][iCol] = dot(fMulConvert * 
+            texelFetch(samplerToUse, screen_coord_pixel + ivec2(iRow - 1, iCol - 1) * iOutlineSize, 0).xyz + fAddConvert, convertToFloat);
 		}
 	}
 
@@ -148,10 +164,17 @@ void fragment()
 	//float thresholdedGradiant = fGradiant > threshold ? fGradiant : 0.0;
 #endif
 
+    mat3 colorPixel = constructPixelMatrixColor(current_texture, screen_coord_pixel, 1.0f, 0.f, vec3(0.2126, 0.7152, 0.0722));
+    float vSobelVPixelValue = applyKernel(sobel_filter_v, colorPixel);
+    float vSobelHPixelValue = applyKernel(sobel_filter_h, colorPixel);
+    float fEdgeColor = sqrt(vSobelVPixelValue * vSobelVPixelValue + vSobelHPixelValue * vSobelHPixelValue);
+    
+    float thresholdColor = clamp(intensity * pow(fEdgeColor, contrast) - color_threshold, 0.0f, 1.0f);
+
 #if CURRENT_RENDERER == RENDERER_FORWARD_PLUS
-	thresholdedGradiant += fSobelDepth;
+	thresholdedGradiant += fSobelDepth + thresholdColor;
 #else
-    float thresholdedGradiant = fSobelDepth;
+    float thresholdedGradiant = fSobelDepth + thresholdColor;
 #endif
 
 	vec3 currentColor = texture(current_texture, SCREEN_UV).xyz;
