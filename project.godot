@@ -101,6 +101,14 @@ debug_test={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="player"
+3d_physics/layer_2="obstacle"
+3d_physics/layer_3="box"
+3d_physics/layer_4="opaque"
+3d_physics/layer_5="switch"
+
 [snowbunny]
 
 globals/debug/enable_debug_draw=true

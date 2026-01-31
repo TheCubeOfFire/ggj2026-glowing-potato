@@ -40,6 +40,8 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0636313, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 10
+collision_mask = 7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("PlaneMesh_httya")
@@ -67,6 +69,14 @@ script = ExtResource("6_3qvu4")
 gravity_direction_metadata = &"gravity_direction"
 mask_areas = [NodePath("../mask_canvas_layer/TestMask2/mask_area"), NodePath("../mask_canvas_layer/TestMask/mask_area"), NodePath("../mask_canvas_layer/TestMask3/mask_area")]
 affected_object_group = &"affected_objects"
+blocking_view_layers = 4294967294
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3.5)
+use_collision = true
+collision_layer = 10
+collision_mask = 7
+size = Vector3(1, 3, 4)
 
 [editable path="mask_canvas_layer/TestMask2"]
 [editable path="mask_canvas_layer/TestMask"]

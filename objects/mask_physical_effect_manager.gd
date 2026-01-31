@@ -8,6 +8,9 @@ extends Node
 
 @export var affected_object_group: StringName
 
+@export_flags_3d_physics var blocking_view_layers := 0xFFFFFFFF
+
+
 var _currently_affected_objects: Array[GravityCube] = []
 
 
@@ -23,11 +26,21 @@ func _physics_process(_delta: float) -> void:
     var viewport_size := get_viewport().get_visible_rect().size
     var interactable_objects := get_tree().get_nodes_in_group(affected_object_group)
 
+    var space_state := camera.get_world_3d().direct_space_state
+
     for interactable_object: Node in interactable_objects:
         if interactable_object is not GravityCube:
             continue
 
         var gravity_cube := interactable_object as GravityCube
+
+        var query_parameters := PhysicsRayQueryParameters3D.new()
+        query_parameters.collision_mask = blocking_view_layers
+        query_parameters.from = gravity_cube.global_position
+        query_parameters.to = camera.global_position
+
+        if not space_state.intersect_ray(query_parameters).is_empty():
+            continue
 
         var inv_model := gravity_cube.global_transform
         var mesh_proj := proj_view * Projection(inv_model)
