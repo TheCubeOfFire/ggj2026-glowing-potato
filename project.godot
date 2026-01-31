@@ -25,6 +25,7 @@ SB_Pixel2D="*res://addons/snowbunny/pixel2d/pixel2d_globals.gd"
 
 window/size/mode=3
 window/size/borderless=true
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
