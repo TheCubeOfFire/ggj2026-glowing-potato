@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://27qbmi24on7b"]
+
+[ext_resource type="Shader" path="res://Mask/mask.gdshader" id="1_lj607"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_335py"]
+shader = ExtResource("1_lj607")
+
+[sub_resource type="Gradient" id="Gradient_04ng8"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.30145258, 0.36903617, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_leugx"]
+seed = 7
+frequency = 0.0439
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_04ng8"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_leugx")
+color_ramp = SubResource("Gradient_04ng8")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_leugx"]
+diffuse_texture = SubResource("NoiseTexture2D_04ng8")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqgi0"]
+size = Vector2(64, 64)
+
+[node name="TestMask" type="Node2D"]
+
+[node name="mask_area" type="Area2D" parent="."]
+position = Vector2(874, 470)
+scale = Vector2(3, 3)
+metadata/_edit_group_ = true
+metadata/gravity_direction = Vector3(1, 0, 0)
+
+[node name="mask_texture" type="Sprite2D" parent="mask_area"]
+material = SubResource("ShaderMaterial_335py")
+position = Vector2(-0.19999999, 0)
+texture = SubResource("CanvasTexture_leugx")
+region_enabled = true
+region_rect = Rect2(186.473, 226.686, 64, 64)
+
+[node name="mask_collision_shape" type="CollisionShape2D" parent="mask_area"]
+visible = false
+shape = SubResource("RectangleShape2D_nqgi0")
