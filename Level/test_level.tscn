@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5ckax6r0frvn"]
+[gd_scene load_steps=8 format=3 uid="uid://b5ckax6r0frvn"]
 
 [ext_resource type="PackedScene" uid="uid://cj0ba673t32b8" path="res://objects/player/main_player.tscn" id="1_httya"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="2_lob7s"]
 [ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="3_apcuj"]
+[ext_resource type="PackedScene" uid="uid://bei2ir6e75nvs" path="res://objects/pedestal.tscn" id="5_73g8c"]
 [ext_resource type="PackedScene" uid="uid://mrt0monvls5m" path="res://environment/environment.tscn" id="8_adm2a"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_httya"]
@@ -46,3 +47,6 @@ collision_mask = 7
 size = Vector3(1, 3, 4)
 
 [node name="Environment" parent="." instance=ExtResource("8_adm2a")]
+
+[node name="Pedestal" parent="." instance=ExtResource("5_73g8c")]
+transform = Transform3D(0.53500134, 0, -0.8448512, 0, 1, 0, 0.8448512, 0, 0.53500134, -0.99901676, 0, 2.985929)

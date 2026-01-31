@@ -48,6 +48,10 @@ color_threshold = 0.0
 outline_size = 2
 metadata/_custom_type_script = "uid://bygc3sfldvqly"
 
+[node name="PedestalRaycast" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -3)
+collision_mask = 32
+
 [node name="mask_canvas_layer" type="CanvasLayer" parent="."]
 
 [node name="MaskHandlingScene" parent="mask_canvas_layer" instance=ExtResource("4_goihf")]

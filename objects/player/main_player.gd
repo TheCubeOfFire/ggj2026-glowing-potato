@@ -10,8 +10,11 @@ extends CharacterBody3D
 
 # ------- Internal vars -------
 @onready var camera: Camera3D = $Camera3D
+@onready var pedestal_raycast: RayCast3D = $Camera3D/PedestalRaycast
 @onready var gravity_force: float = ProjectSettings.get_setting(&"physics/3d/default_gravity")
 @onready var gravity_vector: Vector3 = ProjectSettings.get_setting(&"physics/3d/default_gravity_vector")
+
+var targeted_pedestal: Pedestal = null
 
 var movement_velocity: Vector3
 var rotation_target: Vector3
@@ -36,6 +39,8 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 
     handle_mask_input()
+    handle_pedestal_detection()
+    handle_interact_input()
     return
 
 func _input(event: InputEvent) -> void:
@@ -110,3 +115,18 @@ func toggle_mask(mask_index: int) -> void:
     mask_physical_effect_manager.toggle_mask_effect(mask_index)
     return
 #endregion
+
+
+func handle_pedestal_detection():
+    if pedestal_raycast.is_colliding():
+        var static_body_node: Node3D = pedestal_raycast.get_collider() as Node3D
+        targeted_pedestal = static_body_node.get_parent() as Pedestal
+    else:
+        targeted_pedestal = null
+    return
+
+
+func handle_interact_input():
+    if Input.is_action_just_pressed(&"interact") and targeted_pedestal:
+        targeted_pedestal.claim_mask()
+    return
