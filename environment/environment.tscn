@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://mrt0monvls5m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_und8v"]
+sky_top_color = Color(1, 1, 1, 1)
+ground_bottom_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_8i5xt"]
+sky_material = SubResource("ProceduralSkyMaterial_und8v")
+
+[sub_resource type="Environment" id="Environment_und8v"]
+background_mode = 2
+background_color = Color(0.3257618, 0.42801476, 0.4786495, 1)
+sky = SubResource("Sky_8i5xt")
+tonemap_mode = 4
+adjustment_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_und8v"]
+
+[node name="Environment" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_und8v")
+camera_attributes = SubResource("CameraAttributesPractical_und8v")
