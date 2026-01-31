@@ -11,6 +11,7 @@ extends CharacterBody3D
 # ------- Internal vars -------
 @onready var camera: Camera3D = $Camera3D
 @onready var pedestal_raycast: RayCast3D = $Camera3D/PedestalRaycast
+@onready var hud: Hud = $'Camera3D/Hud'
 @onready var gravity_force: float = ProjectSettings.get_setting(&"physics/3d/default_gravity")
 @onready var gravity_vector: Vector3 = ProjectSettings.get_setting(&"physics/3d/default_gravity_vector")
 
@@ -128,18 +129,20 @@ func toggle_mask(mask_index: int) -> void:
     return
 #endregion
 
-#region pedetals
+#region pedestals
 func handle_pedestal_detection():
     if pedestal_raycast.is_colliding():
         var static_body_node: Node3D = pedestal_raycast.get_collider() as Node3D
         targeted_pedestal = static_body_node.get_parent() as Pedestal
+        hud.set_interact_prompt_visibility(targeted_pedestal.has_mask)
     else:
         targeted_pedestal = null
+        hud.set_interact_prompt_visibility(false)
     return
 
 
 func handle_interact_input():
-    if Input.is_action_just_pressed(&"interact") and targeted_pedestal:
+    if Input.is_action_just_pressed(&"interact") and targeted_pedestal and targeted_pedestal.has_mask:
         unlock_mask(targeted_pedestal.given_mask)
         targeted_pedestal.claim_mask()
     return

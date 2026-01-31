@@ -1,14 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj0ba673t32b8"]
+[gd_scene load_steps=10 format=3 uid="uid://cj0ba673t32b8"]
 
 [ext_resource type="Script" uid="uid://drflg503vdmky" path="res://objects/player/main_player.gd" id="1_cj7cj"]
 [ext_resource type="Shader" uid="uid://4ofvgfb248lm" path="res://addons/CelShadingGodot/OutlinePlugin/shader/cell_shading_post_process.gdshader" id="2_lovu1"]
 [ext_resource type="Script" uid="uid://bygc3sfldvqly" path="res://addons/CelShadingGodot/OutlinePlugin/PostProcessOutline.gd" id="3_4qc3c"]
 [ext_resource type="PackedScene" uid="uid://dsj3ca83xk83x" path="res://Mask/mask_handling_scene.tscn" id="4_goihf"]
+[ext_resource type="PackedScene" uid="uid://crdfdtovitkc2" path="res://gui/hud/hud.tscn" id="4_ulx1i"]
 [ext_resource type="Script" uid="uid://brhtxe6en360h" path="res://objects/mask_physical_effect_manager.gd" id="5_ulx1i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fjsog"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_goihf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eu0ck"]
 render_priority = 0
 shader = ExtResource("2_lovu1")
 shader_parameter/threshold = 0.3
@@ -20,8 +21,8 @@ shader_parameter/max_distance_threshold = 10.0
 shader_parameter/outline_colors = Vector4(0, 0, 0, 1)
 shader_parameter/iOutlineSize = 1
 
-[sub_resource type="QuadMesh" id="QuadMesh_ulx1i"]
-material = SubResource("ShaderMaterial_goihf")
+[sub_resource type="QuadMesh" id="QuadMesh_mulgw"]
+material = SubResource("ShaderMaterial_eu0ck")
 flip_faces = true
 size = Vector2(2, 2)
 
@@ -42,7 +43,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 
 [node name="PostProcessOutlines" type="MeshInstance3D" parent="Camera3D"]
 extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_ulx1i")
+mesh = SubResource("QuadMesh_mulgw")
 script = ExtResource("3_4qc3c")
 color_threshold = 0.0
 outline_size = 2
@@ -51,6 +52,8 @@ metadata/_custom_type_script = "uid://bygc3sfldvqly"
 [node name="PedestalRaycast" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 32
+
+[node name="Hud" parent="Camera3D" instance=ExtResource("4_ulx1i")]
 
 [node name="mask_canvas_layer" type="CanvasLayer" parent="."]
 
