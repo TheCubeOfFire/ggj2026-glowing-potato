@@ -4,7 +4,9 @@ extends Node
 
 @export var gravity_direction_metadata: StringName
 
-@export var mask_areas: Array[Area2D]
+@export var mask_handling : MaskHandling
+
+var mask_areas: Array[Area2D]
 
 @export var affected_object_group: StringName
 
@@ -14,6 +16,13 @@ extends Node
 var _mask_active_status: Array[bool] = [false, false, false, false]
 var _currently_affected_objects: Array[GravityCube] = []
 
+func _ready() -> void:
+    var mask_area_roots = mask_handling.get_masks()
+    for mask_area_root in mask_area_roots:
+        var mask_area_children = mask_area_root.get_children()
+        for mask_area_child in mask_area_children :
+            if mask_area_child is Area2D :
+                mask_areas.append(mask_area_child)
 
 func _physics_process(_delta: float) -> void:
     var newly_affected_object_gravities: Dictionary[GravityCube, Vector3] = {}

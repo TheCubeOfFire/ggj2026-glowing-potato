@@ -41,3 +41,10 @@ func toggle_mask_visual(mask_index: int) -> bool:
 
     mask_to_toggle.visible = !mask_to_toggle.is_visible_in_tree()
     return _mask_active_status[mask_index]
+
+func get_masks() -> Array[Node2D]:
+    var masks : Array[Node2D]
+    var children = get_children()
+    for child in children :
+        masks.append(child as Node2D)
+    return masks
