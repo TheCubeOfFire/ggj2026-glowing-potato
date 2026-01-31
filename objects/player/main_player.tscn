@@ -44,6 +44,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_ulx1i")
 script = ExtResource("3_4qc3c")
+color_threshold = 0.0
 outline_size = 2
 metadata/_custom_type_script = "uid://bygc3sfldvqly"
 
