@@ -5,32 +5,30 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_335py"]
 shader = ExtResource("1_aj1l6")
 
-[sub_resource type="Gradient" id="Gradient_04ng8"]
-colors = PackedColorArray(0.07450981, 0.20784314, 0.36862746, 0.5254902, 0.07450981, 0.20784314, 0.36862746, 0.5254902)
+[sub_resource type="Gradient" id="Gradient_202n8"]
+colors = PackedColorArray(0.37254903, 0.4627451, 0.24313726, 0.5254902, 0.37254903, 0.4627451, 0.24313726, 0.5254902)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_leugx"]
-gradient = SubResource("Gradient_04ng8")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s4rwi"]
+gradient = SubResource("Gradient_202n8")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_leugx"]
-diffuse_texture = SubResource("GradientTexture2D_leugx")
+diffuse_texture = SubResource("GradientTexture2D_s4rwi")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqgi0"]
-size = Vector2(64, 64)
+size = Vector2(51.666664, 96.16667)
 
 [node name="Mask0" type="Node2D"]
 
 [node name="mask_area" type="Area2D" parent="."]
-position = Vector2(192, 192)
+position = Vector2(432, 327)
 scale = Vector2(6, 6)
-metadata/_edit_group_ = true
-metadata/gravity_direction = Vector3(0, 0, 1)
+metadata/gravity_direction = Vector3(0, -1, 0)
 
 [node name="mask_texture" type="Sprite2D" parent="mask_area"]
 material = SubResource("ShaderMaterial_335py")
-position = Vector2(-0.16666716, -0.5)
 texture = SubResource("CanvasTexture_leugx")
 region_enabled = true
-region_rect = Rect2(186.473, 226.686, 64, 64)
+region_rect = Rect2(177.236, 220.843, 52, 96.000015)
 
 [node name="mask_collision_shape" type="CollisionShape2D" parent="mask_area"]
 visible = false

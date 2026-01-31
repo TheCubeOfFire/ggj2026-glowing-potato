@@ -23,7 +23,7 @@ size = Vector2(64, 64)
 position = Vector2(436, 402)
 scale = Vector2(5, 5)
 metadata/_edit_group_ = true
-metadata/gravity_direction = Vector3(0, 1, 0)
+metadata/gravity_direction = Vector3(0, -1, 0)
 
 [node name="mask_texture" type="Sprite2D" parent="mask_area"]
 material = SubResource("ShaderMaterial_335py")

@@ -12,7 +12,7 @@ collision_layer = 2
 collision_mask = 15
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.24707031, 2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.25, 2.5)
 size = Vector3(10, 0.5, 10)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Obstacles"]
@@ -38,6 +38,11 @@ size = Vector3(10.1, 5, 0.5)
 [node name="CSGBox3D6" type="CSGBox3D" parent="Obstacles"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.3999999, 2.3029299, 2.5000005)
 size = Vector3(10.1, 5, 0.5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles/CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+operation = 2
+size = Vector3(1.5, 2.6, 1.5)
 
 [node name="CubeSwitch" parent="." instance=ExtResource("3_rsepj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2000003, 0, 5.2000003)
