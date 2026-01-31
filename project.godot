@@ -21,6 +21,11 @@ config/icon="res://icon.svg"
 SB="*res://addons/snowbunny/sb_globals.gd"
 SB_Pixel2D="*res://addons/snowbunny/pixel2d/pixel2d_globals.gd"
 
+[display]
+
+window/size/mode=3
+window/size/borderless=true
+
 [dotnet]
 
 project/assembly_name="GGJ 2026 - Glowing Potato"
