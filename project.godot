@@ -8,11 +8,15 @@
 
 config_version=5
 
+[addons]
+
+quick_gorilla/pause_menu_scene="uid://biy6vfeqy5iys"
+
 [application]
 
 config/name="GGJ 2026 - Glowing Potato"
 config/tags=PackedStringArray("jam")
-run/main_scene="uid://b5ckax6r0frvn"
+run/main_scene="uid://bfm50ham6kvfs"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +25,7 @@ config/icon="res://icon.svg"
 SB="*res://addons/snowbunny/sb_globals.gd"
 SB_Pixel2D="*res://addons/snowbunny/pixel2d/pixel2d_globals.gd"
 Globals="*res://objects/globals.gd"
+QuickGorilla_PauseMenuManager="*res://addons/quick_gorilla/pause_menu/pause_menu_manager.tscn"
 
 [display]
 
@@ -34,7 +39,7 @@ project/assembly_name="GGJ 2026 - Glowing Potato"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/CelShadingGodot/OutlinePlugin/plugin.cfg", "res://addons/snowbunny/pixel2d/plugin.cfg", "res://addons/snowbunny/plugin.cfg")
+enabled=PackedStringArray("res://addons/CelShadingGodot/OutlinePlugin/plugin.cfg", "res://addons/quick_gorilla/plugin.cfg", "res://addons/snowbunny/pixel2d/plugin.cfg", "res://addons/snowbunny/plugin.cfg")
 
 [global_group]
 
@@ -129,6 +134,12 @@ interact={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+pause={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
 

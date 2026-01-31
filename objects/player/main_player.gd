@@ -25,6 +25,8 @@ var gamepad_sensitivity: float = 0.075
 var mouse_captured: bool = true
 var input_mouse: Vector2 = Vector2.ZERO
 
+var _pause_pressed := false
+
 # ------- Overriden Engine Functions -------
 func _ready() -> void:
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -49,6 +51,15 @@ func _input(event: InputEvent) -> void:
         var iemm := event as InputEventMouseMotion
         input_mouse = iemm.screen_relative / mouse_sensitivity
         handle_rotation(iemm.screen_relative.x, iemm.screen_relative.y, false)
+
+    if event.is_action_pressed(&"pause"):
+        _pause_pressed = true
+
+    if event.is_action_released(&"pause") and _pause_pressed:
+        _pause_pressed = false
+        QuickGorilla_PauseMenuManager.show_pause_menu()
+        get_viewport().set_input_as_handled()
+
     return
 
 # ------- Other Functions -------

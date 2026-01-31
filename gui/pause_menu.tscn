@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://biy6vfeqy5iys"]
+
+[ext_resource type="Script" uid="uid://dfb1c4rgry1tx" path="res://addons/quick_gorilla/pause_menu/pause_menu.gd" id="1_r7i8h"]
+[ext_resource type="Theme" uid="uid://dqcctnl2tm43n" path="res://gui/button_style.tres" id="2_7uvn2"]
+
+[sub_resource type="Theme" id="Theme_7uvn2"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 28
+VBoxContainer/constants/separation = 21
+
+[sub_resource type="InputEventAction" id="InputEventAction_7uvn2"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_qdbs5"]
+events = [SubResource("InputEventAction_7uvn2")]
+
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("resume_button", "main_menu_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r7i8h")
+resume_button = NodePath("VBoxContainer/Resume")
+main_menu_button = NodePath("VBoxContainer/MainMenu")
+main_menu_scene_path = "uid://bfm50ham6kvfs"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -82.0
+offset_right = 79.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.67058825)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -33.0
+offset_right = 48.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 21
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_7uvn2")
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7uvn2")
+shortcut = SubResource("Shortcut_qdbs5")
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7uvn2")
+text = "Main Menu"
