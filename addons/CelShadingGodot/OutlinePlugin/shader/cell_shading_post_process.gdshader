@@ -20,6 +20,7 @@ uniform float contrast;
 uniform float intensity;
 uniform float max_distance_threshold;
 uniform vec4 outline_colors;
+uniform int iOutlineSize;
 
 const mat3 diff_kernel_h = mat3(
 	vec3(0.0, -0.0, 0.0),
@@ -51,7 +52,7 @@ mat3 constructPixelMatrix(sampler2D samplerToUse, ivec2 screen_coord_pixel, floa
 	{
 		for (int iCol = 0; iCol < 3; iCol++)
 		{
-			pixelMat[iRow][iCol] = dot(fMulConvert * texelFetch(samplerToUse, screen_coord_pixel + ivec2(iRow - 1, iCol - 1), 0).xyz + fAddConvert, convertToFloat);
+			pixelMat[iRow][iCol] = dot(fMulConvert * texelFetch(samplerToUse, screen_coord_pixel + ivec2(iRow - 1, iCol - 1) * iOutlineSize, 0).xyz + fAddConvert, convertToFloat);
 		}
 	}
 
