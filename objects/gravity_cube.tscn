@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://caro14qkf5vv4"]
 
 [ext_resource type="Script" uid="uid://m4ms3qn626yf" path="res://objects/gravity_cube.gd" id="1_x1wp5"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_x1wp5"]
+[ext_resource type="ArrayMesh" uid="uid://bxowgvli1ufmb" path="res://assets/gravity_cubes/square/mesh_square_gcube.res" id="2_u2vnq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x1wp5"]
+size = Vector3(0.8, 0.8, 0.8)
 
 [node name="GravityCube" type="AnimatableBody3D"]
 script = ExtResource("1_x1wp5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_x1wp5")
+mesh = ExtResource("2_u2vnq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_x1wp5")

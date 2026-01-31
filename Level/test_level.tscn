@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5ckax6r0frvn"]
+[gd_scene load_steps=10 format=3 uid="uid://b5ckax6r0frvn"]
 
 [ext_resource type="PackedScene" uid="uid://cj0ba673t32b8" path="res://objects/player/main_player.tscn" id="1_httya"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="2_lob7s"]
 [ext_resource type="PackedScene" uid="uid://b74rci3geo6jx" path="res://Mask/test_mask.tscn" id="3_5yf1o"]
+[ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="3_apcuj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lob7s"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -45,7 +46,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_lob7s")
 
 [node name="GravityCube" parent="." instance=ExtResource("2_lob7s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.802008, 4.6998973, -2.328892)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.802008, 1.0196187, -2.328892)
+
+[node name="CubeSwitch" parent="." instance=ExtResource("3_apcuj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9784822, 0, 3.161215)
 
 [node name="mask_canvas_layer" type="CanvasLayer" parent="."]
 

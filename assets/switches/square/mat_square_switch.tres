@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bnkw5wku4ollv"]
+
+[ext_resource type="Texture2D" uid="uid://c34c8kqtb01xx" path="res://assets/switches/square/square_switch_text_square_switch.png" id="1_eq2b7"]
+
+[resource]
+resource_name = "mat_square_switch"
+cull_mode = 2
+albedo_texture = ExtResource("1_eq2b7")
+roughness = 0.5
