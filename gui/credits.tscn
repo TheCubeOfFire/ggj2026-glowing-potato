@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://d02juuin8q7lb"]
+
+[ext_resource type="Script" uid="uid://d2pnqecy33ytk" path="res://gui/credits.gd" id="1_t6a7l"]
+[ext_resource type="Theme" uid="uid://gcjegeg8h5ky" path="res://gui/label_style.tres" id="2_i8qro"]
+[ext_resource type="Script" uid="uid://bya85urvs5c32" path="res://addons/quick_gorilla/utilities/gamepad_rich_text.gd" id="3_6og75"]
+[ext_resource type="Theme" uid="uid://dqcctnl2tm43n" path="res://gui/button_style.tres" id="3_uhutt"]
+
+[node name="Credits" type="Control" node_paths=PackedStringArray("back_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t6a7l")
+back_button = NodePath("VBoxContainer/Back")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -237.5
+offset_top = -309.0
+offset_right = 237.5
+offset_bottom = 309.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="credits_list" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+theme = ExtResource("2_i8qro")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.2285108, 0.2285108, 0.2285108, 1)
+bbcode_enabled = true
+text = "[b][font_size=32]Credits[/font_size][b]
+
+[b][font_size=28]Programming[/font_size][/b]
+AntoMelon
+Beta-ray
+TheCubeOfFire
+
+[b][font_size=28]Level Design[/font_size][/b]
+AntoMelon
+TheCubeOfFire
+
+[b][font_size=28]GameDesign[/font_size][/b]
+AntoMelon
+TheCubeOfFire
+
+[b][font_size=28]3D Modeling[/font_size][/b]
+AntoMelon
+
+[b][font_size=28]Music[/font_size][/b]
+Beta-Ray
+
+[b][font_size=28]External assets[/font_size][/b]
+Kenney [url]https://kenney.nl/[/url] : ui sprite/soundfx
+freesound_community at pixabay [url]https://pixabay.com/[/url]: soundfx
+
+"
+horizontal_alignment = 1
+script = ExtResource("3_6og75")
+metadata/_custom_type_script = "uid://bya85urvs5c32"
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_uhutt")
+text = "Back"

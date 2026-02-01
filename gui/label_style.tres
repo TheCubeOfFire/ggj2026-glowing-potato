@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://gcjegeg8h5ky"]
+
+[resource]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 28
+VBoxContainer/constants/separation = 21

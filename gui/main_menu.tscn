@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfm50ham6kvfs"]
+[gd_scene load_steps=9 format=3 uid="uid://bfm50ham6kvfs"]
 
 [ext_resource type="Script" uid="uid://ciwuwmfwikiy0" path="res://gui/main_menu.gd" id="1_reecx"]
 [ext_resource type="Texture2D" uid="uid://bp6dhy0sta3ta" path="res://gui/background_game.png" id="2_laybc"]
+[ext_resource type="PackedScene" uid="uid://d02juuin8q7lb" path="res://gui/credits.tscn" id="2_qeqgy"]
 [ext_resource type="Theme" uid="uid://dqcctnl2tm43n" path="res://gui/button_style.tres" id="2_rhnsr"]
 [ext_resource type="StyleBox" uid="uid://3x05rs3rujbp" path="res://gui/button_theme.tres" id="2_xkvi0"]
 [ext_resource type="AudioStream" uid="uid://dkbwa1bm2gttf" path="res://assets/music/menu.wav" id="5_7vpqp"]
@@ -12,7 +13,7 @@ stream_count = 2
 stream_0 = ExtResource("5_7vpqp")
 stream_1 = ExtResource("6_qeqgy")
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "credits_button", "quit_button", "submenu_container")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "credits_button", "quit_button", "submenu_decoration", "submenu_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +24,9 @@ script = ExtResource("1_reecx")
 play_button = NodePath("VBoxContainer/Play")
 credits_button = NodePath("VBoxContainer/Credits")
 quit_button = NodePath("VBoxContainer/Quit")
+submenu_decoration = NodePath("TextureRect2")
 submenu_container = NodePath("Credits_vbox")
+credits_widget = ExtResource("2_qeqgy")
 entry_scene_path = "uid://b25lvfg5lnk5"
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -70,11 +73,25 @@ layout_mode = 2
 theme = ExtResource("2_rhnsr")
 text = "Quit"
 
-[node name="Credits_vbox" type="VBoxContainer" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="."]
 visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_laybc")
+expand_mode = 2
+
+[node name="Credits_vbox" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
