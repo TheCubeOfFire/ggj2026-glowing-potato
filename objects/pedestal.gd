@@ -11,7 +11,8 @@ signal on_mask_claimed()
 var has_mask: bool = true
 
 @onready var mask_mesh: MeshInstance3D = $MaskMesh
-@onready var particle_emitter: GPUParticles3D = $GPUParticles3D
+@onready var _white_particle_emitter: GPUParticles3D = $WhiteParticlesEmitter
+@onready var _purple_particle_emitter: GPUParticles3D = $PurpleParticlesEmitter
 
 # ------- Overriden Engine Functions -------
 
@@ -20,6 +21,7 @@ var has_mask: bool = true
 func claim_mask():
     has_mask = false
     mask_mesh.queue_free()
-    particle_emitter.restart()
+    _white_particle_emitter.restart()
+    _purple_particle_emitter.restart()
     on_mask_claimed.emit()
     return
