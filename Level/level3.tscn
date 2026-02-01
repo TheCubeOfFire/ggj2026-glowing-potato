@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://drxx4irwnm2x3"]
+[gd_scene load_steps=7 format=3 uid="uid://drxx4irwnm2x3"]
 
+[ext_resource type="Script" uid="uid://b5ihy8mialudd" path="res://Level/level.gd" id="1_3xp4b"]
 [ext_resource type="PackedScene" uid="uid://b0qs4tqwtddxv" path="res://objects/door/exit_door.tscn" id="1_afr0y"]
 [ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="2_3xp4b"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="3_8n547"]
+[ext_resource type="PackedScene" uid="uid://dndo3gkh0ag3" path="res://objects/player/player_start.tscn" id="5_8n547"]
 
-[node name="Level3" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3xp4b"]
+size = Vector3(8.3, 4.1, 1.2)
+
+[node name="Level3" type="Node3D" node_paths=PackedStringArray("level_entrance", "player_start", "exit_door")]
+script = ExtResource("1_3xp4b")
+level_entrance = NodePath("LevelEntrance")
+player_start = NodePath("PlayerStart")
+exit_door = NodePath("CSGCombiner3D/ExitDoor")
+objects_to_reset_group = &"affected_objects"
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -54,3 +64,16 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 4.35
 
 [node name="GravityCube" parent="Gameplay" instance=ExtResource("3_8n547")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1, 1.9, 1.7)
+
+[node name="LevelEntrance" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3000002, 2.9, 5.95)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.099999905, 0.59999967, 0)
+shape = SubResource("BoxShape3D_3xp4b")
+debug_color = Color(0.8314554, 0.0014161993, 0.943389, 0.41960785)
+
+[node name="PlayerStart" parent="." instance=ExtResource("5_8n547")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14999986, 2.8500001, 5.7)

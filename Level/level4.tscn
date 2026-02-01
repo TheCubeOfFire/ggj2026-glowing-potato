@@ -1,11 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqne1m722droi"]
+[gd_scene load_steps=8 format=3 uid="uid://cqne1m722droi"]
 
 [ext_resource type="PackedScene" uid="uid://i3gu0xcsf1hl" path="res://objects/door/entrance_door.tscn" id="1_a382o"]
+[ext_resource type="Script" uid="uid://b5ihy8mialudd" path="res://Level/level.gd" id="1_tao64"]
 [ext_resource type="PackedScene" uid="uid://b0qs4tqwtddxv" path="res://objects/door/exit_door.tscn" id="2_tao64"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="3_jwrop"]
 [ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="4_tto7g"]
+[ext_resource type="PackedScene" uid="uid://dndo3gkh0ag3" path="res://objects/player/player_start.tscn" id="6_jwrop"]
 
-[node name="Level4" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_jwrop"]
+size = Vector3(9.5, 4, 1.2)
+
+[node name="Level4" type="Node3D" node_paths=PackedStringArray("level_entrance", "player_start", "entrance_door", "exit_door")]
+script = ExtResource("1_tao64")
+level_entrance = NodePath("LevelEntrance")
+player_start = NodePath("PlayerStart")
+entrance_door = NodePath("CSGCombiner3D/EntranceDoor")
+exit_door = NodePath("CSGCombiner3D/ExitDoor")
+objects_to_reset_group = &"affected_objects"
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -65,3 +76,16 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -1.5
 [node name="TriangleSwitch" parent="Gameplay" instance=ExtResource("4_tto7g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.4999999, -3.6)
 accepted_cube_type = 1
+
+[node name="LevelEntrance" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7999997, 2.9, 2.3999999)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3000002, 0.5999999, 0)
+shape = SubResource("BoxShape3D_jwrop")
+debug_color = Color(0.8314554, 0.0014161993, 0.943389, 0.41960785)
+
+[node name="PlayerStart" parent="." instance=ExtResource("6_jwrop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 2.25, 1.2)
