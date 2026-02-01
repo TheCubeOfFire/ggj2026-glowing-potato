@@ -147,8 +147,9 @@ func toggle_mask(mask_index: int) -> void:
 func handle_pedestal_detection():
     if pedestal_raycast.is_colliding():
         var static_body_node: Node3D = pedestal_raycast.get_collider() as Node3D
-        targeted_pedestal = static_body_node.get_parent() as Pedestal
-        hud.set_interact_prompt_visibility(targeted_pedestal.has_mask)
+        if static_body_node:
+            targeted_pedestal = static_body_node.get_parent() as Pedestal
+            hud.set_interact_prompt_visibility(targeted_pedestal.has_mask)
     else:
         targeted_pedestal = null
         hud.set_interact_prompt_visibility(false)

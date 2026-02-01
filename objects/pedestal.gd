@@ -11,7 +11,7 @@ signal on_mask_claimed()
 var has_mask: bool = true
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var mask_mesh: MeshInstance3D = $MaskMesh
+@onready var mask_mesh: StaticBody3D = $MaskBody
 @onready var _white_particle_emitter: GPUParticles3D = $WhiteParticlesEmitter
 @onready var _purple_particle_emitter: GPUParticles3D = $PurpleParticlesEmitter
 
