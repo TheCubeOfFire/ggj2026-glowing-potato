@@ -6,7 +6,7 @@ extends Node
 
 @export var mask_handling : MaskHandling
 
-var mask_areas: Array[Area2D]
+var mask_areas: Array[Array]
 
 @export var affected_object_group: StringName
 
@@ -17,12 +17,17 @@ var _mask_active_status: Array[bool] = [false, false, false, false]
 var _currently_affected_objects: Array[GravityCube] = []
 
 func _ready() -> void:
+    for _i in range(Globals.MASK_NUM):
+        mask_areas.append([])
+
+    var mask_index: int = 0
     var mask_area_roots = mask_handling.get_masks()
     for mask_area_root in mask_area_roots:
         var mask_area_children = mask_area_root.get_children()
         for mask_area_child in mask_area_children :
             if mask_area_child is Area2D :
-                mask_areas.append(mask_area_child)
+                mask_areas[mask_index].append(mask_area_child)
+        mask_index += 1
 
 func _physics_process(_delta: float) -> void:
     var newly_affected_object_gravities: Dictionary[GravityCube, Vector3] = {}
@@ -76,22 +81,22 @@ func _physics_process(_delta: float) -> void:
         var shape := ConvexPolygonShape2D.new()
         shape.set_point_cloud(points)
 
-        for mask_index in range(4):
+        for mask_index in range(Globals.MASK_NUM):
             if !_mask_active_status[mask_index]:
                 continue
 
-            var mask_area: Area2D = mask_areas[mask_index]
-            var gravity_direction := mask_area.get_meta(gravity_direction_metadata) as Vector3
-            for mask_shape_owner: int in mask_area.get_shape_owners():
-                var local_mask_owner_transform := mask_area.shape_owner_get_transform(mask_shape_owner)
-                var mask_owner_transform := mask_area.transform * local_mask_owner_transform
-                for mask_shape_index: int in mask_area.shape_owner_get_shape_count(mask_shape_owner):
-                    var mask_shape := mask_area.shape_owner_get_shape(mask_shape_owner, mask_shape_index)
-                    if mask_shape.collide(mask_owner_transform, shape, Transform2D.IDENTITY):
-                        if gravity_cube in newly_affected_object_gravities:
-                            newly_affected_object_gravities[gravity_cube] += gravity_direction
-                        else:
-                            newly_affected_object_gravities[gravity_cube] = gravity_direction
+            for mask_area: Area2D in mask_areas[mask_index]:
+                var gravity_direction := mask_area.get_meta(gravity_direction_metadata) as Vector3
+                for mask_shape_owner: int in mask_area.get_shape_owners():
+                    var local_mask_owner_transform := mask_area.shape_owner_get_transform(mask_shape_owner)
+                    var mask_owner_transform := mask_area.transform * local_mask_owner_transform
+                    for mask_shape_index: int in mask_area.shape_owner_get_shape_count(mask_shape_owner):
+                        var mask_shape := mask_area.shape_owner_get_shape(mask_shape_owner, mask_shape_index)
+                        if mask_shape.collide(mask_owner_transform, shape, Transform2D.IDENTITY):
+                            if gravity_cube in newly_affected_object_gravities:
+                                newly_affected_object_gravities[gravity_cube] += gravity_direction
+                            else:
+                                newly_affected_object_gravities[gravity_cube] = gravity_direction
 
     for newly_affected_object: GravityCube in newly_affected_object_gravities:
         var gravity_direction := newly_affected_object_gravities[newly_affected_object].normalized()

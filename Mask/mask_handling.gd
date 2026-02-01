@@ -47,4 +47,5 @@ func get_masks() -> Array[Node2D]:
     var children = get_children()
     for child in children :
         masks.append(child as Node2D)
+    assert(masks.size() == Globals.MASK_NUM)
     return masks
