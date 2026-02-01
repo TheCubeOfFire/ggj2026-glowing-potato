@@ -19,7 +19,7 @@ var targeted_pedestal: Pedestal = null
 var unlocked_masks: Array[bool] = [false, false, false, false]
 
 var movement_velocity: Vector3
-var rotation_target: Vector3
+@onready var rotation_target: Vector3 = rotation
 
 var mouse_sensitivity: int = 700
 var gamepad_sensitivity: float = 0.075
