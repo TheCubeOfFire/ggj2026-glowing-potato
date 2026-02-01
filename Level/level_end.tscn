@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4be52kvpxhqc"]
+
+[ext_resource type="PackedScene" uid="uid://i3gu0xcsf1hl" path="res://objects/door/entrance_door.tscn" id="1_83oi3"]
+[ext_resource type="Script" uid="uid://b61duaw7h78dr" path="res://Level/level_end.gd" id="1_ncdh3"]
+[ext_resource type="PackedScene" uid="uid://bei2ir6e75nvs" path="res://objects/pedestal.tscn" id="2_h5248"]
+
+[node name="LevelEnd" type="Node3D"]
+script = ExtResource("1_ncdh3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40621948, 0.057250977, -0.37924576)
+use_collision = true
+size = Vector3(10.94696, 0.13061523, 4.699211)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.10924578, 2.1411066, -1.689693)
+use_collision = true
+size = Vector3(0.40026855, 4.1, 3.7805176)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9666026, 2.1566052, 0.13909817)
+use_collision = true
+size = Vector3(0.40026855, 4.1, 3.7805176)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.173806, 2.1221042, 0.12805176)
+use_collision = true
+size = Vector3(0.40026855, 4, 3.7805176)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.10924578, 2.1411066, 1.825561)
+use_collision = true
+size = Vector3(0.5, 4.1, 3.781)
+
+[node name="EntranceDoor" parent="CSGBox3D5" instance=ExtResource("1_83oi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.66854787, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12866211, 4.122744, 0.08394146)
+use_collision = true
+size = Vector3(3.8112793, 0.13061523, 3.753357)
+
+[node name="Pedestal" parent="." instance=ExtResource("2_h5248")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -0.9384106)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9174392, -1.0285772)
+modulate = Color(0.32544088, 0.3254409, 0.32544088, 1)
+text = "Thanks for playing
+Get the last mask to return to main menu"
+
+[connection signal="on_mask_claimed" from="Pedestal" to="." method="_on_pedestal_on_mask_claimed"]
