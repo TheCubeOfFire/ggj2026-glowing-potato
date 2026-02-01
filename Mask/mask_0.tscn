@@ -15,21 +15,19 @@ gradient = SubResource("Gradient_202n8")
 diffuse_texture = SubResource("GradientTexture2D_s4rwi")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqgi0"]
-size = Vector2(51.666664, 96.16667)
+size = Vector2(64, 64)
 
 [node name="Mask0" type="Node2D"]
 
 [node name="mask_area" type="Area2D" parent="."]
-position = Vector2(432, 327)
-scale = Vector2(6, 6)
+position = Vector2(576, 500)
+scale = Vector2(8, 3)
 metadata/gravity_direction = Vector3(0, -1, 0)
 
 [node name="mask_texture" type="Sprite2D" parent="mask_area"]
 material = SubResource("ShaderMaterial_335py")
 texture = SubResource("CanvasTexture_leugx")
-region_enabled = true
-region_rect = Rect2(177.236, 220.843, 52, 96.000015)
+region_rect = Rect2(4.084709, 3.5904198, 56.67485, 57.445942)
 
 [node name="mask_collision_shape" type="CollisionShape2D" parent="mask_area"]
-visible = false
 shape = SubResource("RectangleShape2D_nqgi0")
