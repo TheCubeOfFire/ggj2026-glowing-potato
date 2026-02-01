@@ -46,14 +46,17 @@ offset_right = 52.0
 offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="InteractPrompt"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="InteractPrompt/HBoxContainer"]
 self_modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("1_34rqw")
 expand_mode = 3
 
@@ -64,6 +67,7 @@ label_settings = SubResource("LabelSettings_rllpj")
 
 [node name="TextureRect2" type="TextureRect" parent="InteractPrompt/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_4w87a")
 expand_mode = 3
 
@@ -83,20 +87,24 @@ offset_top = -66.0
 offset_right = 505.0
 offset_bottom = -25.0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="Mask0Holder" type="Control" parent="MaskPromptsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Mask0Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask0Holder"]
 layout_mode = 0
 offset_right = 102.0
 offset_bottom = 41.0
 size_flags_horizontal = 0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask0Holder/Mask0Container"]
 self_modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("5_s3hr8")
 expand_mode = 3
 
@@ -107,22 +115,26 @@ label_settings = SubResource("LabelSettings_rllpj")
 
 [node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask0Holder/Mask0Container"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("6_7syvl")
 expand_mode = 3
 
 [node name="Mask1Holder" type="Control" parent="MaskPromptsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Mask1Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask1Holder"]
 layout_mode = 0
 offset_right = 102.0
 offset_bottom = 41.0
 size_flags_horizontal = 4
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask1Holder/Mask1Container"]
 self_modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("7_6tgpg")
 expand_mode = 3
 
@@ -133,22 +145,26 @@ label_settings = SubResource("LabelSettings_rllpj")
 
 [node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask1Holder/Mask1Container"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("8_m7xk5")
 expand_mode = 3
 
 [node name="Mask2Holder" type="Control" parent="MaskPromptsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Mask2Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask2Holder"]
 layout_mode = 0
 offset_right = 102.0
 offset_bottom = 41.0
 size_flags_horizontal = 4
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask2Holder/Mask2Container"]
 self_modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("9_7v5vh")
 expand_mode = 3
 
@@ -159,22 +175,26 @@ label_settings = SubResource("LabelSettings_rllpj")
 
 [node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask2Holder/Mask2Container"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("10_7th1s")
 expand_mode = 3
 
 [node name="Mask3Holder" type="Control" parent="MaskPromptsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Mask3Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask3Holder"]
 layout_mode = 0
 offset_right = 102.0
 offset_bottom = 41.0
 size_flags_horizontal = 4
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask3Holder/Mask3Container"]
 self_modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("11_rt3e4")
 expand_mode = 3
 
@@ -185,5 +205,6 @@ label_settings = SubResource("LabelSettings_rllpj")
 
 [node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask3Holder/Mask3Container"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("12_6etrh")
 expand_mode = 3
