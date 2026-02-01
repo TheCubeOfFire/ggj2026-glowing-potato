@@ -57,6 +57,7 @@ collision_mask = 32
 [node name="Hud" parent="Camera3D" instance=ExtResource("4_ulx1i")]
 
 [node name="mask_canvas_layer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="MaskHandlingScene" parent="mask_canvas_layer" instance=ExtResource("4_goihf")]
 

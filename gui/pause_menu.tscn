@@ -18,6 +18,7 @@ action = &"ui_cancel"
 events = [SubResource("InputEventAction_7uvn2")]
 
 [node name="PauseMenu" type="Control" node_paths=PackedStringArray("resume_button", "main_menu_button")]
+z_index = 2000
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
