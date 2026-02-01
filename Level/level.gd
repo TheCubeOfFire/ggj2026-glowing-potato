@@ -8,8 +8,6 @@ extends Node3D
 @export var entrance_door: EntranceDoor
 @export var exit_door: ExitDoor
 
-@export var objects_to_reset_group: StringName
-
 
 var _initial_object_transforms: Dictionary[Node3D, Transform3D] = {}
 
@@ -17,7 +15,9 @@ var _initial_object_transforms: Dictionary[Node3D, Transform3D] = {}
 func _ready() -> void:
     level_entrance.body_entered.connect(_on_level_entrance_entered)
 
-    var objects_to_reset := get_tree().get_nodes_in_group(objects_to_reset_group)
+    var objects_to_reset: Array[Node] = []
+    for group: StringName in Globals.OBJECT_GROUPS_TO_RESET:
+        objects_to_reset.append_array(get_tree().get_nodes_in_group(group))
     for object in objects_to_reset:
         if object is Node3D and is_ancestor_of(object):
             _initial_object_transforms[object as Node3D] = object.transform

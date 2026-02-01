@@ -2,6 +2,9 @@ extends Node
 
 
 const MASK_NUM: int = 4
+const OBJECT_GROUPS_TO_RESET: Array[StringName] = [
+    &"affected_objects"
+]
 
 enum GCUBE_TYPE {
     SQUARE,
