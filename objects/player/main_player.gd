@@ -45,6 +45,9 @@ func _physics_process(delta: float) -> void:
     handle_mask_input()
     handle_pedestal_detection()
     handle_interact_input()
+
+    if OS.is_debug_build():
+        handle_debug_input()
     return
 
 func _input(event: InputEvent) -> void:
@@ -152,5 +155,18 @@ func unlock_mask(mask_index: int) -> void:
     assert(0 <= mask_index and mask_index <= 3)
     unlocked_masks[mask_index] = true
     hud.set_mask_container_visibility(mask_index, true)
+    return
+#endregion
+
+#region debug input
+func handle_debug_input() -> void:
+    if Input.is_action_just_pressed(&"debug_unlock_mask0"):
+        unlock_mask(0)
+    if Input.is_action_just_pressed(&"debug_unlock_mask1"):
+        unlock_mask(1)
+    if Input.is_action_just_pressed(&"debug_unlock_mask2"):
+        unlock_mask(2)
+    if Input.is_action_just_pressed(&"debug_unlock_mask3"):
+        unlock_mask(3)
     return
 #endregion
