@@ -8,6 +8,8 @@ signal on_deactivated()
 
 # ------- Exposed vars -------
 @export var accepted_cube_type := Globals.GCUBE_TYPE.SQUARE
+@onready var activate_sound: AudioStreamPlayer3D = $ActivateSound
+@onready var deactivate_sound: AudioStreamPlayer3D = $DeactivateSound
 
 
 # ------- Internal vars -------
@@ -60,6 +62,7 @@ func get_current_activating_cubes() -> int:
 
 func add_activating_cube() -> void:
     _current_activating_cubes += 1
+    activate_sound.play()
     if _current_activating_cubes == 1:
         on_activated.emit()
     return
@@ -67,6 +70,7 @@ func add_activating_cube() -> void:
 func remove_activating_cube() -> void:
     assert(_current_activating_cubes > 0)
     _current_activating_cubes -= 1
+    deactivate_sound.play()
     if _current_activating_cubes == 0:
         on_deactivated.emit()
     return
