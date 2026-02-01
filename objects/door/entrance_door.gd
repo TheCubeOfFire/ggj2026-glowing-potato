@@ -11,6 +11,11 @@ var _is_closed := false
 @onready var _door := $Door as Door
 
 
+func close_instantly() -> void:
+    _is_closed = true
+    _door.close_instantly()
+
+
 func _on_threshold_entered(_body: Node3D) -> void:
     _is_in_threshold = true
 

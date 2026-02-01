@@ -21,6 +21,7 @@ var _velocity := Vector3.ZERO
 
 # ------- Overriden Engine Functions -------
 func _ready() -> void:
+    set_physics_process(false)
     match cube_type:
         Globals.GCUBE_TYPE.SQUARE:
             $MeshInstance3D.mesh = load(&"uid://bxowgvli1ufmb")
@@ -46,11 +47,13 @@ func _physics_process(delta: float) -> void:
 
 # ------- Functions -------
 func override_gravity(new_gravity: Vector3) -> void:
+    set_physics_process(true)
     is_gravity_overrriden = true
     gravity = new_gravity.normalized()
 
 
 func clear_gravity_override() -> void:
+    set_physics_process(false)
     is_gravity_overrriden = false
     gravity = Vector3.ZERO
 

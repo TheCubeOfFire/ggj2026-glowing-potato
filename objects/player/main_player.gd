@@ -1,4 +1,6 @@
+class_name MainPlayer
 extends CharacterBody3D
+
 
 # ------- Exposed vars -------
 ## Movement speed for the player
@@ -15,6 +17,11 @@ extends CharacterBody3D
 @onready var gravity_force: float = ProjectSettings.get_setting(&"physics/3d/default_gravity")
 @onready var gravity_vector: Vector3 = ProjectSettings.get_setting(&"physics/3d/default_gravity_vector")
 
+
+var physics_aabb: AABB:
+    get:
+        return _physics_aabb
+
 var targeted_pedestal: Pedestal = null
 var unlocked_masks: Array[bool] = [false, false, false, false]
 
@@ -28,10 +35,15 @@ var input_mouse: Vector2 = Vector2.ZERO
 
 var _pause_pressed := false
 
+var _physics_aabb := AABB()
+
+
 # ------- Overriden Engine Functions -------
 func _ready() -> void:
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-    return
+    _physics_aabb = _compute_aabb(_get_shapes())
+    Globals.main_player = self
+
 
 func _physics_process(delta: float) -> void:
     handle_movement(delta)
@@ -64,7 +76,6 @@ func _input(event: InputEvent) -> void:
         QuickGorilla_PauseMenuManager.show_pause_menu()
         get_viewport().set_input_as_handled()
 
-    return
 
 # ------- Other Functions -------
 func handle_movement(_delta: float) -> void:
@@ -170,3 +181,99 @@ func handle_debug_input() -> void:
         unlock_mask(3)
     return
 #endregion
+
+
+#region physics_aabb
+func _get_shapes() -> Dictionary[int, ShapeData]:
+    var shape_owner_ids := get_shape_owners()
+    var shapes: Dictionary[int, ShapeData] = {}
+    for owner_id in shape_owner_ids:
+        var shape_count := shape_owner_get_shape_count(owner_id)
+        var owner_transform := shape_owner_get_transform(owner_id)
+        for shape_id in shape_count:
+            var shape_index := shape_owner_get_shape_index(owner_id, shape_id)
+            var shape := shape_owner_get_shape(owner_id, shape_id)
+            shapes[shape_index] = ShapeData.new(owner_id, shape, owner_transform)
+    return shapes
+
+
+func _compute_aabb(shapes: Dictionary[int, ShapeData]) -> AABB:
+    var result := AABB()
+    for shape_index in shapes:
+        var shape_data := shapes[shape_index]
+        var shape := shape_data.shape
+        var shape_transform := shape_data.transform
+
+        var shape_aabb := shape_transform * _compute_aabb_of_shape(shape)
+        if result.size.is_zero_approx():
+            result = shape_aabb
+        else:
+            result = result.merge(shape_aabb)
+
+    return result
+
+
+func _compute_aabb_of_shape(shape: Shape3D) -> AABB:
+    if is_instance_of(shape, BoxShape3D):
+        return _compute_aabb_of_box(shape as BoxShape3D)
+    if is_instance_of(shape, SphereShape3D):
+        return _compute_aabb_of_ball(shape as SphereShape3D)
+    if is_instance_of(shape, CylinderShape3D):
+        return _compute_aabb_of_cylinder(shape as CylinderShape3D)
+    if is_instance_of(shape, CapsuleShape3D):
+        return _compute_aabb_of_capsule(shape as CapsuleShape3D)
+    if is_instance_of(shape, ConvexPolygonShape3D):
+        return _compute_aabb_of_convex_polyhedron(shape as ConvexPolygonShape3D)
+
+    return AABB() # TODO
+
+
+func _compute_aabb_of_box(box_shape: BoxShape3D) -> AABB:
+    return AABB(-0.5 * box_shape.size, box_shape.size)
+
+
+func _compute_aabb_of_ball(sphere_shape: SphereShape3D) -> AABB:
+    var radius := sphere_shape.radius
+    return AABB(-radius * Vector3.ONE, 2.0 * radius * Vector3.ONE)
+
+
+func _compute_aabb_of_cylinder(cylinder_shape: CylinderShape3D) -> AABB:
+    var radius := cylinder_shape.radius
+    var half_height := 0.5 * cylinder_shape.height
+    var half_size := Vector3(radius, half_height, radius)
+    return AABB(-half_size, 2.0 * half_size)
+
+
+func _compute_aabb_of_capsule(capsule_shape: CapsuleShape3D) -> AABB:
+    var radius := capsule_shape.radius
+    var half_height := 0.5 * capsule_shape.height
+    var half_size := Vector3(radius, half_height, radius)
+    return AABB(-half_size, 2.0 * half_size)
+
+
+func _compute_aabb_of_convex_polyhedron(convex_shape: ConvexPolygonShape3D) -> AABB:
+    var points := convex_shape.points
+    if points.is_empty():
+        return AABB()
+
+    var min_point := points[0]
+    var max_point := points[0]
+    for point_index in range(1, points.size()):
+        var point := points[point_index]
+        min_point = point.min(min_point)
+        max_point = point.max(max_point)
+
+    return AABB(min_point, max_point - min_point)
+#endregion
+
+
+class ShapeData extends RefCounted:
+    var owner_id: int
+    var shape: Shape3D
+    var transform: Transform3D
+
+
+    func _init(p_owner_id: int, p_shape: Shape3D, p_transform: Transform3D) -> void:
+        owner_id = p_owner_id
+        shape = p_shape
+        transform = p_transform

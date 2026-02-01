@@ -21,6 +21,11 @@ func _ready() -> void:
     switch_states.fill(false)
 
 
+func close_instantly() -> void:
+    _is_open = false
+    _door.close_instantly()
+
+
 func on_state_changed(switch_index: int, is_switch_active: bool) -> void:
     switch_states[switch_index] = is_switch_active
     if switch_states.has(false):

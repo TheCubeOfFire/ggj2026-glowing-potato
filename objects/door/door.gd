@@ -20,3 +20,8 @@ func change_door_state(open: bool) -> void:
         _animation_player.play(&"opening")
     else:
         _animation_player.play(&"closing")
+
+
+func close_instantly() -> void:
+    _animation_player.stop()
+    _animation_player.play(&"RESET")

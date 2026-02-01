@@ -1,11 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://yv5tfw1gxmhg"]
+[gd_scene load_steps=8 format=3 uid="uid://yv5tfw1gxmhg"]
 
 [ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="1_3rbkl"]
+[ext_resource type="Script" uid="uid://b5ihy8mialudd" path="res://Level/level.gd" id="1_bbvjg"]
 [ext_resource type="PackedScene" uid="uid://i3gu0xcsf1hl" path="res://objects/door/entrance_door.tscn" id="1_yyhus"]
 [ext_resource type="PackedScene" uid="uid://b0qs4tqwtddxv" path="res://objects/door/exit_door.tscn" id="2_rylw3"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="2_yyhus"]
+[ext_resource type="PackedScene" uid="uid://dndo3gkh0ag3" path="res://objects/player/player_start.tscn" id="6_qdxbt"]
 
-[node name="Level2" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_h8iv6"]
+size = Vector3(6.2000003, 2.8, 1.2)
+
+[node name="Level2" type="Node3D" node_paths=PackedStringArray("level_entrance", "player_start", "entrance_door", "exit_door")]
+script = ExtResource("1_bbvjg")
+level_entrance = NodePath("LevelEntrance")
+player_start = NodePath("PlayerStart")
+entrance_door = NodePath("Obstacles/EntranceDoor")
+exit_door = NodePath("Obstacles/ExitDoor")
+objects_to_reset_group = &"affected_objects"
 
 [node name="Obstacles" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -58,3 +69,15 @@ accepted_cube_type = 1
 [node name="GravityCube2" parent="Gameplay" instance=ExtResource("2_yyhus")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2000003, 4.1000004, 4.2999997)
 cube_type = 1
+
+[node name="LevelEntrance" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5000002, 1.4, -1.7000003)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelEntrance"]
+shape = SubResource("BoxShape3D_h8iv6")
+debug_color = Color(0.8314554, 0.0014161993, 0.943389, 0.41960785)
+
+[node name="PlayerStart" parent="." instance=ExtResource("6_qdxbt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -1.3000001)
