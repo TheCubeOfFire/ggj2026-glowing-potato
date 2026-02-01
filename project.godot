@@ -146,6 +146,8 @@ pause={
 
 [layer_names]
 
+3d_render/layer_1="game"
+3d_render/layer_2="debug"
 3d_physics/layer_1="player"
 3d_physics/layer_2="obstacle"
 3d_physics/layer_3="box"

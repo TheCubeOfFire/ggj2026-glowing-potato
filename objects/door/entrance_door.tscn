@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://i3gu0xcsf1hl"]
+[gd_scene load_steps=8 format=3 uid="uid://i3gu0xcsf1hl"]
 
 [ext_resource type="PackedScene" uid="uid://cyd1r17bv5g8w" path="res://objects/door/door.tscn" id="1_ffib7"]
 [ext_resource type="Script" uid="uid://drv1rrfuv6m6g" path="res://objects/door/entrance_door.gd" id="1_msb15"]
@@ -8,6 +8,19 @@ size = Vector3(1.8000001, 2.7, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_msb15"]
 size = Vector3(1.05, 2.7, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msb15"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_7qxwk"]
+material = SubResource("StandardMaterial3D_msb15")
+text = "In"
+font_size = 48
+
+[sub_resource type="TextMesh" id="TextMesh_7tes8"]
+material = SubResource("StandardMaterial3D_msb15")
+text = "Out"
+font_size = 48
 
 [node name="EntranceDoor" type="CSGBox3D"]
 operation = 2
@@ -34,6 +47,16 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InsideArea3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024999976, 0, 0)
 shape = SubResource("BoxShape3D_msb15")
+
+[node name="DebugInIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.76221466, 0, 0)
+layers = 2
+mesh = SubResource("TextMesh_7qxwk")
+
+[node name="DebugOutIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.79395676, 0, 0)
+layers = 2
+mesh = SubResource("TextMesh_7tes8")
 
 [connection signal="body_entered" from="ThresholdArea3D" to="." method="_on_threshold_entered"]
 [connection signal="body_exited" from="ThresholdArea3D" to="." method="_on_threshold_exited"]
