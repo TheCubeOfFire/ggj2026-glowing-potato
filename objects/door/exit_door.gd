@@ -7,6 +7,8 @@ extends CSGBox3D
 
 var switch_states: Array[bool]
 
+var _is_open := false
+
 
 @onready var _door := $Door as Door
 
@@ -22,6 +24,10 @@ func _ready() -> void:
 func on_state_changed(switch_index: int, is_switch_active: bool) -> void:
     switch_states[switch_index] = is_switch_active
     if switch_states.has(false):
-        _door.change_door_state(false)
-    elif is_switch_active:
-        _door.change_door_state(true)
+        if _is_open:
+            _door.change_door_state(false)
+        _is_open = false
+    else:
+        if not _is_open:
+            _door.change_door_state(true)
+        _is_open = true
