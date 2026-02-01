@@ -14,7 +14,8 @@ quick_gorilla/pause_menu_scene="uid://biy6vfeqy5iys"
 
 [application]
 
-config/name="GGJ 2026 - Glowing Potato"
+config/name="A Moving Gaze"
+config/description="Use different masks to move blocks around with just a gaze. Progress through a minimalistic world and solve puzzles."
 config/tags=PackedStringArray("jam")
 run/main_scene="uid://bfm50ham6kvfs"
 config/features=PackedStringArray("4.5", "Forward Plus")
