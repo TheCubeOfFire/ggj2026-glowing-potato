@@ -56,6 +56,7 @@ func clear_gravity_override() -> void:
     set_physics_process(false)
     is_gravity_overrriden = false
     gravity = Vector3.ZERO
+    _velocity = Vector3.ZERO
 
 
 func get_mesh() -> Mesh:
