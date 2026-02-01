@@ -19,15 +19,17 @@ size = Vector2(64, 64)
 
 [node name="Mask0" type="Node2D"]
 
-[node name="mask_area" type="Area2D" parent="."]
+[node name="mask_area_y_down" type="Area2D" parent="."]
 position = Vector2(576, 500)
 scale = Vector2(8, 3)
 metadata/gravity_direction = Vector3(0, -1, 0)
+metadata/_edit_group_ = true
 
-[node name="mask_texture" type="Sprite2D" parent="mask_area"]
+[node name="mask_texture" type="Sprite2D" parent="mask_area_y_down"]
 material = SubResource("ShaderMaterial_335py")
 texture = SubResource("CanvasTexture_leugx")
 region_rect = Rect2(4.084709, 3.5904198, 56.67485, 57.445942)
 
-[node name="mask_collision_shape" type="CollisionShape2D" parent="mask_area"]
+[node name="mask_collision_shape" type="CollisionShape2D" parent="mask_area_y_down"]
+visible = false
 shape = SubResource("RectangleShape2D_nqgi0")
