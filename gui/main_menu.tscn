@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfm50ham6kvfs"]
+[gd_scene load_steps=8 format=3 uid="uid://bfm50ham6kvfs"]
 
 [ext_resource type="Script" uid="uid://ciwuwmfwikiy0" path="res://gui/main_menu.gd" id="1_reecx"]
 [ext_resource type="Texture2D" uid="uid://bp6dhy0sta3ta" path="res://gui/background_game.png" id="2_laybc"]
 [ext_resource type="Theme" uid="uid://dqcctnl2tm43n" path="res://gui/button_style.tres" id="2_rhnsr"]
 [ext_resource type="StyleBox" uid="uid://3x05rs3rujbp" path="res://gui/button_theme.tres" id="2_xkvi0"]
+[ext_resource type="AudioStream" uid="uid://dkbwa1bm2gttf" path="res://assets/music/menu.wav" id="5_7vpqp"]
+[ext_resource type="AudioStream" uid="uid://c0c4vwrobv0ai" path="res://assets/music/menu_002.wav" id="6_qeqgy"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_8ins1"]
+stream_count = 2
+stream_0 = ExtResource("5_7vpqp")
+stream_1 = ExtResource("6_qeqgy")
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "credits_button", "quit_button", "submenu_container")]
 layout_mode = 3
@@ -68,3 +75,8 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamPlaylist_8ins1")
+autoplay = true
