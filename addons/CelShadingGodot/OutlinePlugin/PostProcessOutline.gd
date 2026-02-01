@@ -30,7 +30,8 @@ func _ready():
 func _process(delta):
     var ratio = 1.0
     if Engine.is_editor_hint():
-        ratio = EditorInterface.get_editor_viewport_3d(0).size.x
+        var editor_interface = Engine.get_singleton(&"EditorInterface")
+        ratio = editor_interface.get_editor_viewport_3d(0).size.x
     else:
         ratio = get_viewport().get_visible_rect().size.x
     ratio = ratio / (resolution_unit as float)
