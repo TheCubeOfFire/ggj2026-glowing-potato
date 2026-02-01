@@ -9,9 +9,10 @@ size = Vector3(0.8, 0.8, 0.8)
 [node name="GravityCube" type="AnimatableBody3D" groups=["affected_objects"]]
 collision_layer = 12
 collision_mask = 7
+sync_to_physics = false
 script = ExtResource("1_x1wp5")
-default_gravity_force = 30.0
-friction = 0.1
+default_gravity_force = 65.0
+friction = 0.3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_u2vnq")
