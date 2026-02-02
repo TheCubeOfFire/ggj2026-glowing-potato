@@ -1,0 +1,28 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://gcjegeg8h5ky"]
+
+[ext_resource type="FontFile" uid="uid://6k0wln3vy23u" path="res://gui/hud/fonts/keyboard_font.ttf" id="1_bifhe"]
+[ext_resource type="StyleBox" uid="uid://cdfdrm8s5tdrt" path="res://gui/theme/button/style_focus.tres" id="1_x3spo"]
+[ext_resource type="StyleBox" uid="uid://3x05rs3rujbp" path="res://gui/theme/button/style_default.tres" id="2_nirra"]
+[ext_resource type="StyleBox" uid="uid://b11xpi8l1u6c0" path="res://gui/theme/scrollbar/style_default.tres" id="3_4rg34"]
+[ext_resource type="StyleBox" uid="uid://cxip8ciel0f6g" path="res://gui/theme/scrollbar/style_pressed.tres" id="4_gjs5p"]
+[ext_resource type="StyleBox" uid="uid://defas403hvk3r" path="res://gui/theme/scrollbar/style_scroll.tres" id="5_fpcra"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ixhh"]
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0.31431594, 0.31431618, 0.31431603, 1)
+Button/colors/font_hover_pressed_color = Color(0.3372549, 0.3372549, 0.3372549, 1)
+Button/font_sizes/font_size = 22
+Button/fonts/font = ExtResource("1_bifhe")
+Button/styles/focus = ExtResource("1_x3spo")
+Button/styles/hover = ExtResource("2_nirra")
+Button/styles/normal = ExtResource("2_nirra")
+Button/styles/pressed = ExtResource("2_nirra")
+Label/colors/font_color = Color(0, 0, 0, 1)
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_0ixhh")
+VScrollBar/styles/grabber = ExtResource("3_4rg34")
+VScrollBar/styles/grabber_highlight = ExtResource("3_4rg34")
+VScrollBar/styles/grabber_pressed = ExtResource("4_gjs5p")
+VScrollBar/styles/scroll = ExtResource("5_fpcra")
+VScrollBar/styles/scroll_focus = ExtResource("5_fpcra")

@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://defas403hvk3r"]
+
+[resource]
+content_margin_left = 15.0
+bg_color = Color(0.5171842, 0.5171846, 0.5171842, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)

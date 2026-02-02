@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfm50ham6kvfs"]
+[gd_scene load_steps=7 format=3 uid="uid://bfm50ham6kvfs"]
 
 [ext_resource type="Script" uid="uid://ciwuwmfwikiy0" path="res://gui/main_menu.gd" id="1_reecx"]
 [ext_resource type="PackedScene" uid="uid://d02juuin8q7lb" path="res://gui/credits.tscn" id="2_qeqgy"]
-[ext_resource type="Theme" uid="uid://dqcctnl2tm43n" path="res://gui/button_style.tres" id="2_rhnsr"]
-[ext_resource type="StyleBox" uid="uid://3x05rs3rujbp" path="res://gui/button_theme.tres" id="2_xkvi0"]
 [ext_resource type="Texture2D" uid="uid://cgplkoqbyn8pn" path="res://assets/images/titled_minia_1.png" id="3_8ins1"]
 [ext_resource type="AudioStream" uid="uid://dkbwa1bm2gttf" path="res://assets/music/menu.wav" id="5_7vpqp"]
 [ext_resource type="AudioStream" uid="uid://c0c4vwrobv0ai" path="res://assets/music/menu_002.wav" id="6_qeqgy"]
@@ -55,22 +53,14 @@ metadata/_edit_group_ = true
 
 [node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_rhnsr")
-theme_override_styles/normal = ExtResource("2_xkvi0")
-theme_override_styles/pressed = ExtResource("2_xkvi0")
-theme_override_styles/hover = ExtResource("2_xkvi0")
-theme_override_styles/disabled = ExtResource("2_xkvi0")
-theme_override_styles/focus = ExtResource("2_xkvi0")
 text = "Play"
 
 [node name="Credits" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_rhnsr")
 text = "Credits"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_rhnsr")
 text = "Quit"
 
 [node name="TextureRect2" type="TextureRect" parent="."]

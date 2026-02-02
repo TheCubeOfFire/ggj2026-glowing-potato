@@ -47,6 +47,10 @@ enabled=PackedStringArray("res://addons/CelShadingGodot/OutlinePlugin/plugin.cfg
 
 affected_objects=""
 
+[gui]
+
+theme/custom="uid://gcjegeg8h5ky"
+
 [input]
 
 ui_accept={
