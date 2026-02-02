@@ -70,7 +70,8 @@ func add_activating_cube() -> void:
 func remove_activating_cube() -> void:
     assert(_current_activating_cubes > 0)
     _current_activating_cubes -= 1
-    deactivate_sound.play()
+    if self.is_inside_tree():
+        deactivate_sound.play()
     if _current_activating_cubes == 0:
         on_deactivated.emit()
     return
