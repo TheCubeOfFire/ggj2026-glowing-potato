@@ -47,7 +47,7 @@ func _on_cube_detection_area_body_entered(body: Node3D) -> void:
 
 
 func _on_cube_detection_area_body_exited(body: Node3D) -> void:
-    if body is GravityCube:
+    if !self.is_queued_for_deletion() and body is GravityCube:
         var gravity_cube := body as GravityCube
         if accepted_cube_type != gravity_cube.cube_type:
             return
@@ -70,8 +70,11 @@ func add_activating_cube() -> void:
 func remove_activating_cube() -> void:
     assert(_current_activating_cubes > 0)
     _current_activating_cubes -= 1
-    if self.is_inside_tree():
+
+    # Prevent errors that can happen when returning to main_menu
+    if deactivate_sound.is_inside_tree() and !deactivate_sound.is_queued_for_deletion():
         deactivate_sound.play()
+
     if _current_activating_cubes == 0:
         on_deactivated.emit()
     return
