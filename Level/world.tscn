@@ -37,7 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, -2.25)
 
 [node name="LevelEnd" parent="Levels" instance=ExtResource("10_hpvpj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.55, 1.3999999, -8.830225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.55, 1.25, -8.8)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

@@ -7,41 +7,44 @@
 [node name="LevelEnd" type="Node3D"]
 script = ExtResource("1_ncdh3")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40621948, 0.057250977, -0.37924576)
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
-size = Vector3(10.94696, 0.13061523, 4.699211)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.10924578, 2.1411066, -1.689693)
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3841858e-07, 0, 0.07500017)
 use_collision = true
-size = Vector3(0.40026855, 4.1, 3.7805176)
+size = Vector3(4.6, 0.5, 3.95)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9666026, 2.1566052, 0.13909817)
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3841858e-07, 4.5, 0.07500017)
 use_collision = true
-size = Vector3(0.40026855, 4.1, 3.7805176)
+size = Vector3(4.6, 0.5, 3.95)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.173806, 2.1221042, 0.12805176)
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2500002, -1.6750001)
 use_collision = true
-size = Vector3(0.40026855, 4, 3.7805176)
+size = Vector3(3.8, 4, 0.45000002)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.10924578, 2.1411066, 1.825561)
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 2.25, 0.07500011)
 use_collision = true
-size = Vector3(0.5, 4.1, 3.781)
+size = Vector3(0.4, 4, 3.95)
 
-[node name="EntranceDoor" parent="CSGBox3D5" instance=ExtResource("1_83oi3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.66854787, 0)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12866211, 4.122744, 0.08394146)
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1000001, 2.2500002, 0.07500011)
 use_collision = true
-size = Vector3(3.8112793, 0.13061523, 3.753357)
+size = Vector3(0.4, 4, 3.95)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 1.8)
+use_collision = true
+size = Vector3(3.8, 4, 0.5)
+
+[node name="EntranceDoor" parent="CSGCombiner3D" instance=ExtResource("1_83oi3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.10000001, 1.5500002, 1.8)
 
 [node name="Pedestal" parent="." instance=ExtResource("2_h5248")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -0.9384106)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.24999988, -0.9384106)
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9174392, -1.0285772)
