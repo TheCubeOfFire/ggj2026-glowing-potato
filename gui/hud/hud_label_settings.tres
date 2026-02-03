@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ckwdxb602t0ul"]
+
+[ext_resource type="FontFile" uid="uid://6k0wln3vy23u" path="res://gui/hud/fonts/keyboard_font.ttf" id="1_ixlaq"]
+
+[resource]
+font = ExtResource("1_ixlaq")
+font_size = 20
+font_color = Color(0.2, 0.2, 0.2, 1)

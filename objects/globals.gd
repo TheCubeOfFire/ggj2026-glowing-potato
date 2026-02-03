@@ -1,5 +1,6 @@
 extends Node
 
+signal on_level_reset()
 
 const MASK_NUM: int = 4
 const OBJECT_GROUPS_TO_RESET: Array[StringName] = [
@@ -25,3 +26,4 @@ func reset_level() -> void:
         return
 
     current_level.reset(main_player)
+    on_level_reset.emit()

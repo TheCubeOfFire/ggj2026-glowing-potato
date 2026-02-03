@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdee85501y3ch"]
+
+[ext_resource type="Script" uid="uid://qyvs05xhwkn7" path="res://objects/reset_tip_displayer.gd" id="1_7nidy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7nidy"]
+
+[node name="ResetTipDisplayer" type="Area3D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_7nidy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7nidy")
+debug_color = Color(1, 0.48333335, 0, 0.627451)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

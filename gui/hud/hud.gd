@@ -2,11 +2,13 @@ class_name Hud
 extends Control
 
 # ------- Internal vars -------
+@onready var animation_player: AnimationPlayer = $'AnimationPlayer'
 @onready var interact_prompt: VBoxContainer = $'InteractPrompt'
 @onready var mask0_container: HBoxContainer = $'MaskPromptsContainer/Mask0Holder/Mask0Container'
 @onready var mask1_container: HBoxContainer = $'MaskPromptsContainer/Mask1Holder/Mask1Container'
 @onready var mask2_container: HBoxContainer = $'MaskPromptsContainer/Mask2Holder/Mask2Container'
 @onready var mask3_container: HBoxContainer = $'MaskPromptsContainer/Mask3Holder/Mask3Container'
+@onready var tip_label: Label = $TipLabel
 
 # ------- Overriden Engine Functions -------
 func _ready() -> void:
@@ -41,3 +43,17 @@ func set_mask_container_visibility(mask_index: int, value: bool) -> void:
             assert(false)
     mask_container.visible = value
     return
+
+#region tips
+func display_tip(tip_key: StringName) -> void:
+    tip_label.text = tip_key
+    animation_player.play(&"fade_in")
+    return
+
+func clear_tips(fade_out: bool) -> void:
+    if fade_out:
+        animation_player.play_backwards(&"fade_in")
+        await animation_player.animation_finished
+    tip_label.text = ""
+    return
+#endregion

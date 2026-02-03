@@ -37,12 +37,15 @@ var _pause_pressed := false
 
 var _physics_aabb := AABB()
 
+var seen_unique_tips: Dictionary[StringName,bool] = {}
+
 
 # ------- Overriden Engine Functions -------
 func _ready() -> void:
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
     _physics_aabb = _compute_aabb(_get_shapes())
     Globals.main_player = self
+    Globals.on_level_reset.connect(_on_reset_called)
 
 
 func _physics_process(delta: float) -> void:
@@ -183,6 +186,22 @@ func handle_debug_input() -> void:
     return
 #endregion
 
+#region tips
+func display_tip(tip_key) -> void:
+    if seen_unique_tips.get(tip_key, false):
+        return
+    hud.display_tip(tip_key)
+    seen_unique_tips.set(tip_key, true)
+    return
+
+func clear_tips(fade_out: bool) -> void:
+    hud.clear_tips(fade_out)
+    return
+
+func _on_reset_called() -> void:
+    clear_tips(false)
+    return
+#endregion
 
 #region physics_aabb
 func _get_shapes() -> Dictionary[int, ShapeData]:

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cv3snsat7wj08"
+
+[deps]
+
+files=["res://gui/a_moving_gaze-localization.en.translation"]
+
+source_file="res://gui/a_moving_gaze-localization.csv"
+dest_files=["res://gui/a_moving_gaze-localization.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0
