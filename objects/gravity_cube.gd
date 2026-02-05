@@ -21,6 +21,7 @@ var _velocity := Vector3.ZERO
 
 # ------- Overriden Engine Functions -------
 func _ready() -> void:
+    Globals.on_level_reset.connect(_level_reset_behavior)
     match cube_type:
         Globals.GCUBE_TYPE.SQUARE:
             $MeshInstance3D.mesh = load(&"uid://bxowgvli1ufmb")
@@ -57,3 +58,8 @@ func clear_gravity_override() -> void:
 
 func get_mesh() -> Mesh:
     return _mesh_instance.mesh
+
+func _level_reset_behavior() -> void:
+    gravity = Vector3.ZERO
+    _velocity = Vector3.ZERO
+    return
