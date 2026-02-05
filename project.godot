@@ -19,7 +19,7 @@ config/description="Use different masks to move blocks around with just a gaze. 
 config/tags=PackedStringArray("jam")
 run/main_scene="uid://bfm50ham6kvfs"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://bvcrhielncsuy"
 run/pause_menu_scene=""
 
 [autoload]
