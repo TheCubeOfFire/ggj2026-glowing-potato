@@ -40,13 +40,19 @@ func reset(player: MainPlayer) -> void:
 
 func _reset_player(player: MainPlayer) -> void:
     var player_transform := player_start.get_starting_transform()
-    #player_transform = global_transform * player_transform
     player.global_transform = player_transform
 
     var global_player_aabb := player.global_transform * player.physics_aabb
     var aabb_offset := player_transform.origin - global_player_aabb.position
 
     player.global_position += aabb_offset
+
+    _reset_player_camera(player)
+
+func _reset_player_camera(player: MainPlayer) -> void:
+    player.rotation_target = player.rotation
+    player.camera.rotation.x = 0
+    return
 
 
 func _on_level_entrance_entered(_body: Node3D) -> void:
