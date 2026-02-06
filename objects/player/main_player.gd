@@ -28,10 +28,11 @@ var unlocked_masks: Array[bool] = [false, false, false, false]
 var movement_velocity: Vector3
 @onready var rotation_target: Vector3 = rotation
 
-var mouse_sensitivity: int = 700
-var gamepad_sensitivity: float = 0.075
+var mouse_sensitivity: int
+var gamepad_sensitivity: float
 var mouse_captured: bool = true
 var input_mouse: Vector2 = Vector2.ZERO
+var invert_camera_y: bool = false
 
 var _pause_pressed := false
 
@@ -46,6 +47,7 @@ func _ready() -> void:
     _physics_aabb = _compute_aabb(_get_shapes())
     Globals.main_player = self
     Globals.on_level_reset.connect(_on_reset_called)
+    apply_settings()
 
 
 func _physics_process(delta: float) -> void:
@@ -81,6 +83,12 @@ func _input(event: InputEvent) -> void:
 
 
 # ------- Other Functions -------
+func apply_settings() -> void:
+    invert_camera_y = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_CAMERA_INVERT_Y)
+    mouse_sensitivity = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_MOUSE_SENSITIVITY)
+    gamepad_sensitivity = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_GAMEPAD_SENSITIVITY)
+    return
+
 func handle_movement(_delta: float) -> void:
     var input_vector: Vector2 = Input.get_vector(&"move_backward", &"move_forward", &"move_left", &"move_right")
     movement_velocity = Vector3(input_vector.x, 0, input_vector.y) * movement_speed
@@ -91,6 +99,8 @@ func handle_gravity(_delta: float) -> void:
     velocity += gravity_vector * gravity_force
     return
 
+
+#region rotation
 func handle_mouse_input(_delta: float) -> void:
     # Mouse capture
     if Input.is_action_just_pressed(&"mouse_capture"):
@@ -103,16 +113,18 @@ func handle_mouse_input(_delta: float) -> void:
         input_mouse = Vector2.ZERO
     return
 
+
 func handle_rotation_input(_delta: float) -> void:
-    var invert_y_rotation: bool = false
-    var rotation_input := Input.get_vector(&"camera_left", &"camera_right",\
-                                            &"camera_down" if invert_y_rotation else &"camera_up",\
-                                            &"camera_up" if invert_y_rotation else &"camera_down")
+    var rotation_input := Input.get_vector(&"camera_left", &"camera_right", &"camera_up", &"camera_down")
     if rotation_input:
         handle_rotation(rotation_input.x, rotation_input.y, true, _delta)
     return
 
+
 func handle_rotation(x_rot: float, y_rot: float, is_controller: bool, _delta: float = 0.0) -> void:
+    if invert_camera_y:
+        y_rot = -y_rot
+
     if is_controller:
         rotation_target += Vector3(-y_rot, -x_rot, 0).limit_length(1.0) * gamepad_sensitivity
     else:
@@ -122,6 +134,7 @@ func handle_rotation(x_rot: float, y_rot: float, is_controller: bool, _delta: fl
     camera.rotation.x = rotation_target.x
     rotation.y = rotation_target.y
     return
+#endregion
 
 #region mask toggling
 func handle_mask_input() -> void:
