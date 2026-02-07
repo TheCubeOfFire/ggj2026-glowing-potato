@@ -87,4 +87,5 @@ focus_behavior_recursive = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = SubResource("AudioStreamPlaylist_8ins1")
+volume_db = -5.0
 autoplay = true
