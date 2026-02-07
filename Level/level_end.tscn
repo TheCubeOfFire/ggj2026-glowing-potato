@@ -47,9 +47,13 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.1
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.24999988, -0.9384106)
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9174392, -1.0285772)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.150092, -1.0285772)
+alpha_cut = 2
+alpha_antialiasing_mode = 2
+alpha_antialiasing_edge = 1.0
 modulate = Color(0.32544088, 0.3254409, 0.32544088, 1)
 text = "Thanks for playing
 Get the last mask to return to main menu"
+outline_size = 0
 
 [connection signal="on_mask_claimed" from="Pedestal" to="." method="_on_pedestal_on_mask_claimed"]
