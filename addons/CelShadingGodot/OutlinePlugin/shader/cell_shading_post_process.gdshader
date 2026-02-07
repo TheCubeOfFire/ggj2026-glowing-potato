@@ -130,6 +130,17 @@ mat3 linearizeMatDepth(vec2 vScreenUV, mat4 mInvProj, mat3 pixels)
 void fragment()
 {
 	ivec2 screen_coord_pixel = ivec2(SCREEN_UV.xy * VIEWPORT_SIZE.xy);
+	
+	vec4 depthTexture = texture(depth, SCREEN_UV);
+	vec4 ddx = dFdx(depthTexture);
+	vec4 ddy = dFdy(depthTexture);
+	
+	vec3 normal = abs(cross(ddx.xyz, ddy.xyz));
+	float fXProj = dot(normal, vec3(1, 0, 0));
+	float fYProj = dot(normal, vec3(1, 0, 0));
+	float fZProj = dot(normal, vec3(1, 0, 0));
+	
+	float fDepthCorrection = fXProj > 0.95 || fYProj > 0.95 || fZProj > 0.95 ? 1.0 : 0.1;
 
 	//
 	// Apply depth filter
@@ -145,7 +156,7 @@ void fragment()
 	// Sobel on depth
 	float dsobelVdepth = abs(applyKernel(sobel_filter_v, depthPixels));
 	float dsobelHdepth = abs(applyKernel(sobel_filter_h, depthPixels));
-	float fSobelDepth = sqrt(dsobelVdepth * dsobelVdepth + dsobelHdepth * dsobelHdepth);
+	float fSobelDepth = sqrt(dsobelVdepth * dsobelVdepth + dsobelHdepth * dsobelHdepth) * fDepthCorrection;
 
 	fSobelDepth = clamp(intensity * pow(fSobelDepth, contrast) - depth_threshold, 0.0, 1.0);
 
