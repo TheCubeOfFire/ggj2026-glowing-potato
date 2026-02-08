@@ -37,10 +37,7 @@ func _load_default_config() -> void:
     _config.set_value(VERSION_PATH, VERSION_PATH, options_version)
 
     _config.set_value(SECTION_GAMEPLAY, SETTING_GP_CAMERA_INVERT_Y, false)
-    if OS.has_feature("web"):
-        _config.set_value(SECTION_GAMEPLAY, SETTING_GP_MOUSE_SENSITIVITY, 70)
-    else:
-        _config.set_value(SECTION_GAMEPLAY, SETTING_GP_MOUSE_SENSITIVITY, 700)
+    _config.set_value(SECTION_GAMEPLAY, SETTING_GP_MOUSE_SENSITIVITY, 500)
     _config.set_value(SECTION_GAMEPLAY, SETTING_GP_GAMEPAD_SENSITIVITY, 0.075)
 
     _config.set_value(SECTION_AUDIO, SETTING_AD_MUSIC_VOLUME, 1.0)

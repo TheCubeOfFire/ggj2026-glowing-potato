@@ -70,8 +70,8 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
     if event is InputEventMouseMotion and mouse_captured:
         var iemm := event as InputEventMouseMotion
-        input_mouse = iemm.screen_relative / mouse_sensitivity
-        handle_rotation(iemm.screen_relative.x, iemm.screen_relative.y, false)
+        input_mouse = iemm.screen_relative
+        handle_rotation(input_mouse.x, input_mouse.y, 0.0)
 
     if event.is_action_pressed(&"pause"):
         _pause_pressed = true
@@ -85,7 +85,7 @@ func _input(event: InputEvent) -> void:
 # ------- Other Functions -------
 func apply_settings() -> void:
     invert_camera_y = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_CAMERA_INVERT_Y)
-    mouse_sensitivity = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_MOUSE_SENSITIVITY)
+    mouse_sensitivity = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_MOUSE_SENSITIVITY)      
     gamepad_sensitivity = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_GAMEPAD_SENSITIVITY)
     return
 
@@ -128,7 +128,7 @@ func handle_rotation(x_rot: float, y_rot: float, is_controller: bool, _delta: fl
     if is_controller:
         rotation_target += Vector3(-y_rot, -x_rot, 0).limit_length(1.0) * gamepad_sensitivity
     else:
-        rotation_target += (Vector3(-y_rot, -x_rot, 0) / mouse_sensitivity)
+        rotation_target += Vector3(-y_rot, -x_rot, 0) / mouse_sensitivity
 
     rotation_target.x = clamp(rotation_target.x, deg_to_rad(-90), deg_to_rad(90))
     camera.rotation.x = rotation_target.x
