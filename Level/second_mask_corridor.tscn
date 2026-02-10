@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://8uh8qikcs8dx"]
+[gd_scene load_steps=7 format=3 uid="uid://8uh8qikcs8dx"]
 
 [ext_resource type="Script" uid="uid://b5ihy8mialudd" path="res://Level/level.gd" id="1_jdvam"]
 [ext_resource type="PackedScene" uid="uid://i3gu0xcsf1hl" path="res://objects/door/entrance_door.tscn" id="1_yn5lb"]
 [ext_resource type="PackedScene" uid="uid://bei2ir6e75nvs" path="res://objects/pedestal.tscn" id="2_jdvam"]
+[ext_resource type="Material" uid="uid://d2pjiq63ig1t4" path="res://assets/Material/toon_white.tres" id="2_tdp7c"]
 [ext_resource type="PackedScene" uid="uid://dndo3gkh0ag3" path="res://objects/player/player_start.tscn" id="4_1xhj4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1xhj4"]
@@ -12,9 +13,9 @@ size = Vector3(1.9, 2.6000001, 2.1000001)
 script = ExtResource("1_jdvam")
 level_entrance = NodePath("LevelEntrance")
 player_start = NodePath("PlayerStart")
-objects_to_reset_group = &"affected_objects"
 
 [node name="Obstacles" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("2_tdp7c")
 use_collision = true
 collision_layer = 2
 collision_mask = 15
@@ -72,7 +73,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 5.75, 3.4500008)
 size = Vector3(10.5, 0.5, 2.5)
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="Obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8500004, 5.75, -0.74999905)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0203407, 5.75, -0.74999905)
 size = Vector3(3.5, 0.5, 6.1)
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="Obstacles"]
@@ -101,3 +102,12 @@ debug_color = Color(0.8314554, 0.0014161993, 0.943389, 0.41960785)
 
 [node name="PlayerStart" parent="." instance=ExtResource("4_1xhj4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7000003, 0, 3.6)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.1016831, 5.385096, -0.19805712)
+light_energy = 0.5
+shadow_enabled = true
+shadow_blur = 0.01
+spot_attenuation = 0.0
+spot_angle = 21.162539
+spot_angle_attenuation = 1e-05

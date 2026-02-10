@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqne1m722droi"]
+[gd_scene load_steps=11 format=3 uid="uid://cqne1m722droi"]
 
 [ext_resource type="PackedScene" uid="uid://i3gu0xcsf1hl" path="res://objects/door/entrance_door.tscn" id="1_a382o"]
 [ext_resource type="Script" uid="uid://b5ihy8mialudd" path="res://Level/level.gd" id="1_tao64"]
+[ext_resource type="Material" uid="uid://d2pjiq63ig1t4" path="res://assets/Material/toon_white.tres" id="2_d4e2k"]
 [ext_resource type="PackedScene" uid="uid://b0qs4tqwtddxv" path="res://objects/door/exit_door.tscn" id="2_tao64"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="3_jwrop"]
 [ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="4_tto7g"]
 [ext_resource type="PackedScene" uid="uid://dndo3gkh0ag3" path="res://objects/player/player_start.tscn" id="6_jwrop"]
 [ext_resource type="PackedScene" uid="uid://bdee85501y3ch" path="res://objects/reset_tip_displayer.tscn" id="6_tto7g"]
+[ext_resource type="PackedScene" uid="uid://l8f600lisax1" path="res://Level/spot_light_room.tscn" id="9_5ssfh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jwrop"]
 size = Vector3(9.5, 4, 1.2)
@@ -19,6 +21,7 @@ entrance_door = NodePath("CSGCombiner3D/EntranceDoor")
 exit_door = NodePath("CSGCombiner3D/ExitDoor")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("2_d4e2k")
 use_collision = true
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -26,8 +29,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.500002, 1.25, -0.74999976)
 size = Vector3(9.5, 0.5, 7.5)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.500002, 5.75, -0.74999976)
-size = Vector3(9.5, 0.5, 7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5579548, 5.75, -1.0017087)
+size = Vector3(10.3949585, 0.5, 8.003418)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.500001, 3.5000002, -1)
@@ -93,3 +96,6 @@ debug_color = Color(0.8314554, 0.0014161993, 0.943389, 0.41960785)
 
 [node name="PlayerStart" parent="." instance=ExtResource("6_jwrop")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 2.25, 1.2)
+
+[node name="SpotLight3D" parent="." instance=ExtResource("9_5ssfh")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.9030142, 5.424172, 0.48882294)

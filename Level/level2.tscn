@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://yv5tfw1gxmhg"]
+[gd_scene load_steps=11 format=3 uid="uid://yv5tfw1gxmhg"]
 
 [ext_resource type="PackedScene" uid="uid://sb5wxne2lgql" path="res://objects/cube_switch.tscn" id="1_3rbkl"]
 [ext_resource type="Script" uid="uid://b5ihy8mialudd" path="res://Level/level.gd" id="1_bbvjg"]
 [ext_resource type="PackedScene" uid="uid://i3gu0xcsf1hl" path="res://objects/door/entrance_door.tscn" id="1_yyhus"]
+[ext_resource type="Material" uid="uid://d2pjiq63ig1t4" path="res://assets/Material/toon_white.tres" id="2_h8iv6"]
 [ext_resource type="PackedScene" uid="uid://b0qs4tqwtddxv" path="res://objects/door/exit_door.tscn" id="2_rylw3"]
 [ext_resource type="PackedScene" uid="uid://caro14qkf5vv4" path="res://objects/gravity_cube.tscn" id="2_yyhus"]
 [ext_resource type="PackedScene" uid="uid://bdee85501y3ch" path="res://objects/reset_tip_displayer.tscn" id="6_h8iv6"]
 [ext_resource type="PackedScene" uid="uid://dndo3gkh0ag3" path="res://objects/player/player_start.tscn" id="6_qdxbt"]
+[ext_resource type="PackedScene" uid="uid://l8f600lisax1" path="res://Level/spot_light_room.tscn" id="9_3fq54"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h8iv6"]
 size = Vector3(6.2000003, 2.8, 1.2)
@@ -19,6 +21,7 @@ entrance_door = NodePath("Obstacles/EntranceDoor")
 exit_door = NodePath("Obstacles/ExitDoor")
 
 [node name="Obstacles" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("2_h8iv6")
 use_collision = true
 collision_layer = 2
 collision_mask = 15
@@ -85,3 +88,6 @@ debug_color = Color(0.8314554, 0.0014161993, 0.943389, 0.41960785)
 
 [node name="PlayerStart" parent="." instance=ExtResource("6_qdxbt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -1.3000001)
+
+[node name="SpotLight3D" parent="." instance=ExtResource("9_3fq54")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.6094558, 4.633421, 2.2901402)

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://l8f600lisax1"]
+
+[node name="SpotLight3D" type="SpotLight3D" groups=["light"]]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_energy = 0.5
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 4.0
+shadow_blur = 0.005
+spot_range = 10.0
+spot_attenuation = 0.0
+spot_angle = 80.78626
+spot_angle_attenuation = 1e-05

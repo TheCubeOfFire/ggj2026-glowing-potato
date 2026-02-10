@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyd1r17bv5g8w"]
+[gd_scene load_steps=11 format=3 uid="uid://cyd1r17bv5g8w"]
 
 [ext_resource type="Script" uid="uid://cgnbyfw1vpb5b" path="res://objects/door/door.gd" id="1_566yj"]
 [ext_resource type="AudioStream" uid="uid://rsda8tv6guqm" path="res://assets/soundfx/cinematic-rumble-88617.mp3" id="2_0i0ho"]
+[ext_resource type="Material" uid="uid://d2pjiq63ig1t4" path="res://assets/Material/toon_white.tres" id="2_y765d"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_566yj"]
 size = Vector3(0.5, 2.6, 1.5)
@@ -156,6 +157,7 @@ _data = {
 script = ExtResource("1_566yj")
 
 [node name="DoorVisual" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_y765d")
 mesh = SubResource("BoxMesh_566yj")
 skeleton = NodePath("../..")
 

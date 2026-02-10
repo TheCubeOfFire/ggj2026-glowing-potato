@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4be52kvpxhqc"]
+[gd_scene load_steps=5 format=3 uid="uid://c4be52kvpxhqc"]
 
 [ext_resource type="PackedScene" uid="uid://i3gu0xcsf1hl" path="res://objects/door/entrance_door.tscn" id="1_83oi3"]
 [ext_resource type="Script" uid="uid://b61duaw7h78dr" path="res://Level/level_end.gd" id="1_ncdh3"]
 [ext_resource type="PackedScene" uid="uid://bei2ir6e75nvs" path="res://objects/pedestal.tscn" id="2_h5248"]
+[ext_resource type="Material" uid="uid://d2pjiq63ig1t4" path="res://assets/Material/toon_white.tres" id="2_jpyvw"]
 
 [node name="LevelEnd" type="Node3D"]
 script = ExtResource("1_ncdh3")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("2_jpyvw")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -55,5 +57,18 @@ modulate = Color(0.32544088, 0.3254409, 0.32544088, 1)
 text = "Thanks for playing
 Get the last mask to return to main menu"
 outline_size = 0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." groups=["light"]]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.012821257, 4, -0.27586257)
+light_energy = 0.5
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 4.0
+shadow_blur = 0.005
+spot_range = 5.1234894
+spot_attenuation = 0.0
+spot_angle = 69.945244
+spot_angle_attenuation = 1e-05
 
 [connection signal="on_mask_claimed" from="Pedestal" to="." method="_on_pedestal_on_mask_claimed"]
