@@ -18,10 +18,13 @@ uniform float threshold;
 uniform float depth_threshold;
 uniform float color_threshold;
 uniform float contrast;
+uniform float contrast_color;
 uniform float intensity;
 uniform float max_distance_threshold;
 uniform vec4 outline_colors;
 uniform int iOutlineSize;
+
+const vec3 RGB_TO_LUMA = vec3(0.2126, 0.7152, 0.0722);
 
 const mat3 diff_kernel_h = mat3(
 	vec3(0.0, -0.0, 0.0),
@@ -67,7 +70,14 @@ mat3 constructPixelMatrixND(sampler2D samplerToUse, ivec2 screen_coord_pixel, fl
 	{
 		for (int iCol = 0; iCol < 3; iCol++)
 		{
+#if CURRENT_RENDERER == RENDERER_FORWARD_PLUS
 			pixelMat[iRow][iCol] = dot(fMulConvert * texelFetch(samplerToUse, screen_coord_pixel + ivec2(iRow - 1, iCol - 1) * iOutlineSize, 0).xyz + fAddConvert, convertToFloat);
+#else
+            vec4 pixelValue = texelFetch(samplerToUse, screen_coord_pixel + ivec2(iRow - 1, iCol - 1) * iOutlineSize, 0);
+            vec4 ddx = dFdx(pixelValue);
+            vec4 ddy = dFdy(pixelValue);
+            pixelMat[iRow][iCol] = dot(cross(ddx.xyz, ddy.xyz), convertToFloat);
+#endif
 		}
 	}
 
@@ -163,7 +173,10 @@ void fragment()
 	//
 	// Apply filter
 #if CURRENT_RENDERER == RENDERER_FORWARD_PLUS
-	mat3 normalPixel = constructPixelMatrixND(normal_map_roughness, screen_coord_pixel, 2.0, -1.0, vec3(0.2126, 0.7152, 0.0722));
+	mat3 normalPixel = constructPixelMatrixND(normal_map_roughness, screen_coord_pixel, 2.0, -1.0, RGB_TO_LUMA);
+#else
+	mat3 normalPixel = constructPixelMatrixND(depth, screen_coord_pixel, 1.0, 0.0, RGB_TO_LUMA);
+#endif
 	float vSobelVValue = applyKernel(sobel_filter_v, normalPixel);
 	float vSobelHValue = applyKernel(sobel_filter_h, normalPixel);
 
@@ -173,20 +186,15 @@ void fragment()
 	//ALBEDO.xyz = texelFetch(normal_map_roughness, screen_coord_pixel, 0).xyz;
 	float thresholdedGradiant = clamp(intensity * pow(fEdge, contrast) - threshold, 0.0, 1.0);
 	//float thresholdedGradiant = fGradiant > threshold ? fGradiant : 0.0;
-#endif
 
-    mat3 colorPixel = constructPixelMatrixColor(current_texture, screen_coord_pixel, 1.0f, 0.f, vec3(0.2126, 0.7152, 0.0722));
+    mat3 colorPixel = constructPixelMatrixColor(current_texture, screen_coord_pixel, 1.0f, 0.f, RGB_TO_LUMA);
     float vSobelVPixelValue = applyKernel(sobel_filter_v, colorPixel);
     float vSobelHPixelValue = applyKernel(sobel_filter_h, colorPixel);
     float fEdgeColor = sqrt(vSobelVPixelValue * vSobelVPixelValue + vSobelHPixelValue * vSobelHPixelValue);
     
-    float thresholdColor = clamp(intensity * pow(fEdgeColor, contrast) - color_threshold, 0.0f, 1.0f);
+    float thresholdColor = clamp(intensity * pow(fEdgeColor, contrast_color) - color_threshold, 0.0f, 1.0f);
 
-#if CURRENT_RENDERER == RENDERER_FORWARD_PLUS
 	thresholdedGradiant += fSobelDepth + thresholdColor;
-#else
-    float thresholdedGradiant = fSobelDepth + thresholdColor;
-#endif
 
 	vec3 currentColor = texture(current_texture, SCREEN_UV).xyz;
 	vec3 newOutlineColors = mix(currentColor, outline_colors.xyz, outline_colors.w);
