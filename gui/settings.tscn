@@ -1,0 +1,158 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgfeykke8m0sf"]
+
+[ext_resource type="Script" uid="uid://cjxcr4gouiscb" path="res://gui/settings.gd" id="1_dtslm"]
+[ext_resource type="StyleBox" uid="uid://cakwrecbjard1" path="res://gui/theme/style_background_panel.tres" id="2_ag4o2"]
+[ext_resource type="FontFile" uid="uid://6k0wln3vy23u" path="res://gui/hud/fonts/keyboard_font.ttf" id="3_vgxye"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d7lp8"]
+font = ExtResource("3_vgxye")
+font_size = 26
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gq5u2"]
+font = ExtResource("3_vgxye")
+font_size = 20
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="InputEventAction" id="InputEventAction_852rj"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_vgxye"]
+events = [SubResource("InputEventAction_852rj")]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dtslm")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -244.5
+offset_right = 300.0
+offset_bottom = 244.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_ag4o2")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="GameplaySection_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gameplay"
+label_settings = SubResource("LabelSettings_d7lp8")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="CB_InvertCameraY" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="InvertCameraY_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Invert Camera Y"
+label_settings = SubResource("LabelSettings_gq5u2")
+
+[node name="MouseSensitivity_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+label_settings = SubResource("LabelSettings_gq5u2")
+horizontal_alignment = 1
+
+[node name="HS_MouseSensitivity" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+min_value = 100.0
+max_value = 700.0
+step = 25.0
+value = 500.0
+
+[node name="GamepadSensitivity_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gamepad Sensitivity"
+label_settings = SubResource("LabelSettings_gq5u2")
+horizontal_alignment = 1
+
+[node name="HS_GamepadSensitivity" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+min_value = 0.01
+max_value = 0.1
+step = 0.005
+value = 0.075
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="AudioSection_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Audio"
+label_settings = SubResource("LabelSettings_d7lp8")
+horizontal_alignment = 1
+
+[node name="MusicVolume_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_gq5u2")
+horizontal_alignment = 1
+
+[node name="HS_MusicVolume" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="SFXVolume_Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SFX Volume"
+label_settings = SubResource("LabelSettings_gq5u2")
+horizontal_alignment = 1
+
+[node name="HS_SFXVolume" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Back" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_vgxye")
+text = "Back"
+
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CB_InvertCameraY" to="." method="_on_cb_invert_camera_y_toggled"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/HS_MouseSensitivity" to="." method="_on_hs_mouse_sensitivity_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/HS_GamepadSensitivity" to="." method="_on_hs_gamepad_sensitivity_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/HS_MusicVolume" to="." method="_on_hs_music_volume_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/HS_SFXVolume" to="." method="_on_hs_sfx_volume_value_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
