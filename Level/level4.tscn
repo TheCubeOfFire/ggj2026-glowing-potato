@@ -81,7 +81,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.4999999, -3.6)
 accepted_cube_type = 1
 
 [node name="ResetTipDisplayer" parent="Gameplay" node_paths=PackedStringArray("expected_cube") instance=ExtResource("6_tto7g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.65, -3.7499998)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.3500004, -3.7499998)
+collision_scale = Vector3(1, 2.5, 1)
 expected_cube = NodePath("../TriangleCube")
 
 [node name="LevelEntrance" type="Area3D" parent="."]
