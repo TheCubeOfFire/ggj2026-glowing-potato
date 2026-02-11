@@ -28,8 +28,10 @@ var unlocked_masks: Array[bool] = [false, false, false, false]
 var movement_velocity: Vector3
 @onready var rotation_target: Vector3 = rotation
 
-var mouse_sensitivity: int
+var mouse_sensitivity: float
+var mouse_sensitivity_base: int = 500
 var gamepad_sensitivity: float
+var gamepad_sensitivity_base: float = 0.075
 var mouse_captured: bool = true
 var input_mouse: Vector2 = Vector2.ZERO
 var invert_camera_y: bool = false
@@ -85,7 +87,7 @@ func _input(event: InputEvent) -> void:
 # ------- Other Functions -------
 func apply_settings() -> void:
     invert_camera_y = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_CAMERA_INVERT_Y)
-    mouse_sensitivity = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_MOUSE_SENSITIVITY)      
+    mouse_sensitivity = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_MOUSE_SENSITIVITY)
     gamepad_sensitivity = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_GAMEPAD_SENSITIVITY)
     return
 
@@ -126,9 +128,9 @@ func handle_rotation(x_rot: float, y_rot: float, is_controller: bool, _delta: fl
         y_rot = -y_rot
 
     if is_controller:
-        rotation_target += Vector3(-y_rot, -x_rot, 0).limit_length(1.0) * gamepad_sensitivity
+        rotation_target += Vector3(-y_rot, -x_rot, 0).limit_length(1.0) * gamepad_sensitivity_base * gamepad_sensitivity
     else:
-        rotation_target += Vector3(-y_rot, -x_rot, 0) / mouse_sensitivity
+        rotation_target += (Vector3(-y_rot, -x_rot, 0) / mouse_sensitivity_base) * mouse_sensitivity
 
     rotation_target.x = clamp(rotation_target.x, deg_to_rad(-90), deg_to_rad(90))
     camera.rotation.x = rotation_target.x
