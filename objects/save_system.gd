@@ -118,3 +118,10 @@ func set_option_value(section: String, option: String, value: Variant) -> bool:
     on_option_edited.emit(section, option, value)
     return true
 #endregion
+
+#region settings application
+func apply_audio_settings() -> void:
+    AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"Music"), get_option_value(SECTION_AUDIO,SETTING_AD_MUSIC_VOLUME))
+    AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"SFX"), get_option_value(SECTION_AUDIO, SETTING_AD_SFX_VOLUME))
+    return
+#endregion

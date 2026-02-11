@@ -42,11 +42,13 @@ func _on_hs_gamepad_sensitivity_value_changed(value: float) -> void:
 
 func _on_hs_music_volume_value_changed(value: float) -> void:
     SaveSystem.set_option_value(SaveSystem.SECTION_AUDIO, SaveSystem.SETTING_AD_MUSIC_VOLUME, value)
+    SaveSystem.apply_audio_settings()
     return
 
 
 func _on_hs_sfx_volume_value_changed(value: float) -> void:
     SaveSystem.set_option_value(SaveSystem.SECTION_AUDIO, SaveSystem.SETTING_AD_SFX_VOLUME, value)
+    SaveSystem.apply_audio_settings()
     return
 
 
