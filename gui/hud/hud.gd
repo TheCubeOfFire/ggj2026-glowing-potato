@@ -4,10 +4,10 @@ extends Control
 # ------- Internal vars -------
 @onready var animation_player: AnimationPlayer = $'AnimationPlayer'
 @onready var interact_prompt: VBoxContainer = $'InteractPrompt'
-@onready var mask0_container: HBoxContainer = $'MaskPromptsContainer/Mask0Holder/Mask0Container'
-@onready var mask1_container: HBoxContainer = $'MaskPromptsContainer/Mask1Holder/Mask1Container'
-@onready var mask2_container: HBoxContainer = $'MaskPromptsContainer/Mask2Holder/Mask2Container'
-@onready var mask3_container: HBoxContainer = $'MaskPromptsContainer/Mask3Holder/Mask3Container'
+@onready var mask0_holder: MaskHolder = $MaskPromptsContainer/Mask0Holder
+@onready var mask1_holder: MaskHolder = $MaskPromptsContainer/Mask1Holder
+@onready var mask2_holder: MaskHolder = $MaskPromptsContainer/Mask2Holder
+@onready var mask3_holder: MaskHolder = $MaskPromptsContainer/Mask3Holder
 @onready var tip_label: Label = $TipLabel
 
 # ------- Overriden Engine Functions -------
@@ -25,23 +25,23 @@ func set_interact_prompt_visibility(value: bool) -> void:
 
 
 func set_mask_container_visibility(mask_index: int, value: bool) -> void:
-    var mask_container: HBoxContainer
+    var mask_holder: MaskHolder
     match mask_index:
         0:
-            mask_container = mask0_container
+            mask_holder = mask0_holder
             pass
         1:
-            mask_container = mask1_container
+            mask_holder = mask1_holder
             pass
         2:
-            mask_container = mask2_container
+            mask_holder = mask2_holder
             pass
         3:
-            mask_container = mask3_container
+            mask_holder = mask3_holder
             pass
         _:
             assert(false)
-    mask_container.visible = value
+    mask_holder.set_visibility(value)
     return
 
 #region tips

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bktyh2e2yvow7"]
+
+[ext_resource type="Script" uid="uid://cmlw7kgcsql7h" path="res://gui/hud/mask_holder.gd" id="1_gbtuh"]
+[ext_resource type="Texture2D" uid="uid://vccq2l04konm" path="res://gui/hud/icons/keyboard_1_outline.png" id="1_ntorh"]
+[ext_resource type="FontFile" uid="uid://6k0wln3vy23u" path="res://gui/hud/fonts/keyboard_font.ttf" id="2_gbtuh"]
+[ext_resource type="Texture2D" uid="uid://cptegfdoqtpij" path="res://gui/hud/icons/xbox_dpad_up.png" id="3_xtgfw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rllpj"]
+font = ExtResource("2_gbtuh")
+font_size = 30
+font_color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="MaskHolder" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+mouse_filter = 2
+script = ExtResource("1_gbtuh")
+
+[node name="MaskContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 102.0
+offset_bottom = 41.0
+size_flags_horizontal = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MaskContainer"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_ntorh")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MaskContainer"]
+layout_mode = 2
+text = "/"
+label_settings = SubResource("LabelSettings_rllpj")
+
+[node name="TextureRect2" type="TextureRect" parent="MaskContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_xtgfw")
+expand_mode = 3

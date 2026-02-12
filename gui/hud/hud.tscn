@@ -1,33 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://crdfdtovitkc2"]
+[gd_scene load_steps=11 format=3 uid="uid://crdfdtovitkc2"]
 
 [ext_resource type="Texture2D" uid="uid://bfh0hlqrotqiw" path="res://gui/hud/icons/keyboard_e_outline.png" id="1_34rqw"]
 [ext_resource type="Script" uid="uid://dgn3jgr0i4k3n" path="res://gui/hud/hud.gd" id="1_y7mac"]
 [ext_resource type="Texture2D" uid="uid://boc8frlxyk10w" path="res://gui/hud/icons/xbox_button_color_x_outline.png" id="2_4w87a"]
 [ext_resource type="FontFile" uid="uid://6k0wln3vy23u" path="res://gui/hud/fonts/keyboard_font.ttf" id="3_rllpj"]
 [ext_resource type="LabelSettings" uid="uid://ckwdxb602t0ul" path="res://gui/hud/hud_label_settings.tres" id="5_7syvl"]
-[ext_resource type="Texture2D" uid="uid://vccq2l04konm" path="res://gui/hud/icons/keyboard_1_outline.png" id="5_s3hr8"]
-[ext_resource type="Texture2D" uid="uid://cptegfdoqtpij" path="res://gui/hud/icons/xbox_dpad_up.png" id="6_7syvl"]
-[ext_resource type="Texture2D" uid="uid://bp40vwtsoyt1a" path="res://gui/hud/icons/keyboard_2_outline.png" id="7_6tgpg"]
-[ext_resource type="Texture2D" uid="uid://cs2uehas3cjh3" path="res://gui/hud/icons/xbox_dpad_right.png" id="8_m7xk5"]
-[ext_resource type="Texture2D" uid="uid://comrf7ewulutx" path="res://gui/hud/icons/keyboard_3_outline.png" id="9_7v5vh"]
-[ext_resource type="Texture2D" uid="uid://dwn8247s01dbl" path="res://gui/hud/icons/xbox_dpad_down.png" id="10_7th1s"]
-[ext_resource type="Texture2D" uid="uid://b3f4nb0pr45gs" path="res://gui/hud/icons/keyboard_4_outline.png" id="11_rt3e4"]
-[ext_resource type="Texture2D" uid="uid://cepdpmliqk8gi" path="res://gui/hud/icons/xbox_dpad_left.png" id="12_6etrh"]
-
-[sub_resource type="Animation" id="Animation_7syvl"]
-resource_name = "fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TipLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(0.37892836, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
+[ext_resource type="PackedScene" uid="uid://bktyh2e2yvow7" path="res://gui/hud/mask_holder.tscn" id="6_s3hr8"]
 
 [sub_resource type="Animation" id="Animation_6tgpg"]
 length = 0.001
@@ -42,6 +20,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7syvl"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TipLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.37892836, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m7xk5"]
@@ -143,122 +136,17 @@ offset_bottom = -25.0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Mask0Holder" type="Control" parent="MaskPromptsContainer"]
+[node name="Mask0Holder" parent="MaskPromptsContainer" instance=ExtResource("6_s3hr8")]
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
 
-[node name="Mask0Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask0Holder"]
-layout_mode = 0
-offset_right = 102.0
-offset_bottom = 41.0
-size_flags_horizontal = 0
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask0Holder/Mask0Container"]
-self_modulate = Color(0.2, 0.2, 0.2, 1)
+[node name="Mask1Holder" parent="MaskPromptsContainer" instance=ExtResource("6_s3hr8")]
 layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("5_s3hr8")
-expand_mode = 3
+mask_index = 1
 
-[node name="Label" type="Label" parent="MaskPromptsContainer/Mask0Holder/Mask0Container"]
+[node name="Mask2Holder" parent="MaskPromptsContainer" instance=ExtResource("6_s3hr8")]
 layout_mode = 2
-text = "/"
-label_settings = SubResource("LabelSettings_rllpj")
+mask_index = 2
 
-[node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask0Holder/Mask0Container"]
+[node name="Mask3Holder" parent="MaskPromptsContainer" instance=ExtResource("6_s3hr8")]
 layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("6_7syvl")
-expand_mode = 3
-
-[node name="Mask1Holder" type="Control" parent="MaskPromptsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Mask1Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask1Holder"]
-layout_mode = 0
-offset_right = 102.0
-offset_bottom = 41.0
-size_flags_horizontal = 4
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask1Holder/Mask1Container"]
-self_modulate = Color(0.2, 0.2, 0.2, 1)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("7_6tgpg")
-expand_mode = 3
-
-[node name="Label" type="Label" parent="MaskPromptsContainer/Mask1Holder/Mask1Container"]
-layout_mode = 2
-text = "/"
-label_settings = SubResource("LabelSettings_rllpj")
-
-[node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask1Holder/Mask1Container"]
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("8_m7xk5")
-expand_mode = 3
-
-[node name="Mask2Holder" type="Control" parent="MaskPromptsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Mask2Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask2Holder"]
-layout_mode = 0
-offset_right = 102.0
-offset_bottom = 41.0
-size_flags_horizontal = 4
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask2Holder/Mask2Container"]
-self_modulate = Color(0.2, 0.2, 0.2, 1)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("9_7v5vh")
-expand_mode = 3
-
-[node name="Label" type="Label" parent="MaskPromptsContainer/Mask2Holder/Mask2Container"]
-layout_mode = 2
-text = "/"
-label_settings = SubResource("LabelSettings_rllpj")
-
-[node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask2Holder/Mask2Container"]
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("10_7th1s")
-expand_mode = 3
-
-[node name="Mask3Holder" type="Control" parent="MaskPromptsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Mask3Container" type="HBoxContainer" parent="MaskPromptsContainer/Mask3Holder"]
-layout_mode = 0
-offset_right = 102.0
-offset_bottom = 41.0
-size_flags_horizontal = 4
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="MaskPromptsContainer/Mask3Holder/Mask3Container"]
-self_modulate = Color(0.2, 0.2, 0.2, 1)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("11_rt3e4")
-expand_mode = 3
-
-[node name="Label" type="Label" parent="MaskPromptsContainer/Mask3Holder/Mask3Container"]
-layout_mode = 2
-text = "/"
-label_settings = SubResource("LabelSettings_rllpj")
-
-[node name="TextureRect2" type="TextureRect" parent="MaskPromptsContainer/Mask3Holder/Mask3Container"]
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("12_6etrh")
-expand_mode = 3
+mask_index = 3
