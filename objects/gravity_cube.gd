@@ -1,18 +1,25 @@
 class_name GravityCube
 extends AnimatableBody3D
-
+## A movable cube, that can be moved using the masks to power [CubeSwitch]es
 
 # ------- Exposed vars -------
+## Type of this cube, sets the displayed mesh
 @export var cube_type := Globals.GCUBE_TYPE.SQUARE
 
-@export var default_gravity_force := 10.0
-@export var friction := 1.0
+## Default force that is applied when moving this cube
+@export var default_gravity_force: float
+## Default friction used to smooth movement
+@export var friction: float
 
 
 # ------- Internal vars -------
+## Whether the cube's gravity is currently overriden
 var is_gravity_overrriden: bool = false
+## The current "gravity" force that is applied to this cube
 var gravity: Vector3 = Vector3.ZERO
 
+
+## Current velocity of the cube
 var _velocity := Vector3.ZERO
 
 
@@ -59,6 +66,8 @@ func clear_gravity_override() -> void:
 func get_mesh() -> Mesh:
     return _mesh_instance.mesh
 
+
+## Behavior to apply when the level is reset
 func _level_reset_behavior() -> void:
     gravity = Vector3.ZERO
     _velocity = Vector3.ZERO

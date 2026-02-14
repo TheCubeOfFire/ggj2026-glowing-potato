@@ -2,6 +2,7 @@ class_name PauseMenu
 extends QuickGorillaPauseMenu
 
 
+# ------- Functions -------
 func _on_resume_pressed() -> void:
     _recapture_mouse()
 

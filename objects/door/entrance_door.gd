@@ -1,16 +1,16 @@
 class_name EntranceDoor
 extends CSGBox3D
 
-
+# ------- Internal vars -------
 var _is_in_threshold := false
 var _is_inside_door := false
-
 var _is_closed := false
 
 
 @onready var _door := $Door as Door
 
 
+# ------- Functions -------
 func close_instantly() -> void:
     _is_closed = true
     _door.close_instantly()

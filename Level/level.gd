@@ -1,7 +1,8 @@
 class_name Level
 extends Node3D
+## Manages a single level logic to properly reset it
 
-
+# ------- Exposed vars -------
 @export var level_entrance: Area3D
 @export var player_start: PlayerStart
 
@@ -9,9 +10,11 @@ extends Node3D
 @export var exit_door: ExitDoor
 
 
+# ------- Internal vars -------
 var _initial_object_transforms: Dictionary[Node3D, Transform3D] = {}
 
 
+# ------- Overriden Engine Functions -------
 func _ready() -> void:
     level_entrance.body_entered.connect(_on_level_entrance_entered)
 
@@ -23,6 +26,8 @@ func _ready() -> void:
             _initial_object_transforms[object as Node3D] = object.transform
 
 
+# ------- Functions -------
+## Fully resets the current level
 func reset(player: MainPlayer) -> void:
     if is_instance_valid(entrance_door):
         entrance_door.close_instantly()
@@ -38,6 +43,7 @@ func reset(player: MainPlayer) -> void:
     _reset_player(player)
 
 
+## Resets the player's position back to [member player_start] and resets the player camera
 func _reset_player(player: MainPlayer) -> void:
     var player_transform := player_start.get_starting_transform()
     player.global_transform = player_transform
@@ -49,11 +55,14 @@ func _reset_player(player: MainPlayer) -> void:
 
     _reset_player_camera(player)
 
+
+## Resets the player's camera
 func _reset_player_camera(player: MainPlayer) -> void:
     player.rotation_target = player.rotation
     player.camera.rotation.x = 0
     return
 
 
+## Updates the [member Globals.current_level] reference when the level is entered
 func _on_level_entrance_entered(_body: Node3D) -> void:
     Globals.current_level = self

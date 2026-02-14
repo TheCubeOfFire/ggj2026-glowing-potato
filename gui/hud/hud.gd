@@ -45,11 +45,13 @@ func set_mask_container_visibility(mask_index: int, value: bool) -> void:
     return
 
 #region tips
+## Displays a given tip, identified by its [param tip_key]
 func display_tip(tip_key: StringName) -> void:
     tip_label.text = tip_key
     animation_player.play(&"fade_in")
     return
 
+## Clears all currently displayed tips, optionnally with a fade out
 func clear_tips(fade_out: bool) -> void:
     if fade_out:
         animation_player.play_backwards(&"fade_in")

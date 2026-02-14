@@ -1,18 +1,19 @@
 class_name ExitDoor
 extends CSGBox3D
 
-
+# ------- Exposed vars -------
 @export var switches: Array[CubeSwitch]
 
 
+# ------- Internal vars -------
 var switch_states: Array[bool]
 
 var _is_open := false
 
-
 @onready var _door := $Door as Door
 
 
+# ------- Overriden Engine Functions -------
 func _ready() -> void:
     for switch_index in switches.size():
         switches[switch_index].on_activated.connect(on_state_changed.bind(switch_index, true))
@@ -21,6 +22,7 @@ func _ready() -> void:
     switch_states.fill(false)
 
 
+# ------- Functions -------
 func close_instantly() -> void:
     _is_open = false
     _door.close_instantly()

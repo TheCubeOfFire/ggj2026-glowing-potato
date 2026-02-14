@@ -1,13 +1,13 @@
 class_name MainPlayer
 extends CharacterBody3D
-
+## Class that represents the MainPlayer
 
 # ------- Exposed vars -------
 ## Movement speed for the player
 @export var movement_speed: float = 0.0
-
+## Ref to the [MaskHandling] node
 @export var mask_handling: MaskHandling
-
+## Ref to the [MaskPhysicalEffectManager] node
 @export var mask_physical_effect_manager: MaskPhysicalEffectManager
 
 # ------- Internal vars -------
@@ -22,25 +22,35 @@ var physics_aabb: AABB:
     get:
         return _physics_aabb
 
+## Currently targeted [Pedestal], result of [member pedestal_raycast]
 var targeted_pedestal: Pedestal = null
+## Array that represents which masks are unlocked - Should be of size [member Globals.MASK_NUM]
 var unlocked_masks: Array[bool] = [false, false, false, false]
-
+## [Vector3] that represents the velocity the player should move at this tick
 var movement_velocity: Vector3
-@onready var rotation_target: Vector3 = rotation
-
+## Queried from [SaveSystem] - Ratio to apply to [member mouse_sensitivity]
 var mouse_sensitivity: float
+## Base mouse sensitivity to use
 var mouse_sensitivity_base: int = 500
+## Queried from [SaveSystem] - Ratio to apply to [member gamepad_sensitivity]
 var gamepad_sensitivity: float
+## Base gamepad sensitivity to use
 var gamepad_sensitivity_base: float = 0.075
+## Whether the mouse is currently captured
 var mouse_captured: bool = true
+## Input vector obtained from the mouse movement since last tick
 var input_mouse: Vector2 = Vector2.ZERO
+## Queried from [SaveSystem] - Whether the camera y control is currently inverted
 var invert_camera_y: bool = false
 
 var _pause_pressed := false
 
 var _physics_aabb := AABB()
-
+## Every tip the player has seen in the current run
 var seen_unique_tips: Dictionary[StringName,bool] = {}
+
+## Where the player's camera is currently aiming to look
+@onready var rotation_target: Vector3 = rotation
 
 
 # ------- Overriden Engine Functions -------
@@ -70,6 +80,7 @@ func _physics_process(delta: float) -> void:
     return
 
 func _input(event: InputEvent) -> void:
+    # Handles camera movement from the mouse movement
     if event is InputEventMouseMotion and mouse_captured:
         var iemm := event as InputEventMouseMotion
         input_mouse = iemm.screen_relative
@@ -85,24 +96,30 @@ func _input(event: InputEvent) -> void:
 
 
 # ------- Other Functions -------
+## Queries gameplay options from [SaveSystem]and applies them
 func apply_settings() -> void:
     invert_camera_y = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_CAMERA_INVERT_Y)
     mouse_sensitivity = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_MOUSE_SENSITIVITY)
     gamepad_sensitivity = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_GAMEPAD_SENSITIVITY)
     return
 
+
+## Gets and applies player walking from input mappings
 func handle_movement(_delta: float) -> void:
     var input_vector: Vector2 = Input.get_vector(&"move_backward", &"move_forward", &"move_left", &"move_right")
     movement_velocity = Vector3(input_vector.x, 0, input_vector.y) * movement_speed
     velocity = transform.basis * movement_velocity
     return
 
+
+## Applies gravity to the player
 func handle_gravity(_delta: float) -> void:
     velocity += gravity_vector * gravity_force
     return
 
 
 #region rotation
+## Handles mouse capture/release
 func handle_mouse_input(_delta: float) -> void:
     # Mouse capture
     if Input.is_action_just_pressed(&"mouse_capture"):
@@ -116,6 +133,7 @@ func handle_mouse_input(_delta: float) -> void:
     return
 
 
+## Handles camera movement from the gamepad input mappings
 func handle_rotation_input(_delta: float) -> void:
     var rotation_input := Input.get_vector(&"camera_left", &"camera_right", &"camera_up", &"camera_down")
     if rotation_input:
@@ -123,6 +141,7 @@ func handle_rotation_input(_delta: float) -> void:
     return
 
 
+## Applies the camera rotation from the player's movement (mouse or gamepad)
 func handle_rotation(x_rot: float, y_rot: float, is_controller: bool, _delta: float = 0.0) -> void:
     if invert_camera_y:
         y_rot = -y_rot
@@ -139,6 +158,7 @@ func handle_rotation(x_rot: float, y_rot: float, is_controller: bool, _delta: fl
 #endregion
 
 #region mask toggling
+## Toggles an unlocked mask when its associated input is pressed
 func handle_mask_input() -> void:
     if Input.is_action_just_pressed(&"toggle_mask0") and unlocked_masks[0]:
         toggle_mask(0)
@@ -154,6 +174,9 @@ func handle_mask_input() -> void:
         pass
     return
 
+
+## Toggles a given mask.
+## [param mask_index] must between 0 and [enum Globals.MASK_NUM] -1
 func toggle_mask(mask_index: int) -> void:
     assert(0 <= mask_index and mask_index <= 3)
     mask_handling.toggle_mask_visual(mask_index)
@@ -181,6 +204,7 @@ func handle_interact_input():
     return
 
 
+## Unlocks a mask identified by its [param mask_index]
 func unlock_mask(mask_index: int) -> void:
     assert(0 <= mask_index and mask_index <= 3)
     unlocked_masks[mask_index] = true
@@ -189,6 +213,7 @@ func unlock_mask(mask_index: int) -> void:
 #endregion
 
 #region debug input
+## Inputs used to debug features - should not be called in release builds
 func handle_debug_input() -> void:
     if Input.is_action_just_pressed(&"debug_unlock_mask0"):
         unlock_mask(0)
@@ -202,17 +227,23 @@ func handle_debug_input() -> void:
 #endregion
 
 #region tips
+## Displays a tip identified by its [param tip_key], if it has not been shown before
 func display_tip(tip_key) -> void:
+    # Prevent displaying a given tip a second time
     if seen_unique_tips.get(tip_key, false):
         return
     hud.display_tip(tip_key)
     seen_unique_tips.set(tip_key, true)
     return
 
+
+## Clear the currently displayed tip, optionnally with a fade out
 func clear_tips(fade_out: bool) -> void:
     hud.clear_tips(fade_out)
     return
 
+
+## Clear tips when resetting
 func _on_reset_called() -> void:
     clear_tips(false)
     return

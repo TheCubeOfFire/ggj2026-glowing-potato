@@ -1,22 +1,26 @@
 class_name CubeSwitch
 extends StaticBody3D
+## Expects a [GravityCube] of a given [enum Globals.GCUBE_TYPE] to be powered
 
 # ------- Signal -------
+## Emitted when the switch is activated
 signal on_activated()
-
+## Emitted when the switch is deactivated
 signal on_deactivated()
 
 # ------- Exposed vars -------
+## Shape the [GravityCube] should be to power the switch
 @export var accepted_cube_type := Globals.GCUBE_TYPE.SQUARE
-@onready var activate_sound: AudioStreamPlayer3D = $ActivateSound
-@onready var deactivate_sound: AudioStreamPlayer3D = $DeactivateSound
-@onready var activated_particle_emitter: GPUParticles3D = $GPUParticles3D
 
 
 # ------- Internal vars -------
 ## Number of cubes that are of the accepted type AND in the detection area
 var _current_activating_cubes : int = 0
 
+
+@onready var activate_sound: AudioStreamPlayer3D = $ActivateSound
+@onready var deactivate_sound: AudioStreamPlayer3D = $DeactivateSound
+@onready var activated_particle_emitter: GPUParticles3D = $GPUParticles3D
 
 # ------- Overriden Engine Functions -------
 func _ready() -> void:
@@ -64,6 +68,8 @@ func _on_cube_detection_area_body_exited(body: Node3D) -> void:
 func get_current_activating_cubes() -> int:
     return _current_activating_cubes
 
+
+## Registers that a [GravityCube] of the expected [enum Globals.GCUBE_TYPE] entered the detection area
 func add_activating_cube() -> void:
     _current_activating_cubes += 1
     activate_sound.play()
@@ -72,6 +78,8 @@ func add_activating_cube() -> void:
         activated_particle_emitter.emitting = true
     return
 
+
+## Registers that a [GravityCube] of the expected [enum Globals.GCUBE_TYPE] exited the detection area
 func remove_activating_cube() -> void:
     assert(_current_activating_cubes > 0)
     _current_activating_cubes -= 1

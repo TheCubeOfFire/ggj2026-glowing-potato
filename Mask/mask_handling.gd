@@ -16,10 +16,14 @@ func _ready() -> void:
 
 
 # ------- Other Functions -------
+## Gets whether a given mask is currently active
 func is_mask_active(mask_index: int) -> bool:
     assert(0<= mask_index and mask_index <= 3)
     return _mask_active_status[mask_index]
 
+
+## Toggles the visual for a given unlocked mask [br]
+## Returns the new visibility of the mask
 func toggle_mask_visual(mask_index: int) -> bool:
     assert(0<= mask_index and mask_index <= 3)
     _mask_active_status[mask_index] = !_mask_active_status[mask_index]
@@ -42,6 +46,8 @@ func toggle_mask_visual(mask_index: int) -> bool:
     mask_to_toggle.visible = !mask_to_toggle.is_visible_in_tree()
     return _mask_active_status[mask_index]
 
+
+## Gets all [Node2D] that hold mask visuals
 func get_masks() -> Array[Node2D]:
     var masks : Array[Node2D]
     var children = get_children()

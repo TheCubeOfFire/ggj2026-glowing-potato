@@ -1,8 +1,11 @@
 @tool
 class_name ResetTipDisplayer
 extends Area3D
+## Displays the reset tip to the [MainPlayer] after [member expected_cube] seconds
+## when a [GravityCube] enters it
 
 # ------- Exposed vars -------
+## Scale of the contained [CollisionShape3D]
 @export var collision_scale: Vector3 = Vector3(1.0, 1.0, 1.0):
     set (value):
         collision_scale = value
@@ -13,6 +16,7 @@ extends Area3D
 
 
 # ------- Internal vars -------
+## Time before the reset tip is displayed when a [GravityCube] enters the area
 static var await_time: float = 4.0
 
 
