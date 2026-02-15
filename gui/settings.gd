@@ -12,6 +12,7 @@ extends Control
 # ------- Overriden Engine Functions -------
 func _ready() -> void:
     _initialize_ui_values()
+    cb_invert_camera.grab_focus()
     return
 
 
