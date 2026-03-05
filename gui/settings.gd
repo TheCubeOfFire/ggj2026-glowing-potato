@@ -2,11 +2,11 @@ class_name Settings
 extends Control
 
 # ------- Internal vars -------
-@onready var cb_invert_camera: CheckBox = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CB_InvertCameraY
-@onready var hs_mouse_sensitivity: HSlider = $PanelContainer/MarginContainer/VBoxContainer/HS_MouseSensitivity
-@onready var hs_gamepad_sensitivity: HSlider = $PanelContainer/MarginContainer/VBoxContainer/HS_GamepadSensitivity
-@onready var hs_music_volume: HSlider = $PanelContainer/MarginContainer/VBoxContainer/HS_MusicVolume
-@onready var hs_sfx_volmue: HSlider = $PanelContainer/MarginContainer/VBoxContainer/HS_SFXVolume
+@onready var cb_invert_camera: CheckBox = $PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CB_InvertCameraY
+@onready var hs_mouse_sensitivity: HSlider = $PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HS_MouseSensitivity
+@onready var hs_gamepad_sensitivity: HSlider = $PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HS_GamepadSensitivity
+@onready var hs_music_volume: HSlider = $PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HS_MusicVolume
+@onready var hs_sfx_volmue: HSlider = $PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HS_SFXVolume
 
 
 # ------- Overriden Engine Functions -------

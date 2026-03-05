@@ -1,3 +1,12 @@
 keys,en
 MASK_CLAIM,Claim mask
 TIP_RESET,"If you ever get stuck, you can reset from the Pause Menu."
+,
+OPT_SECT_GAMEPLAY,Gameplay
+OPT_SETT_INV_CAM_Y,Invert Cam Y
+OPT_SETT_MOUSE_SENS,Mouse sensitivity
+OPT_SETT_GPAD_SENS,Gamepad sensitivity
+,
+OPT_SECT_AUDIO,Audio
+OPT_SETT_MUSIC_VOLUME,Music volume
+OPT_SETT_SFX_VOLUME,SFX volume
