@@ -53,42 +53,47 @@ theme_override_constants/margin_bottom = 15
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 8
 
-[node name="GameplaySection_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="GameplaySection_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "OPT_SECT_GAMEPLAY"
 label_settings = SubResource("LabelSettings_d7lp8")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="CB_InvertCameraY" type="CheckBox" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="CB_InvertCameraY" type="CheckBox" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="InvertCameraY_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="InvertCameraY_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "OPT_SETT_INV_CAM_Y"
 label_settings = SubResource("LabelSettings_gq5u2")
 
-[node name="MouseSensitivity_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="MouseSensitivity_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "OPT_SETT_MOUSE_SENS"
 label_settings = SubResource("LabelSettings_gq5u2")
 horizontal_alignment = 1
 
-[node name="HS_MouseSensitivity" type="HSlider" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HS_MouseSensitivity" type="HSlider" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -97,13 +102,14 @@ max_value = 1.5
 step = 0.05
 value = 1.0
 
-[node name="GamepadSensitivity_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="GamepadSensitivity_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "OPT_SETT_GPAD_SENS"
 label_settings = SubResource("LabelSettings_gq5u2")
 horizontal_alignment = 1
 
-[node name="HS_GamepadSensitivity" type="HSlider" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HS_GamepadSensitivity" type="HSlider" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -112,24 +118,25 @@ max_value = 1.5
 step = 0.05
 value = 1.0
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="AudioSection_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="AudioSection_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "OPT_SECT_AUDIO"
 label_settings = SubResource("LabelSettings_d7lp8")
 horizontal_alignment = 1
 
-[node name="MusicVolume_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="MusicVolume_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "OPT_SETT_MUSIC_VOLUME"
 label_settings = SubResource("LabelSettings_gq5u2")
 horizontal_alignment = 1
 
-[node name="HS_MusicVolume" type="HSlider" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HS_MusicVolume" type="HSlider" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -137,13 +144,14 @@ max_value = 1.0
 step = 0.1
 value = 1.0
 
-[node name="SFXVolume_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="SFXVolume_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "OPT_SETT_SFX_VOLUME"
 label_settings = SubResource("LabelSettings_gq5u2")
 horizontal_alignment = 1
 
-[node name="HS_SFXVolume" type="HSlider" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HS_SFXVolume" type="HSlider" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -151,14 +159,14 @@ max_value = 1.0
 step = 0.1
 value = 1.0
 
-[node name="Back" type="Button" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Back" type="Button" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_vgxye")
 text = "Back"
 
-[connection signal="toggled" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CB_InvertCameraY" to="." method="_on_cb_invert_camera_y_toggled"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HS_MouseSensitivity" to="." method="_on_hs_mouse_sensitivity_value_changed"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HS_GamepadSensitivity" to="." method="_on_hs_gamepad_sensitivity_value_changed"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HS_MusicVolume" to="." method="_on_hs_music_volume_value_changed"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HS_SFXVolume" to="." method="_on_hs_sfx_volume_value_changed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HBoxContainer/CB_InvertCameraY" to="." method="_on_cb_invert_camera_y_toggled"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HS_MouseSensitivity" to="." method="_on_hs_mouse_sensitivity_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HS_GamepadSensitivity" to="." method="_on_hs_gamepad_sensitivity_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HS_MusicVolume" to="." method="_on_hs_music_volume_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HS_SFXVolume" to="." method="_on_hs_sfx_volume_value_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
