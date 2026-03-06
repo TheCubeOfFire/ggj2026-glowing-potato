@@ -3,9 +3,15 @@ MASK_CLAIM,Claim mask
 TIP_RESET,"If you ever get stuck, you can reset from the Pause Menu."
 ,
 OPT_SECT_GAMEPLAY,Gameplay
-OPT_SETT_INV_CAM_Y,Invert Cam Y
+OPT_SETT_INV_CAM_Y,Invert camera Y
 OPT_SETT_MOUSE_SENS,Mouse sensitivity
 OPT_SETT_GPAD_SENS,Gamepad sensitivity
+,
+OPT_SECT_GRAPHICS,Graphics
+OPT_SETT_WINDOW_MODE,Window mode
+OPT_VALUE_MODE_WINDOWED,Windowed
+OPT_VALUE_MODE_BORDERLESS,Borderless Fullscreen
+OPT_VALUE_MODE_FULLSCREEN,Exclusive Fullscreen
 ,
 OPT_SECT_AUDIO,Audio
 OPT_SETT_MUSIC_VOLUME,Music volume

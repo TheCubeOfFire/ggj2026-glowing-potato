@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgfeykke8m0sf"]
+[gd_scene load_steps=9 format=3 uid="uid://dgfeykke8m0sf"]
 
 [ext_resource type="Script" uid="uid://cjxcr4gouiscb" path="res://gui/settings.gd" id="1_dtslm"]
 [ext_resource type="StyleBox" uid="uid://cakwrecbjard1" path="res://gui/theme/style_background_panel.tres" id="2_ag4o2"]
 [ext_resource type="FontFile" uid="uid://6k0wln3vy23u" path="res://gui/hud/fonts/keyboard_font.ttf" id="3_vgxye"]
+[ext_resource type="Theme" uid="uid://gcjegeg8h5ky" path="res://gui/theme/main_theme.tres" id="4_d7lp8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d7lp8"]
 font = ExtResource("3_vgxye")
@@ -77,14 +78,15 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="CB_InvertCameraY" type="CheckBox" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="InvertCameraY_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "OPT_SETT_INV_CAM_Y"
 label_settings = SubResource("LabelSettings_gq5u2")
+
+[node name="CB_InvertCameraY" type="CheckBox" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_d7lp8")
 
 [node name="MouseSensitivity_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -119,6 +121,40 @@ step = 0.05
 value = 1.0
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="GraphicsSection_Label2" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "OPT_SECT_GRAPHICS"
+label_settings = SubResource("LabelSettings_d7lp8")
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WindowMode_Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "OPT_SETT_WINDOW_MODE"
+label_settings = SubResource("LabelSettings_gq5u2")
+
+[node name="OB_WindowMode" type="OptionButton" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_d7lp8")
+selected = 1
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "OPT_VALUE_MODE_WINDOWED"
+popup/item_0/id = 0
+popup/item_1/text = "OPT_VALUE_MODE_BORDERLESS"
+popup/item_1/id = 1
+popup/item_2/text = "OPT_VALUE_MODE_FULLSCREEN"
+popup/item_2/id = 2
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -167,6 +203,7 @@ text = "Back"
 [connection signal="toggled" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HBoxContainer/CB_InvertCameraY" to="." method="_on_cb_invert_camera_y_toggled"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HS_MouseSensitivity" to="." method="_on_hs_mouse_sensitivity_value_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HS_GamepadSensitivity" to="." method="_on_hs_gamepad_sensitivity_value_changed"]
+[connection signal="item_selected" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HBoxContainer2/OB_WindowMode" to="." method="_on_ob_window_mode_item_selected"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HS_MusicVolume" to="." method="_on_hs_music_volume_value_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/HS_SFXVolume" to="." method="_on_hs_sfx_volume_value_changed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/ScrollContainer/CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

@@ -1,11 +1,15 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://gcjegeg8h5ky"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://gcjegeg8h5ky"]
 
 [ext_resource type="FontFile" uid="uid://6k0wln3vy23u" path="res://gui/hud/fonts/keyboard_font.ttf" id="1_bifhe"]
 [ext_resource type="StyleBox" uid="uid://cdfdrm8s5tdrt" path="res://gui/theme/button/style_focus.tres" id="1_x3spo"]
 [ext_resource type="StyleBox" uid="uid://3x05rs3rujbp" path="res://gui/theme/button/style_default.tres" id="2_nirra"]
 [ext_resource type="StyleBox" uid="uid://b11xpi8l1u6c0" path="res://gui/theme/scrollbar/style_default.tres" id="3_4rg34"]
+[ext_resource type="StyleBox" uid="uid://dg83nburj281h" path="res://gui/theme/checkbox/cb_style_focus.tres" id="4_1a5sv"]
+[ext_resource type="StyleBox" uid="uid://ddvrfj25b2fe2" path="res://gui/theme/option_button/ob_style_default.tres" id="4_5q4a1"]
 [ext_resource type="StyleBox" uid="uid://cxip8ciel0f6g" path="res://gui/theme/scrollbar/style_pressed.tres" id="4_gjs5p"]
 [ext_resource type="StyleBox" uid="uid://defas403hvk3r" path="res://gui/theme/scrollbar/style_scroll.tres" id="5_fpcra"]
+[ext_resource type="StyleBox" uid="uid://bv2slklhwkscu" path="res://gui/theme/checkbox/cb_style_default.tres" id="5_higs5"]
+[ext_resource type="StyleBox" uid="uid://cxpky2tjyh3sw" path="res://gui/theme/option_button/ob_style_focus.tres" id="5_hmt63"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ixhh"]
 
@@ -19,7 +23,19 @@ Button/styles/focus = ExtResource("1_x3spo")
 Button/styles/hover = ExtResource("2_nirra")
 Button/styles/normal = ExtResource("2_nirra")
 Button/styles/pressed = ExtResource("2_nirra")
+CheckBox/styles/focus = ExtResource("4_1a5sv")
+CheckBox/styles/hover = ExtResource("5_higs5")
+CheckBox/styles/normal = ExtResource("5_higs5")
+CheckBox/styles/pressed = ExtResource("5_higs5")
 Label/colors/font_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_focus_color = Color(0.3137255, 0.3137255, 0.3137255, 1)
+OptionButton/font_sizes/font_size = 20
+OptionButton/fonts/font = ExtResource("1_bifhe")
+OptionButton/styles/focus = ExtResource("5_hmt63")
+OptionButton/styles/hover = ExtResource("4_5q4a1")
+OptionButton/styles/normal = ExtResource("4_5q4a1")
+OptionButton/styles/pressed = ExtResource("4_5q4a1")
 RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_0ixhh")
 VScrollBar/styles/grabber = ExtResource("3_4rg34")
 VScrollBar/styles/grabber_highlight = ExtResource("3_4rg34")

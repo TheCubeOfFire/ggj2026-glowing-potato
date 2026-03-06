@@ -5,6 +5,9 @@ extends Control
 @onready var cb_invert_camera: CheckBox = %CB_InvertCameraY
 @onready var hs_mouse_sensitivity: HSlider = %HS_MouseSensitivity
 @onready var hs_gamepad_sensitivity: HSlider = %HS_GamepadSensitivity
+
+@onready var ob_window_mode: OptionButton = %OB_WindowMode
+
 @onready var hs_music_volume: HSlider = %HS_MusicVolume
 @onready var hs_sfx_volmue: HSlider = %HS_SFXVolume
 
@@ -21,6 +24,9 @@ func _initialize_ui_values() -> void:
     cb_invert_camera.button_pressed = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_CAMERA_INVERT_Y)
     hs_mouse_sensitivity.value = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_MOUSE_SENSITIVITY)
     hs_gamepad_sensitivity.value = SaveSystem.get_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_GAMEPAD_SENSITIVITY)
+
+    ob_window_mode.select(SaveSystem.get_option_value(SaveSystem.SECTION_GRAPHICS, SaveSystem.SETTING_GR_WINDOW_MODE))
+
     hs_music_volume.value = SaveSystem.get_option_value(SaveSystem.SECTION_AUDIO, SaveSystem.SETTING_AD_MUSIC_VOLUME)
     hs_sfx_volmue.value = SaveSystem.get_option_value(SaveSystem.SECTION_AUDIO, SaveSystem.SETTING_AD_SFX_VOLUME)
     return
@@ -38,6 +44,12 @@ func _on_hs_mouse_sensitivity_value_changed(value: float) -> void:
 
 func _on_hs_gamepad_sensitivity_value_changed(value: float) -> void:
     SaveSystem.set_option_value(SaveSystem.SECTION_GAMEPLAY, SaveSystem.SETTING_GP_GAMEPAD_SENSITIVITY, value)
+    return
+
+
+func _on_ob_window_mode_item_selected(index: int) -> void:
+    SaveSystem.set_option_value(SaveSystem.SECTION_GRAPHICS, SaveSystem.SETTING_GR_WINDOW_MODE, index)
+    SaveSystem.apply_graphics_setting()
     return
 
 
