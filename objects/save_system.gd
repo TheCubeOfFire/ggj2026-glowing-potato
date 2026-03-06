@@ -51,6 +51,7 @@ func _ready() -> void:
         push_warning("Couldn't load settings: Error ", str(err)," - Applying default config")
 
     _complete_with_default_config()
+    apply_all_settings()
     return
 
 
@@ -111,6 +112,12 @@ func set_option_value(section: String, option: String, value: Variant) -> bool:
 #endregion
 
 #region settings application
+func apply_all_settings() -> void:
+    apply_graphics_setting()
+    apply_audio_settings()
+    return
+
+
 func apply_graphics_setting() -> void:
     match get_option_value(SECTION_GRAPHICS, SETTING_GR_WINDOW_MODE):
         0:
