@@ -13,12 +13,10 @@ extends AnimatableBody3D
 
 
 # ------- Internal vars -------
-## Whether the cube's gravity is currently overriden
-var is_gravity_overrriden: bool = false
-## The current "gravity" force that is applied to this cube
-var gravity: Vector3 = Vector3.ZERO
-
-
+## Array of all forces that are currently applied to this cube
+var _applied_forces: Array[Vector3] = []
+## Current sum of all applied forces, normalized
+var _curr_combined_force: Vector3 = Vector3.ZERO
 ## Current velocity of the cube
 var _velocity := Vector3.ZERO
 
@@ -44,7 +42,7 @@ func _ready() -> void:
     return
 
 func _physics_process(delta: float) -> void:
-    var gravity_acceleration := default_gravity_force * gravity
+    var gravity_acceleration := default_gravity_force * _curr_combined_force
     _velocity *= 1.0 - friction
     _velocity += gravity_acceleration * delta
 
@@ -53,14 +51,34 @@ func _physics_process(delta: float) -> void:
 
 
 # ------- Functions -------
-func override_gravity(new_gravity: Vector3) -> void:
-    is_gravity_overrriden = true
-    gravity = new_gravity.normalized()
+#func override_gravity(new_gravity: Vector3) -> void:
+    #is_gravity_overrriden = true
+    #gravity = new_gravity.normalized()
+
+func _recompute_combined_force() -> void:
+    var sum: Vector3 = Vector3.ZERO
+    for force: Vector3 in _applied_forces:
+        sum += force
+    _curr_combined_force = sum.normalized()
 
 
-func clear_gravity_override() -> void:
-    is_gravity_overrriden = false
-    gravity = Vector3.ZERO
+func add_force(force: Vector3) -> void:
+    if not force in _applied_forces:
+        _applied_forces.append(force)
+        _recompute_combined_force()
+
+
+func remove_force(force: Vector3) -> void:
+    _applied_forces.erase(force)
+    _recompute_combined_force()
+
+
+func clear_forces() -> void:
+    _applied_forces.clear()
+    _recompute_combined_force()
+#func clear_gravity_override() -> void:
+    #is_gravity_overrriden = false
+    #gravity = Vector3.ZERO
 
 
 func get_mesh() -> Mesh:
@@ -69,6 +87,7 @@ func get_mesh() -> Mesh:
 
 ## Behavior to apply when the level is reset
 func _level_reset_behavior() -> void:
-    gravity = Vector3.ZERO
+    _curr_combined_force = Vector3.ZERO
+    _applied_forces.clear()
     _velocity = Vector3.ZERO
     return

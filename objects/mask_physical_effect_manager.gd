@@ -14,7 +14,7 @@ var mask_areas: Array[Array]
 
 
 var _mask_active_status: Array[bool] = [false, false, false, false]
-var _currently_affected_objects: Array[GravityCube] = []
+var _currently_affected_objects: Dictionary[GravityCube, Array] = {}
 
 func _ready() -> void:
     for _i in range(Globals.MASK_NUM):
@@ -30,7 +30,7 @@ func _ready() -> void:
         mask_index += 1
 
 func _physics_process(_delta: float) -> void:
-    var newly_affected_object_gravities: Dictionary[GravityCube, Vector3] = {}
+    var newly_affected_object_gravities: Dictionary[GravityCube, Array] = {}
 
     var camera := get_viewport().get_camera_3d()
 
@@ -94,19 +94,23 @@ func _physics_process(_delta: float) -> void:
                         var mask_shape := mask_area.shape_owner_get_shape(mask_shape_owner, mask_shape_index)
                         if mask_shape.collide(mask_owner_transform, shape, Transform2D.IDENTITY):
                             if gravity_cube in newly_affected_object_gravities:
-                                newly_affected_object_gravities[gravity_cube] += gravity_direction
+                                newly_affected_object_gravities[gravity_cube].append(gravity_direction)
                             else:
-                                newly_affected_object_gravities[gravity_cube] = gravity_direction
+                                newly_affected_object_gravities[gravity_cube] = [gravity_direction]
 
     for newly_affected_object: GravityCube in newly_affected_object_gravities:
-        var gravity_direction := newly_affected_object_gravities[newly_affected_object].normalized()
-        newly_affected_object.override_gravity(gravity_direction)
+        for gravity_direction: Vector3 in newly_affected_object_gravities[newly_affected_object]:
+            newly_affected_object.add_force(gravity_direction)
 
     for currently_affected_object: GravityCube in _currently_affected_objects:
         if currently_affected_object not in newly_affected_object_gravities:
-            currently_affected_object.clear_gravity_override()
+            currently_affected_object.clear_forces()
+        else:
+            for force: Vector3 in _currently_affected_objects[currently_affected_object]:
+                if force not in newly_affected_object_gravities[currently_affected_object]:
+                    currently_affected_object.remove_force(force)
 
-    _currently_affected_objects = newly_affected_object_gravities.keys()
+    _currently_affected_objects = newly_affected_object_gravities
 
 
 # ------- Other Functions -------
