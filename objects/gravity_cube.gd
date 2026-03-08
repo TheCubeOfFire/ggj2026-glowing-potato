@@ -51,10 +51,6 @@ func _physics_process(delta: float) -> void:
 
 
 # ------- Functions -------
-#func override_gravity(new_gravity: Vector3) -> void:
-    #is_gravity_overrriden = true
-    #gravity = new_gravity.normalized()
-
 func _recompute_combined_force() -> void:
     var sum: Vector3 = Vector3.ZERO
     for force: Vector3 in _applied_forces:
@@ -76,9 +72,6 @@ func remove_force(force: Vector3) -> void:
 func clear_forces() -> void:
     _applied_forces.clear()
     _recompute_combined_force()
-#func clear_gravity_override() -> void:
-    #is_gravity_overrriden = false
-    #gravity = Vector3.ZERO
 
 
 func get_mesh() -> Mesh:
